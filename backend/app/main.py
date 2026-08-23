@@ -12,6 +12,7 @@ from app.database import get_db, init_db
 from app.routers import sources, articles, briefings, dashboard
 from app.routers import trends, tracking, phase2
 from app.routers import phase3
+from app.routers import feeds, api_v1
 from app.schemas import CollectRequest, CollectResult, SummarizeRequest
 from app.services.collector import collect_all
 from app.services.classifier import classify_unclassified
@@ -133,6 +134,11 @@ huidao.cc 面向 AI、Crypto、Web3、Web4.0 领域，持续采集全球公开�
 - 关于与方法论: https://huidao.cc/about
 - 站点地图（含全部可索引页面）: https://huidao.cc/sitemap.xml
 
+## 机器可读数据出口
+- RSS 简报订阅: https://huidao.cc/rss/briefing.xml
+- RSS 风险预警订阅: https://huidao.cc/rss/alerts.xml
+- 公开 JSON API（文章列表，支持 category/tag/date_from/date_to/limit/offset 参数，限流 60次/分钟/IP）: https://huidao.cc/api/v1/articles
+
 ## 引用方式
 引用本站内容时请注明"huidao.cc"并保留对应的固定链接（/a/编号 或 /b/编号）。文章的AI摘要基于原文生成，每篇文章页均附原文出处链接。本站内容遵循 CC BY 4.0 协议，转载与二次创作须署名并注明链接。
 
@@ -170,6 +176,10 @@ app.include_router(phase2.router)
 
 # Phase 3
 app.include_router(phase3.router)
+
+# Public data feeds & open API
+app.include_router(feeds.router)
+app.include_router(api_v1.router)
 
 
 # === Action Endpoints ===

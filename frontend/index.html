@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#4a6b2a">
+    <meta name="theme-color" content="#0d1017">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="huidao.cc">
     <link rel="manifest" href="/static/manifest.json">
     <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
-    <meta name="description" content="huidao.cc - 免费开放的AI驱动Web4智库，实时监控60+全球信息源，CC BY 4.0协议共享">
-    <meta property="og:title" content="huidao.cc - 免费开放的AI驱动Web4智库">
-    <meta property="og:description" content="60+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
+    <meta name="description" content="huidao.cc - AI-powered Web4 think tank. Real-time monitoring of 60+ global sources, CC BY 4.0. AI驱动的Web4智库，实时监控60+全球信息源。">
+    <meta property="og:title" content="huidao.cc - AI-Powered Web4 Think Tank">
+    <meta property="og:description" content="Real-time monitoring of 60+ global sources. AI classification, risk alerts, daily briefings. Free & open, CC BY 4.0.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://huidao.cc/static/og-banner.png">
     <meta property="og:image:width" content="1200">
@@ -21,9 +21,16 @@
     <link rel="canonical" href="https://huidao.cc">
     <meta property="og:url" content="https://huidao.cc">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="huidao.cc - 免费开放的AI驱动Web4智库">
-    <meta name="twitter:description" content="60+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
-    <title>huidao.cc - 免费开放的AI驱动Web4智库</title>
+    <meta name="twitter:title" content="huidao.cc - AI-Powered Web4 Think Tank">
+    <meta name="twitter:description" content="Real-time monitoring of 60+ global sources. AI classification, risk alerts, daily briefings. CC BY 4.0.">
+    <title>huidao.cc - AI-Powered Web4 Think Tank</title>
+    <script>
+        /* Apply saved theme before first paint */
+        try {
+            var _t = localStorage.getItem('hd_theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', _t);
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -34,13 +41,12 @@
           "name": "huidao.cc",
           "url": "https://huidao.cc",
           "logo": "https://huidao.cc/static/og-banner.png",
-          "description": "AI驱动的Web4.0全球智库，实时监控60+全球信息源，提供AI智能分类、风险预警、趋势分析与每日简报。",
-          "email": "mailto:tanghuidao01@gmail.com"
+          "description": "AI-powered Web4 global think tank: real-time monitoring of 60+ global sources with AI classification, risk alerts, trend analysis and daily briefings."
         },
         {
           "@type": "WebSite",
           "@id": "https://huidao.cc/#website",
-          "name": "huidao.cc - 免费开放的AI驱动Web4智库",
+          "name": "huidao.cc",
           "url": "https://huidao.cc",
           "inLanguage": "zh-CN",
           "publisher": { "@id": "https://huidao.cc/#organization" }
@@ -51,380 +57,384 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <style>
+        /* ===== Design tokens: dark (default) ===== */
+        :root, [data-theme="dark"] {
+            --bg: #0d1017;
+            --bg-card: #131823;
+            --bg-elev: #1a2130;
+            --bg-elev2: #10141d;
+            --bg-code: #1a2130;
+            --border: #232b3b;
+            --border-strong: #33405a;
+            --text: #e8ebf2;
+            --text-soft: #b7c0d0;
+            --text-mute: #8b95a8;
+            --text-dim: #626d80;
+            --accent: #6e82f8;
+            --accent-hover: #8b9cfa;
+            --accent-dim: rgba(110, 130, 248, 0.15);
+            --success: #34d399;
+            --success-bg: rgba(52, 211, 153, 0.13);
+            --warn: #fbbf24;
+            --warn-bg: rgba(251, 191, 36, 0.13);
+            --danger: #f87171;
+            --danger-bg: rgba(248, 113, 113, 0.13);
+            --info: #38bdf8;
+            --info-bg: rgba(56, 189, 248, 0.13);
+            --purple: #a78bfa;
+            --purple-bg: rgba(167, 139, 250, 0.13);
+            --overlay: rgba(4, 6, 12, 0.66);
+            --green: #34d399;
+            --red: #f87171;
+            --amber: #fbbf24;
+            --teal: #2dd4bf;
+        }
+        /* ===== Design tokens: light ===== */
+        [data-theme="light"] {
+            --bg: #f5f6f9;
+            --bg-card: #ffffff;
+            --bg-elev: #eef0f5;
+            --bg-elev2: #f0f2f6;
+            --bg-code: #f0f2f6;
+            --border: #e3e7ee;
+            --border-strong: #c9d1de;
+            --text: #171b26;
+            --text-soft: #3d4657;
+            --text-mute: #5d6779;
+            --text-dim: #8b93a5;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --accent-dim: rgba(79, 70, 229, 0.09);
+            --success: #059669;
+            --success-bg: rgba(5, 150, 105, 0.10);
+            --warn: #b45309;
+            --warn-bg: rgba(180, 83, 9, 0.10);
+            --danger: #dc2626;
+            --danger-bg: rgba(220, 38, 38, 0.09);
+            --info: #0284c7;
+            --info-bg: rgba(2, 132, 199, 0.10);
+            --purple: #6d28d9;
+            --purple-bg: rgba(109, 40, 217, 0.09);
+            --overlay: rgba(23, 27, 38, 0.4);
+            --green: #059669;
+            --red: #dc2626;
+            --amber: #b45309;
+            --teal: #0f766e;
+        }
 
-        /* ===== 草绿色单主题 (huidao 自然主题) ===== */
-        :root {
-            --bg: #4a6b2a;            /* 草绿色主背景 */
-            --bg-card: rgba(255,255,255,0.10);  /* 卡片：白半透 */
-            --bg-elev: rgba(255,255,255,0.16);   /* 卡片悬停提亮 */
-            --bg-elev2: rgba(255,255,255,0.06);
-            --bg-elev3: rgba(255,255,255,0.04);
-            --bg-code: rgba(0,0,0,0.18);
-            --border: rgba(255,255,255,0.20);
-            --border-strong: rgba(255,255,255,0.38);
-            --text: #f6e8a0;          /* 鹅黄色 - 正文 */
-            --text-soft: #ecdc88;     /* 较深鹅黄 */
-            --text-mute: #c9d8a0;     /* 草绿浅色 */
-            --text-mid: #a8b97a;      /* 草绿暗 */
-            --text-dim: #8aa060;      /* 更淡草绿（最次要文字） */
-            --accent: #ffd700;        /* 金色 - 标题/强调 */
-            --accent-hover: #ffe34a;
-            --success: #c8f0a0;       /* 健康绿（亮） */
-            --success-hover: #dff6c2;
-            --warn: #ffd166;
-            --danger: #ff9090;
-            --purple: #e0c0ff;
-            --accent-dim: rgba(255,215,0,0.18);
-            --danger-bg: rgba(255,144,144,0.18);
-            --success-bg: rgba(200,240,160,0.18);
-            --warn-bg: rgba(255,209,102,0.18);
-            --warn-text: #ffe34a;
-            --warn-text-strong: #ffd166;
-            --purple-bg: rgba(224,192,255,0.18);
-            --info-bg: rgba(135,206,235,0.18);
-            --magenta-bg: rgba(255,180,230,0.18);
-            --overlay: rgba(0,0,0,0.55);
-            --accent-tint: rgba(255,215,0,0.10);
-            --accent-tint2: rgba(255,215,0,0.22);
-            --accent-tint-border: rgba(255,215,0,0.38);
-            --success-tint: rgba(200,240,160,0.10);
-            --card-shadow: rgba(0,0,0,0.4);
-            --hero-grad: linear-gradient(135deg, #4a6b2a 0%, #5d8036 40%, #4a6b2a 100%);
-        }
-        /* ===== 交互动效 ===== */
-        .card { transition: transform .25s ease, box-shadow .25s ease, background-color .3s, border-color .3s; }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--card-shadow); }
-        .stat-card { transition: transform .2s ease, box-shadow .2s ease, background-color .3s; }
-        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px var(--card-shadow); }
-        .btn { transition: transform .15s ease, background-color .2s, border-color .2s, box-shadow .2s; }
-        .btn:active { transform: scale(0.97); }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        .hero-content { animation: fadeUp .55s ease both; }
-        .hero-feature { animation: fadeUp .55s ease both; }
-        .hero-feature:nth-child(2) { animation-delay: .07s; }
-        .hero-feature:nth-child(3) { animation-delay: .14s; }
-        .hero-feature:nth-child(4) { animation-delay: .21s; }
-        .hero-cta { animation: fadeUp .55s ease both; animation-delay: .25s; }
-        .chart-container { animation: fadeUp .4s ease both; }
-        @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
-        }
+        /* ===== Base ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            transition: background-color .25s ease, color .25s ease;
         }
         .app { max-width: 1440px; margin: 0 auto; padding: 20px; }
+        a { color: var(--accent); }
+        .icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -3px; flex-shrink: 0; }
+        .icon-sm { width: 14px; height: 14px; vertical-align: -2px; }
+        .icon-lg { width: 24px; height: 24px; }
+
+        /* ===== Header ===== */
         .header {
             display: flex; align-items: center; gap: 12px;
-            padding: 12px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+            padding: 12px 0; border-bottom: 1px solid var(--border); margin-bottom: 6px;
             flex-wrap: wrap;
         }
-        .header h1 { font-size: 1.4rem; color: var(--accent); }
-        .header .version { font-size: 0.75rem; color: var(--text-dim); margin-left: 8px; }
-        .header .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-        .btn {
-            padding: 7px 14px; border: none; border-radius: 6px;
-            cursor: pointer; font-size: 0.82rem; font-weight: 500; transition: all 0.2s;
+        .brand-logo { display: flex; align-items: center; gap: 10px; }
+        .brand-mark { color: var(--accent); display: flex; }
+        .brand-name { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+        .brand-name span { color: var(--accent); }
+        .brand-tagline { font-size: 0.68rem; color: var(--text-dim); margin-top: -2px; letter-spacing: 0.3px; }
+        .header-controls { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+        .ctl-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-mute);
+            padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600;
+            transition: color .2s, border-color .2s;
         }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:hover { background: var(--accent-hover); }
-        .btn-secondary { background: var(--border); color: var(--text); }
-        .btn-secondary:hover { background: var(--border-strong); }
-        .btn-success { background: var(--success); color: white; }
-        .btn-success:hover { background: var(--success-hover); }
-        .btn-warning { background: var(--warn); color: #0f1419; }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 10px; margin-bottom: 24px;
-        }
-        .stat-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 10px; padding: 14px; text-align: center;
-        }
-        .stat-card .value { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
-        .stat-card .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
-        .tabs {
-            display: flex; gap: 2px; flex: 1; align-items: center;
-            min-width: 0; overflow: visible;
-        }
+        .ctl-btn:hover { color: var(--text); border-color: var(--border-strong); }
+        .tabs { display: flex; gap: 2px; flex: 1; align-items: center; min-width: 0; overflow: visible; }
         .tab {
             padding: 10px 16px; cursor: pointer; border: none;
-            background: transparent; color: var(--text-dim); font-size: 0.85rem;
+            background: transparent; color: var(--text-mute); font-size: 0.85rem;
             border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
         }
-        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
         .tab:hover { color: var(--text); }
+        .nav-group { position: relative; }
+        .nav-group-btn { padding: 10px 16px; cursor: pointer; border: none; background: transparent; color: var(--text-mute); font-size: 0.85rem; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+        .nav-group-btn:hover { color: var(--text); }
+        .nav-group-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .nav-group-btn::after { content: ' \25BE'; font-size: 0.7rem; }
+        .nav-dropdown { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; min-width: 150px; box-shadow: 0 8px 28px var(--overlay); z-index: 100; padding: 6px 0; }
+        .nav-dropdown.show { display: block; }
+        .nav-dropdown-item { display: block; padding: 8px 16px; color: var(--text-soft); font-size: 0.83rem; cursor: pointer; white-space: nowrap; transition: background 0.15s; }
+        .nav-dropdown-item:hover { background: var(--accent-dim); }
+        .nav-dropdown-item.active { color: var(--accent); }
+        .hamburger { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; padding: 6px 10px; align-items: center; }
+
+        /* ===== Buttons ===== */
+        .btn {
+            padding: 7px 14px; border: 1px solid transparent; border-radius: 8px;
+            cursor: pointer; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-secondary { background: var(--bg-card); border-color: var(--border); color: var(--text-soft); }
+        .btn-secondary:hover { border-color: var(--border-strong); color: var(--text); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* ===== Hero ===== */
+        .hero {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+            padding: 56px 40px 44px; margin-bottom: 24px; text-align: center; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(600px 220px at 30% 0%, var(--accent-dim), transparent 70%);
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.2; }
+        .hero h1 span { color: var(--accent); }
+        .hero .hero-subtitle { font-size: 1rem; color: var(--text-mute); margin-bottom: 8px; max-width: 640px; margin-left: auto; margin-right: auto; }
+        .hero-updated { display: inline-flex; align-items: center; gap: 7px; font-size: 0.78rem; color: var(--text-dim); margin-bottom: 26px; }
+        .hero-updated .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); animation: pulse 2.2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+        .hero-features { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 26px; }
+        .hero-feature { text-align: center; }
+        .hero-feature .hf-icon { color: var(--accent); margin-bottom: 8px; display: flex; justify-content: center; }
+        .hero-feature .hf-value { font-size: 1.15rem; font-weight: 700; color: var(--text); }
+        .hero-feature .hf-label { font-size: 0.76rem; color: var(--text-dim); }
+        .hero-license { font-size: 0.78rem; color: var(--text-mute); }
+        .hero-disclaimer { font-size: 0.72rem; color: var(--text-dim); margin-top: 8px; }
+
+        /* ===== Stats ===== */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 24px; }
+        .stats-group-header { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px; padding-left: 4px; grid-column: 1 / -1; display: flex; align-items: center; gap: 6px; font-weight: 600; }
+        .stat-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 14px; text-align: center;
+            transition: border-color .2s, transform .2s;
+        }
+        .stat-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+        .stat-card .stat-icon { color: var(--text-mute); margin-bottom: 6px; display: flex; justify-content: center; }
+        .stat-card .value { font-size: 1.6rem; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+        .stat-card .value.green { color: var(--success); }
+        .stat-card .value.yellow { color: var(--warn); }
+        .stat-card .value.red { color: var(--danger); }
+        .stat-card .label { font-size: 0.74rem; color: var(--text-dim); margin-top: 4px; }
+        .health-ratio { display: inline-flex; align-items: center; gap: 7px; justify-content: center; }
+        .health-ratio .hdot { width: 9px; height: 9px; border-radius: 50%; }
+        .health-ratio .hdot.ok { background: var(--success); }
+        .health-ratio .hdot.warn { background: var(--warn); }
+        .health-ratio .hdot.bad { background: var(--danger); }
+
+        /* ===== Cards ===== */
         .card {
             background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 10px; padding: 20px; margin-bottom: 16px;
+            border-radius: 12px; padding: 20px; margin-bottom: 16px;
+            transition: border-color .2s;
         }
-        .card h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text); }
+        .card:hover { border-color: var(--border-strong); }
+        .card h3 { font-size: 0.98rem; margin-bottom: 12px; color: var(--text); font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .card h3 .icon { color: var(--accent); }
+        .card-sub { font-size: 0.72rem; color: var(--text-dim); margin: -8px 0 12px; line-height: 1.5; }
+
+        /* ===== Article items ===== */
         .article-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
         .article-item:last-child { border-bottom: none; }
-        .article-title {
-            font-size: 0.92rem; font-weight: 500; color: var(--text);
-            text-decoration: none; display: block; margin-bottom: 5px;
-        }
+        .article-title { font-size: 0.92rem; font-weight: 600; color: var(--text); text-decoration: none; display: block; margin-bottom: 5px; line-height: 1.5; }
         .article-title:hover { color: var(--accent); }
-        .article-meta {
-            display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.73rem; color: var(--text-dim);
-        }
-        .tag { background: var(--accent-dim); color: var(--accent); padding: 2px 7px; border-radius: 4px; font-size: 0.68rem; }
-        .type-badge { background: var(--border); color: var(--text); padding: 2px 7px; border-radius: 4px; }
-        .hype { background: var(--danger-bg); color: var(--danger); }
-        .regulation { background: var(--warn-bg); color: var(--warn); }
-        .topic-list { display: flex; flex-wrap: wrap; gap: 8px; }
-        .topic-item {
-            background: var(--accent-dim); color: var(--accent); padding: 5px 11px;
-            border-radius: 16px; font-size: 0.78rem; display: flex; align-items: center; gap: 5px;
-        }
+        .article-meta { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; font-size: 0.72rem; color: var(--text-dim); }
+        .article-summary { margin-top: 5px; font-size: 0.8rem; color: var(--text-mute); }
+        .src-name { color: var(--text-mute); font-weight: 600; }
+        .origin-link { display: inline-flex; align-items: center; gap: 4px; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .origin-link:hover { text-decoration: underline; }
+
+        /* ===== Category badges ===== */
+        .cat-badge { display: inline-block; padding: 2px 9px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2px; border: 1px solid transparent; }
+        .cat-news { color: #94a3b8; background: rgba(148,163,184,.13); border-color: rgba(148,163,184,.25); }
+        .cat-opinion { color: #22d3ee; background: rgba(34,211,238,.12); border-color: rgba(34,211,238,.25); }
+        .cat-report { color: #a78bfa; background: rgba(167,139,250,.13); border-color: rgba(167,139,250,.25); }
+        .cat-funding { color: #34d399; background: rgba(52,211,153,.12); border-color: rgba(52,211,153,.25); }
+        .cat-regulation { color: #fbbf24; background: rgba(251,191,36,.12); border-color: rgba(251,191,36,.25); }
+        .cat-product_launch { color: #38bdf8; background: rgba(56,189,248,.12); border-color: rgba(56,189,248,.25); }
+        .cat-partnership { color: #2dd4bf; background: rgba(45,212,191,.12); border-color: rgba(45,212,191,.25); }
+        .cat-market_signal { color: #60a5fa; background: rgba(96,165,250,.13); border-color: rgba(96,165,250,.25); }
+        .cat-person_speech { color: #fb7185; background: rgba(251,113,133,.12); border-color: rgba(251,113,133,.25); }
+        .cat-suspected_hype { color: #f87171; background: rgba(248,113,113,.12); border-color: rgba(248,113,113,.25); }
+        [data-theme="light"] .cat-news { color: #475569; background: rgba(71,85,105,.09); border-color: rgba(71,85,105,.2); }
+        [data-theme="light"] .cat-opinion { color: #0e7490; background: rgba(14,116,144,.09); border-color: rgba(14,116,144,.2); }
+        [data-theme="light"] .cat-report { color: #6d28d9; background: rgba(109,40,217,.08); border-color: rgba(109,40,217,.2); }
+        [data-theme="light"] .cat-funding { color: #047857; background: rgba(4,120,87,.09); border-color: rgba(4,120,87,.2); }
+        [data-theme="light"] .cat-regulation { color: #b45309; background: rgba(180,83,9,.09); border-color: rgba(180,83,9,.2); }
+        [data-theme="light"] .cat-product_launch { color: #0369a1; background: rgba(3,105,161,.09); border-color: rgba(3,105,161,.2); }
+        [data-theme="light"] .cat-partnership { color: #0f766e; background: rgba(15,118,110,.09); border-color: rgba(15,118,110,.2); }
+        [data-theme="light"] .cat-market_signal { color: #1d4ed8; background: rgba(29,78,216,.09); border-color: rgba(29,78,216,.2); }
+        [data-theme="light"] .cat-person_speech { color: #be123c; background: rgba(190,18,60,.08); border-color: rgba(190,18,60,.2); }
+        [data-theme="light"] .cat-suspected_hype { color: #b91c1c; background: rgba(185,28,28,.08); border-color: rgba(185,28,28,.2); }
+
+        /* ===== Risk tiers ===== */
+        .risk-val { font-weight: 700; }
+        .risk-val.r-low { color: var(--success); }
+        .risk-val.r-mid { color: var(--warn); }
+        .risk-val.r-high { color: var(--danger); }
+        .risk-pill { display: inline-block; padding: 2px 9px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; }
+        .risk-pill.r-low { color: var(--success); background: var(--success-bg); }
+        .risk-pill.r-mid { color: var(--warn); background: var(--warn-bg); }
+        .risk-pill.r-high { color: var(--danger); background: var(--danger-bg); }
+
+        /* ===== Tag cloud ===== */
+        .topic-list { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; }
+        .topic-item { color: var(--accent); line-height: 1.4; background: none; border: none; cursor: pointer; padding: 0; font: inherit; display: inline-flex; align-items: baseline; }
+        .topic-item:hover { color: var(--accent-hover); }
         .topic-count {
-            background: var(--accent); color: white; min-width: 18px; height: 18px;
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; font-size: 0.68rem; font-weight: 700;
+            background: var(--accent-dim); color: var(--accent); min-width: 18px; height: 18px;
+            border-radius: 9px; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.65rem; font-weight: 700; margin-left: 4px; padding: 0 5px; vertical-align: 1px;
         }
+        .tag { background: var(--bg-elev); color: var(--text-mute); padding: 2px 8px; border-radius: 6px; font-size: 0.68rem; border: 1px solid var(--border); }
+
+        /* ===== Entities / sources ===== */
         .entity-list { display: flex; flex-wrap: wrap; gap: 8px; }
-        .entity-item { padding: 5px 11px; border-radius: 16px; font-size: 0.78rem; cursor: pointer; transition: opacity 0.2s; }
-        .entity-item:hover { opacity: 0.8; }
-        .entity-item.person { background: var(--purple-bg); color: var(--purple); }
-        .entity-item.company { background: var(--success-bg); color: var(--success); }
-        .entity-item.project { background: var(--warn-bg); color: var(--warn); }
-        .entity-item.organization { background: var(--info-bg); color: var(--accent); }
-        .source-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem;
-        }
+        .source-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; gap: 10px; }
         .source-item:last-child { border-bottom: none; }
-        .health-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+        .src-group-title { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 4px; font-weight: 700; }
+        .src-group-title:first-child { margin-top: 0; }
+        .health-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; flex-shrink: 0; }
         .health-dot.healthy { background: var(--success); }
         .health-dot.degraded { background: var(--warn); }
         .health-dot.error { background: var(--danger); }
         .health-dot.unknown { background: var(--text-dim); }
+
+        /* ===== Briefings / filters / charts ===== */
         .briefing-content { white-space: pre-wrap; font-size: 0.88rem; line-height: 1.8; max-height: 600px; overflow-y: auto; }
         .briefing-content h1, .briefing-content h2 { color: var(--accent); margin: 14px 0 8px; }
         .filter-bar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
         .filter-bar input, .filter-bar select {
             background: var(--bg-card); border: 1px solid var(--border);
-            color: var(--text); padding: 7px 11px; border-radius: 6px; font-size: 0.83rem;
+            color: var(--text); padding: 7px 11px; border-radius: 8px; font-size: 0.83rem;
         }
         .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--accent); }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-        @media (max-width: 900px) { .two-col, .three-col { grid-template-columns: 1fr; } }
         .chart-container { position: relative; height: 280px; margin: 10px 0; }
-        .toast {
-            position: fixed; bottom: 20px; right: 20px;
-            background: var(--bg-card); border: 1px solid var(--border);
-            padding: 12px 20px; border-radius: 8px;
-            box-shadow: 0 4px 12px var(--overlay); z-index: 1000;
-        }
-        .toast.success { border-color: var(--success); }
-        .toast.error { border-color: var(--danger); }
-        .tracker-card { padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s; }
-        .tracker-card:hover { border-color: var(--accent); }
-        .tracker-card .name { font-weight: 600; font-size: 0.9rem; }
-        .tracker-card .meta { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
-        .sched-job { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
-        .sched-job:last-child { border-bottom: none; }
-        .emerging-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
-        .emerging-item:last-child { border-bottom: none; }
-        .growth-badge { background: var(--success-bg); color: var(--success); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; }
-        .new-badge { background: var(--magenta-bg); color: var(--purple); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; }
-        .loading { text-align: center; padding: 30px; color: var(--text-dim); }
-        .alert-item { padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; }
+
+        /* ===== Alerts ===== */
+        .alert-item { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--bg-card); }
         .alert-item.critical { border-left: 3px solid var(--danger); }
         .alert-item.high { border-left: 3px solid var(--warn); }
         .alert-item.medium { border-left: 3px solid var(--accent); }
         .alert-item.low { border-left: 3px solid var(--text-dim); }
         .alert-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
-        .alert-meta { font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 10px; align-items: center; }
-        .severity-badge { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+        .alert-meta { font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .severity-badge { padding: 2px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; }
         .severity-badge.critical { background: var(--danger-bg); color: var(--danger); }
         .severity-badge.high { background: var(--warn-bg); color: var(--warn); }
         .severity-badge.medium { background: var(--accent-dim); color: var(--accent); }
-        .severity-badge.low { background: var(--border); color: var(--text-dim); }
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
-        .status-dot.active { background: var(--success); }
-        .status-dot.paused { background: var(--warn); }
-        .status-dot.completed { background: var(--accent); }
-        .status-dot.failed { background: var(--danger); }
-        .watchlist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
-        .watchlist-item:last-child { border-bottom: none; }
-        .narrative-bar { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; margin-top: 4px; }
+        .severity-badge.low { background: var(--bg-elev); color: var(--text-dim); }
+
+        /* ===== Narrative / tracker ===== */
+        .narrative-bar { height: 8px; border-radius: 4px; background: var(--bg-elev); overflow: hidden; margin-top: 4px; }
         .narrative-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
         .narrative-fill.strong { background: var(--success); }
         .narrative-fill.moderate { background: var(--accent); }
         .narrative-fill.weak { background: var(--text-dim); }
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 4px; }
-        .form-group input, .form-group select {
-            width: 100%; background: var(--bg); border: 1px solid var(--border);
-            color: var(--text); padding: 8px 12px; border-radius: 6px; font-size: 0.85rem;
-        }
-        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); }
-        .modal-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: var(--overlay); display: flex; align-items: center; justify-content: center; z-index: 2000; }
-        .modal { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; width: 90%; max-width: 480px; }
-        .modal h3 { margin-bottom: 16px; }
-        .auth-bar { display:flex; align-items:center; gap:10px; }
-        .auth-bar .user-info { font-size:0.82rem; color:var(--text-dim); }
-        .auth-bar .user-info strong { color:var(--accent); }
-        .tier-badge { padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; text-transform:uppercase; }
-        .tier-badge.free { background:var(--border); color:var(--text-dim); }
-        .tier-badge.pro { background:var(--accent-dim); color:var(--accent); }
-        .tier-badge.max { background:var(--warn-bg); color:var(--warn); }
-        .plan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
-        .plan-card { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center; transition:border-color 0.2s; }
-        .plan-card:hover { border-color:var(--accent); }
-        .plan-card.current { border-color:var(--success); }
-        .plan-card .plan-name { font-size:1.1rem; font-weight:700; margin-bottom:6px; }
-        .plan-card .plan-price { font-size:1.8rem; font-weight:700; color:var(--accent); margin:10px 0; }
-        .plan-card .plan-price span { font-size:0.8rem; color:var(--text-dim); font-weight:400; }
-        .plan-card .plan-features { text-align:left; font-size:0.8rem; color:var(--text-dim); margin-top:12px; }
-        .plan-card .plan-features div { padding:3px 0; }
-        .plan-card .plan-features div::before { content:'✓ '; color:var(--success); }
-        .auth-tabs { display:flex; gap:0; margin-bottom:16px; }
-        .auth-tab { flex:1; padding:10px; text-align:center; cursor:pointer; background:var(--bg); border:1px solid var(--border); color:var(--text-dim); font-size:0.85rem; transition:all 0.2s; }
-        .auth-tab:first-child { border-radius:8px 0 0 8px; }
-        .auth-tab:last-child { border-radius:0 8px 8px 0; }
-        .auth-tab.active { background:var(--accent-dim); color:var(--accent); border-color:var(--accent); }
+        .tracker-card { padding: 10px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s; background: var(--bg-card); }
+        .tracker-card:hover { border-color: var(--accent); }
+        .tracker-card .name { font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .tracker-card .meta { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+        .emerging-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); gap: 10px; }
+        .emerging-item:last-child { border-bottom: none; }
+        .growth-badge { background: var(--success-bg); color: var(--success); padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; }
+        .new-badge { background: var(--purple-bg); color: var(--purple); padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; }
 
-        /* P2-3: Mobile Responsive */
-        .hamburger { display:none; background:none; border:none; color:var(--text); font-size:1.5rem; cursor:pointer; padding:6px 10px; }
-        .mobile-nav-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--overlay); z-index:3000; }
+        /* ===== Scheduler ===== */
+        .sched-job { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); gap: 10px; }
+        .sched-job:last-child { border-bottom: none; }
+
+        /* ===== Toast / modal / states ===== */
+        .toast {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 12px 24px; border-radius: 10px; min-width: 280px; text-align: center;
+            font-size: 0.85rem; z-index: 1000; box-shadow: 0 8px 30px var(--overlay);
+        }
+        .toast.success { border-color: var(--success); }
+        .toast.error { border-color: var(--danger); }
+        .toast.info { border-color: var(--accent); }
+        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-dim); }
+        .empty-state .empty-icon { color: var(--text-dim); opacity: 0.5; margin-bottom: 12px; display: flex; justify-content: center; }
+        .empty-state .empty-text { font-size: 0.88rem; margin-bottom: 12px; }
+        .loading { text-align: center; padding: 30px; color: var(--text-dim); }
+        .skeleton { background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elev) 50%, var(--bg-card) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+        .skeleton-card { height: 80px; }
+
+        /* ===== About / license ===== */
+        .about-wrap { max-width: 860px; margin: 0 auto; }
+        .about-lead { font-size: 0.9rem; color: var(--text); line-height: 1.8; margin-bottom: 18px; }
+        .license-box { background: var(--accent-dim); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 18px; }
+        .license-box .lb-title { font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+        .license-box .lb-body { font-size: 0.82rem; color: var(--text-soft); line-height: 1.7; }
+        .disclaimer-box { background: var(--bg-elev2); border: 1px solid var(--border); border-left: 3px solid var(--warn); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+        .disclaimer-box .db-title { font-size: 0.85rem; font-weight: 700; color: var(--warn); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .disclaimer-box ol { padding-left: 18px; }
+        .disclaimer-box li { font-size: 0.82rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 4px; }
+        .method-item { margin-bottom: 14px; }
+        .method-item .mi-title { font-size: 0.86rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .method-item .mi-body { font-size: 0.82rem; color: var(--text-mute); line-height: 1.7; }
+        .api-doc { background: var(--bg-code); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.76rem; color: var(--text-soft); margin: 8px 0; word-break: break-all; line-height: 1.6; }
+        .api-doc b { color: var(--accent); font-weight: 700; }
+        .cite-box { background: var(--bg-code); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.76rem; margin-bottom: 12px; word-break: break-all; color: var(--text-soft); }
+        .about-h4 { font-size: 0.95rem; color: var(--text); margin: 18px 0 8px; font-weight: 700; }
+        .about-p { font-size: 0.84rem; color: var(--text-mute); line-height: 1.8; }
+        .about-p a { color: var(--accent); text-decoration: none; }
+        .about-p a:hover { text-decoration: underline; }
+        .feed-link { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; color: var(--accent); text-decoration: none; margin: 0 8px 8px 0; }
+        .feed-link:hover { border-color: var(--accent); }
+        .feed-link .icon { color: var(--warn); }
+
+        /* ===== Footer ===== */
+        .footer-multi { border-top: 1px solid var(--border); margin-top: 40px; padding: 32px 20px 20px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; max-width: 1440px; margin: 0 auto; }
+        .footer-brand .footer-logo { font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+        .footer-brand .footer-logo span { color: var(--accent); }
+        .footer-brand .footer-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; }
+        .footer-col h4 { font-size: 0.76rem; color: var(--text-soft); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px; }
+        .footer-col a { display: block; color: var(--text-dim); text-decoration: none; font-size: 0.78rem; padding: 3px 0; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--text-dim); max-width: 1440px; margin-left: auto; margin-right: auto; }
+        .footer-bottom a { color: var(--text-mute); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--accent); }
+
+        /* ===== Mobile ===== */
+        .mobile-nav-overlay { display:none; position:fixed; inset:0; background:var(--overlay); z-index:3000; }
         .mobile-nav-overlay.open { display:block; }
-        .mobile-nav-panel { position:fixed; top:0; right:-300px; width:280px; height:100%; background:var(--bg-card); z-index:3001; transition:right 0.3s; overflow-y:auto; padding:20px; }
+        .mobile-nav-panel { position:fixed; top:0; right:-300px; width:280px; height:100%; background:var(--bg-card); z-index:3001; transition:right 0.3s; overflow-y:auto; padding:20px; border-left: 1px solid var(--border); }
         .mobile-nav-panel.open { right:0; }
         .mobile-nav-panel .nav-section { margin-bottom:16px; }
         .mobile-nav-panel .nav-section-title { font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--border); }
-        .mobile-nav-panel .nav-item { display:block; padding:10px 12px; color:var(--text); font-size:0.85rem; border-radius:6px; cursor:pointer; transition:background 0.2s; }
+        .mobile-nav-panel .nav-item { display:block; padding:10px 12px; color:var(--text-soft); font-size:0.85rem; border-radius:8px; cursor:pointer; }
         .mobile-nav-panel .nav-item:hover { background:var(--accent-dim); }
         .mobile-nav-panel .nav-item.active { background:var(--accent-dim); color:var(--accent); }
-        .mobile-nav-panel .nav-close { position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text-dim); font-size:1.2rem; cursor:pointer; }
-        /* P2-1: Nav dropdown groups */
-        .nav-group { position:relative; }
-        .nav-group-btn { padding:10px 16px; cursor:pointer; border:none; background:transparent; color:var(--text-dim); font-size:0.85rem; border-bottom:2px solid transparent; transition:all 0.2s; white-space:nowrap; }
-        .nav-group-btn:hover { color:var(--text); }
-        .nav-group-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
-        .nav-group-btn::after { content:' \25BE'; font-size:0.7rem; }
-        .nav-dropdown { display:none; position:absolute; top:100%; left:0; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; min-width:140px; box-shadow:0 4px 12px var(--overlay); z-index:100; padding:4px 0; }
-        .nav-dropdown.show { display:block; }
-        .nav-dropdown-item { display:block; padding:8px 16px; color:var(--text); font-size:0.83rem; cursor:pointer; white-space:nowrap; transition:background 0.15s; }
-        .nav-dropdown-item:hover { background:var(--accent-dim); }
-        .nav-dropdown-item.active { color:var(--accent); background:var(--bg); }
-        /* P2-2: Login enhancements */
-        .password-wrapper { position:relative; }
-        .password-wrapper input { padding-right:42px; }
-        .password-toggle { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.82rem; padding:4px; }
-        .password-toggle:hover { color:var(--accent); }
-        .remember-row { display:flex; align-items:center; gap:8px; margin-bottom:12px; font-size:0.8rem; color:var(--text-dim); }
-        .remember-row input[type="checkbox"] { accent-color:var(--accent); }
-        .register-hint { font-size:0.75rem; color:var(--text-dim); text-align:center; margin-top:8px; }
-        @media (max-width: 768px) {
-            .hamburger { display:block; }
-            .header { flex-wrap:wrap; }
-            .header .actions { width:100%; margin-top:10px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .filter-bar { flex-direction:column; }
-            .filter-bar input, .filter-bar select { width:100%; }
-            .modal { width:95%; max-width:none; margin:10px; }
-            .tabs { display:none; }
-            .two-col { grid-template-columns:1fr; }
-        }
-        @media (min-width: 769px) and (max-width: 1200px) {
-            .stats-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        /* === P1: Skeleton Loading === */
-        .skeleton { background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elev) 50%, var(--bg-card) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
-        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-        .skeleton-card { height: 80px; border-radius: 10px; }
-        .skeleton-line { height: 14px; margin: 8px 0; border-radius: 4px; }
-        .skeleton-line.short { width: 60%; }
-
-        /* === P1: Header Brand === */
-        .brand-logo { display: flex; align-items: center; gap: 10px; }
-        .brand-logo svg { flex-shrink: 0; }
-        .brand-logo .brand-name { font-size: 1.3rem; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
-        .brand-logo .brand-name span { background: linear-gradient(135deg, var(--accent), var(--success)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .brand-logo .brand-tagline { font-size: 0.68rem; color: var(--text-dim); margin-top: -2px; }
-        .header-bottom-line { height: 2px; background: linear-gradient(90deg, var(--accent), var(--success), transparent); margin-bottom: 24px; border-radius: 1px; }
-
-        /* === P1: Stats Icons === */
-        .stats-group-header { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-left: 4px; grid-column: 1 / -1; }
-        .stat-card .stat-icon { font-size: 1.2rem; margin-bottom: 4px; }
-        .stat-card .value.green { color: var(--success); }
-        .stat-card .value.yellow { color: var(--warn); }
-        .stat-card .value.red { color: var(--danger); }
-        .stat-card .value.purple { color: var(--purple); }
-        .stat-card:hover { border-color: var(--accent); transform: translateY(-2px); transition: all 0.2s; }
-
-        /* === P1: Empty States === */
-        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-dim); }
-        .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.5; }
-        .empty-state .empty-text { font-size: 0.88rem; margin-bottom: 12px; }
-        .empty-state .empty-action { margin-top: 8px; }
-
-        /* === Hero Gradient Field === */
-        .hero { background: linear-gradient(135deg, var(--bg) 0%, var(--bg-elev2) 40%, var(--bg) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; margin-bottom: 24px; text-align: center; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, var(--accent-tint) 0%, transparent 60%), radial-gradient(circle at 70% 30%, var(--success-tint) 0%, transparent 50%); pointer-events: none; }
-        .hero-content { position: relative; z-index: 1; }
-        .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
-        .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--success)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero .hero-subtitle { font-size: 1rem; color: var(--text-dim); margin-bottom: 24px; }
-        .hero-features { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
-        .hero-feature { text-align: center; }
-        .hero-feature .hf-icon { font-size: 1.8rem; margin-bottom: 6px; }
-        .hero-feature .hf-label { font-size: 0.78rem; color: var(--text-dim); }
-        .hero-feature .hf-value { font-size: 1.1rem; font-weight: 600; color: var(--accent); }
-        .hero-cta { display: flex; gap: 12px; justify-content: center; }
-        .hero-cta .btn { padding: 10px 28px; font-size: 0.92rem; border-radius: 8px; }
-
-        /* === P2: Membership Recommend Badge === */
-        .plan-card.recommended { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-tint2); position: relative; }
-        .recommend-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--success)); color: white; padding: 2px 14px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
-        .plan-card.flagship { border-color: var(--warn); }
-        .plan-card.flagship .plan-price { color: var(--warn); }
-
-        /* === P2: Footer Multi-column === */
-        .footer-multi { border-top: 1px solid var(--border); margin-top: 40px; padding: 32px 20px 20px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; max-width: 1440px; margin: 0 auto; }
-        .footer-brand .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-        .footer-brand .footer-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; }
-        .footer-col h4 { font-size: 0.78rem; color: var(--text); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .footer-col a { display: block; color: var(--text-dim); text-decoration: none; font-size: 0.78rem; padding: 3px 0; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--accent); }
-        .footer-bottom { text-align: center; padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--bg-elev3); font-size: 0.72rem; color: var(--text-mid); max-width: 1440px; margin-left: auto; margin-right: auto; }
-        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
-
-        /* === P2: Toast Enhancement === */
-        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); bottom: auto; right: auto; min-width: 280px; text-align: center; border-radius: 10px; padding: 12px 24px; font-size: 0.85rem; }
-        .toast.success { background: linear-gradient(135deg, var(--success-bg), var(--bg-card)); }
-        .toast.error { background: linear-gradient(135deg, var(--danger-bg), var(--bg-card)); }
-        .toast.warning { background: linear-gradient(135deg, var(--warn-bg), var(--bg-card)); border-color: var(--warn); }
-
-        /* === P1: Action Toolbar === */
-        .action-toolbar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 16px; }
-        .action-toolbar .btn { font-size: 0.78rem; padding: 6px 12px; }
-        .action-toolbar .btn svg { vertical-align: middle; margin-right: 4px; }
-
-        /* === P3: Mobile Enhancement === */
-        @media (max-width: 480px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .stat-card { padding: 10px; }
-            .stat-card .value { font-size: 1.3rem; }
-            .hero { padding: 30px 20px; }
-            .hero h1 { font-size: 1.4rem; }
-            .hero-features { gap: 16px; }
-            .hero-cta { flex-direction: column; align-items: center; }
-        }
-
+        .mobile-nav-panel .nav-close { position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text-dim); cursor:pointer; padding:4px; }
         .mobile-bottom-nav { display: none; }
         @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .header { flex-wrap: wrap; }
+            .tabs { display: none; }
+            .two-col { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .filter-bar { flex-direction: column; }
+            .filter-bar input, .filter-bar select { width: 100%; }
+            .hero { padding: 34px 20px; }
+            .hero h1 { font-size: 1.7rem; }
+            .hero-features { gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
             .mobile-bottom-nav {
                 display: flex; position: fixed; bottom: 0; left: 0; right: 0;
                 background: var(--bg-card); border-top: 1px solid var(--border);
@@ -437,292 +447,397 @@
                 transition: color 0.2s; min-width: 52px;
             }
             .mobile-bottom-nav .mnav-item.active { color: var(--accent); }
-            .mobile-bottom-nav .mnav-item .mnav-icon { font-size: 1.2rem; margin-bottom: 2px; }
             body { padding-bottom: 60px; }
         }
-            .license-badge:hover { background: var(--accent-tint2) !important; }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+        @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     </style>
-    <script src="https://turing.captcha.qcloud.com/TJCaptcha.js"></script>
 </head>
 <body>
-<div id="app" class="app">
-    <div class="header">
+<!-- ===== SVG icon sprite (Tabler-style stroke icons) ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7 7 7"/><path d="M5 12v7a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-7"/></symbol>
+    <symbol id="i-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5a2 2 0 0 1 4 0 7 7 0 0 1 4 6.7c0 2 .6 3.5 1.3 4.3.3.4 0 1-.5 1H5.2c-.5 0-.8-.6-.5-1 .7-.8 1.3-2.3 1.3-4.3A7 7 0 0 1 10 5z"/><path d="M9.5 21a2.4 2.4 0 0 0 5 0"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M19 8v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5z"/><path d="M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+    <symbol id="i-broadcast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4"/><path d="M7.8 16.2a6 6 0 0 1 0-8.4"/><path d="M19.1 4.9a10 10 0 0 1 0 14.2"/><path d="M4.9 19.1a10 10 0 0 1 0-14.2"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9L2.5 17.5a1.9 1.9 0 0 0 1.6 2.9h15.8a1.9 1.9 0 0 0 1.6-2.9L13.7 3.9a1.9 1.9 0 0 0-3.4 0z"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 4 5.7 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.7-4-9s1.5-6.4 4-9z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 7H8a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3"/><path d="M14 4h6v6"/><path d="M20 4L11 13"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M21 21l-6-6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a4 4 0 0 1 0 7"/><path d="M17.5 15.6a6 6 0 0 1 3.5 5.4"/></symbol>
+    <symbol id="i-rss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="18.5" r="1.5"/><path d="M4 4a16 16 0 0 1 16 16"/><path d="M4 11a9 9 0 0 1 9 9"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4 4 4"/><path d="M17 8l4 4-4 4"/><path d="M14 4l-4 16"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.4 8-8 9-4.6-1-8-4.6-8-9V6z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M12 11v5"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+    <symbol id="i-bar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20v-6"/><path d="M11 20V8"/><path d="M17 20v-9"/><path d="M3 20h18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-3 17.5c.4.1.6-.2.6-.4v-1.7c-2.5.5-3-1.2-3-1.2-.4-1-1-1.3-1-1.3-.8-.6.1-.6.1-.6.9.1 1.4.9 1.4.9.8 1.4 2.1 1 2.6.8.1-.6.3-1 .6-1.3-2-.2-4.1-1-4.1-4.5 0-1 .3-1.8.9-2.4-.1-.2-.4-1.1.1-2.3 0 0 .7-.2 2.4.9a8.3 8.3 0 0 1 4.3 0c1.7-1.1 2.4-.9 2.4-.9.5 1.2.2 2.1.1 2.3.6.6.9 1.4.9 2.4 0 3.5-2.1 4.2-4.1 4.5.3.3.6.8.6 1.6v2.4c0 .2.2.5.6.4A9 9 0 0 0 12 3z"/></symbol>
+</svg>
+<!-- ===== App ===== -->
+<div id="app">
+    <!-- Header -->
+    <header class="header">
         <div class="brand-logo">
+            <svg class="icon-lg" style="color:var(--accent)"><use href="#i-pulse"/></svg>
             <div>
                 <div class="brand-name"><span>huidao</span>.cc</div>
-                <div class="brand-tagline">AI驱动的Web4智库</div>
+                <div class="brand-tagline">{{ t('brand.tagline') }}</div>
             </div>
         </div>
-        <div class="tabs">
-            <button class="tab" :class="{active: activeTab === 'overview'}" @click="activeTab = 'overview'">总览</button>
+        <nav class="tabs">
+            <button class="tab" :class="{active: activeTab === 'overview'}" @click="switchTab('overview')">
+                <svg class="icon-sm"><use href="#i-home"/></svg>{{ t('nav.overview') }}
+            </button>
             <div class="nav-group">
-                <button class="nav-group-btn" :class="{active: ['alerts','narrative','tracking'].includes(activeTab)}" @click.stop="toggleNavGroup('analysis')">智能分析</button>
+                <button class="nav-group-btn" :class="{active: ['alerts','narrative','tracking'].includes(activeTab)}" @click.stop="openNavGroup = openNavGroup === 'analysis' ? '' : 'analysis'">
+                    <svg class="icon-sm"><use href="#i-cpu"/></svg>{{ t('nav.analysis') }}
+                </button>
                 <div class="nav-dropdown" :class="{show: openNavGroup === 'analysis'}">
-                    <div class="nav-dropdown-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts'); openNavGroup=''">预警</div>
-                    <div class="nav-dropdown-item" :class="{active: activeTab==='narrative'}" @click="switchTab('narrative'); openNavGroup=''">叙事强度</div>
-                    <div class="nav-dropdown-item" :class="{active: activeTab==='tracking'}" @click="switchTab('tracking'); openNavGroup=''">观点追踪</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts'); openNavGroup=''"><svg class="icon-sm"><use href="#i-alert"/></svg>{{ t('nav.alerts') }}</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='narrative'}" @click="switchTab('narrative'); openNavGroup=''"><svg class="icon-sm"><use href="#i-broadcast"/></svg>{{ t('nav.narrative') }}</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='tracking'}" @click="switchTab('tracking'); openNavGroup=''"><svg class="icon-sm"><use href="#i-users"/></svg>{{ t('nav.tracking') }}</div>
                 </div>
             </div>
-            <button class="tab" :class="{active: activeTab === 'trends'}" @click="switchTab('trends')">趋势</button>
+            <button class="tab" :class="{active: activeTab === 'trends'}" @click="switchTab('trends')">
+                <svg class="icon-sm"><use href="#i-trending"/></svg>{{ t('nav.trends') }}
+            </button>
             <div class="nav-group">
-                <button class="nav-group-btn" :class="{active: ['articles','briefings','sources','scheduler'].includes(activeTab)}" @click.stop="toggleNavGroup('content')">内容 & 系统</button>
+                <button class="nav-group-btn" :class="{active: ['articles','briefings','sources','scheduler'].includes(activeTab)}" @click.stop="openNavGroup = openNavGroup === 'content' ? '' : 'content'">
+                    <svg class="icon-sm"><use href="#i-db"/></svg>{{ t('nav.content') }}
+                </button>
                 <div class="nav-dropdown" :class="{show: openNavGroup === 'content'}">
-                    <div class="nav-dropdown-item" :class="{active: activeTab==='articles'}" @click="activeTab='articles'; openNavGroup=''">文章</div>
-                    <div class="nav-dropdown-item" :class="{active: activeTab==='briefings'}" @click="activeTab='briefings'; openNavGroup=''">简报</div>
-                    <div class="nav-dropdown-item" :class="{active: activeTab==='sources'}" @click="switchTab('sources'); openNavGroup=''">信息源</div>
-                    <div class="nav-dropdown-item" :class="{active: activeTab==='scheduler'}" @click="switchTab('scheduler'); openNavGroup=''">定时任务</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='articles'}" @click="switchTab('articles'); openNavGroup=''"><svg class="icon-sm"><use href="#i-file"/></svg>{{ t('nav.articles') }}</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='briefings'}" @click="switchTab('briefings'); openNavGroup=''"><svg class="icon-sm"><use href="#i-book"/></svg>{{ t('nav.briefings') }}</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='sources'}" @click="switchTab('sources'); openNavGroup=''"><svg class="icon-sm"><use href="#i-globe"/></svg>{{ t('nav.sources') }}</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='scheduler'}" @click="switchTab('scheduler'); openNavGroup=''"><svg class="icon-sm"><use href="#i-clock"/></svg>{{ t('nav.scheduler') }}</div>
                 </div>
             </div>
-
+        </nav>
+        <div class="header-controls">
+            <button class="ctl-btn" @click="toggleLang" :title="lang === 'zh' ? 'Switch to English' : '切换中文'">
+                <svg class="icon-sm"><use href="#i-globe"/></svg><span>{{ lang === 'zh' ? 'EN' : '中文' }}</span>
+            </button>
+            <button class="ctl-btn" @click="toggleTheme" :title="t('ctl.theme')">
+                <svg class="icon-sm"><use :href="theme === 'dark' ? '#i-sun' : '#i-moon'"/></svg>
+            </button>
+            <button class="hamburger" @click="mobileNavOpen = !mobileNavOpen" aria-label="menu">
+                <svg class="icon"><use href="#i-menu"/></svg>
+            </button>
         </div>
-        <button class="hamburger" @click="mobileNavOpen = !mobileNavOpen">&#9776;</button>
-    </div>
+    </header>
 
-    <div class="header-bottom-line"></div>
-    <!-- P2: Hero Section (unlogged users only) -->
-    <div v-show="!currentUser" class="hero">
+    <!-- Hero -->
+    <section class="hero">
         <div class="hero-content">
-            <h1><span>AI 驱动</span>的 Web4 全球智库</h1>
-            <p class="hero-subtitle">实时监控 60+ 全球信息源，AI 智能分类、风险预警、趋势分析一站式覆盖</p>
+            <h1><span>{{ t('hero.titleA') }}</span>{{ t('hero.titleB') }}</h1>
+            <p class="hero-subtitle">{{ t('hero.subtitle') }}</p>
+            <div class="hero-updated" v-if="lastUpdated">
+                <span class="dot"></span>
+                {{ t('hero.updated') }} {{ fmtDate(lastUpdated) }}
+                <span style="color:var(--text-mute)">· {{ relTime(lastUpdated) }}</span>
+            </div>
             <div class="hero-features">
                 <div class="hero-feature">
-                    <div class="hf-icon">📡</div>
-                    <div class="hf-value">60+</div>
-                    <div class="hf-label">信息源</div>
+                    <svg class="icon-lg hf-icon" style="color:var(--accent)"><use href="#i-broadcast"/></svg>
+                    <div class="hf-value">{{ healthyCount }}<span style="font-size:0.7em;color:var(--text-dim)">/{{ sources.length || stats.total_sources || 60 }}</span></div>
+                    <div class="hf-label">{{ t('hero.f1') }}</div>
                 </div>
                 <div class="hero-feature">
-                    <div class="hf-icon">🤖</div>
-                    <div class="hf-value">AI 分类</div>
-                    <div class="hf-label">智能标签</div>
+                    <svg class="icon-lg hf-icon" style="color:var(--purple)"><use href="#i-cpu"/></svg>
+                    <div class="hf-value">{{ t('hero.f2v') }}</div>
+                    <div class="hf-label">{{ t('hero.f2') }}</div>
                 </div>
                 <div class="hero-feature">
-                    <div class="hf-icon">⚠️</div>
-                    <div class="hf-value">实时</div>
-                    <div class="hf-label">风险预警</div>
+                    <svg class="icon-lg hf-icon" style="color:var(--amber)"><use href="#i-alert"/></svg>
+                    <div class="hf-value">{{ t('hero.f3v') }}</div>
+                    <div class="hf-label">{{ t('hero.f3') }}</div>
                 </div>
                 <div class="hero-feature">
-                    <div class="hf-icon">📊</div>
-                    <div class="hf-value">每日</div>
-                    <div class="hf-label">智能简报</div>
+                    <svg class="icon-lg hf-icon" style="color:var(--teal)"><use href="#i-file"/></svg>
+                    <div class="hf-value">{{ t('hero.f4v') }}</div>
+                    <div class="hf-label">{{ t('hero.f4') }}</div>
                 </div>
             </div>
-            <div style="margin-top:14px;font-size:0.78rem;color:var(--text-mute);">
-                本站所有聚合内容与分析均遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent);text-decoration:none;">知识共享署名 4.0 国际许可协议</a>，免费公开使用。
+            <div class="hero-license">
+                <svg class="icon-sm"><use href="#i-shield"/></svg>
+                {{ t('hero.licensePre') }}<a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="noopener">{{ t('hero.licenseLink') }}</a>{{ t('hero.licensePost') }}
+            </div>
+            <div class="hero-disclaimer">
+                <svg class="icon-sm"><use href="#i-info"/></svg>
+                {{ t('hero.disclaimer') }}
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Stats: Loading Skeleton -->
+    <!-- Stats -->
     <div v-if="statsLoading" class="stats-grid">
         <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
         <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
         <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
-        <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
     </div>
-    <!-- Stats: Data -->
     <div v-else class="stats-grid">
-        <div class="stats-group-header">📊 数据规模</div>
-        <div class="stat-card"><div class="stat-icon">📡</div><div class="value">{{ stats.total_sources || 0 }}</div><div class="label">信息源</div></div>
-        <div class="stat-card"><div class="stat-icon">💚</div><div class="value green">{{ stats.healthy_sources || 0 }}</div><div class="label">健康源</div></div>
-        <div class="stat-card"><div class="stat-icon">📄</div><div class="value">{{ stats.total_articles || 0 }}</div><div class="label">文章总数</div></div>
-        <div class="stats-group-header">⚡ 今日动态</div>
-        <div class="stat-card"><div class="stat-icon">🆕</div><div class="value green">{{ stats.articles_today || 0 }}</div><div class="label">今日新增</div></div>
-        <div class="stat-card"><div class="stat-icon">📈</div><div class="value">{{ stats.articles_this_week || 0 }}</div><div class="label">本周新增</div></div>
-        <div class="stat-card"><div class="stat-icon">📋</div><div class="value">{{ stats.total_briefings || 0 }}</div><div class="label">简报</div></div>
-        <div class="stat-card"><div class="stat-icon">🔔</div><div class="value" :class="activeAlerts.length > 5 ? 'red' : activeAlerts.length > 0 ? 'yellow' : ''">{{ activeAlerts.length }}</div><div class="label">活跃预警</div></div>
+        <div class="stats-group-header"><svg class="icon-sm"><use href="#i-db"/></svg>{{ t('stats.groupScale') }}</div>
+        <div class="stat-card">
+            <div class="stat-icon"><svg class="icon"><use href="#i-broadcast"/></svg></div>
+            <div class="value">{{ sources.length || stats.total_sources || 0 }}</div>
+            <div class="label">{{ t('stats.sources') }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><svg class="icon" style="color:var(--green)"><use href="#i-shield"/></svg></div>
+            <div class="value green">{{ healthyCount }}</div>
+            <div class="label">
+                {{ t('stats.healthy') }}
+                <span class="health-ratio" :title="t('stats.healthRatio')">
+                    <span class="hdot" :class="healthTier"></span>
+                    {{ healthyCount }}/{{ sources.length || stats.total_sources || 0 }}
+                </span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><svg class="icon"><use href="#i-file"/></svg></div>
+            <div class="value">{{ fmtNum(stats.total_articles) }}</div>
+            <div class="label">{{ t('stats.articles') }}</div>
+        </div>
+        <div class="stats-group-header"><svg class="icon-sm"><use href="#i-zap"/></svg>{{ t('stats.groupToday') }}</div>
+        <div class="stat-card">
+            <div class="stat-icon"><svg class="icon" style="color:var(--green)"><use href="#i-zap"/></svg></div>
+            <div class="value green">{{ fmtNum(stats.articles_today) }}</div>
+            <div class="label">{{ t('stats.today') }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><svg class="icon"><use href="#i-trending"/></svg></div>
+            <div class="value">{{ fmtNum(stats.articles_this_week) }}</div>
+            <div class="label">{{ t('stats.week') }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><svg class="icon"><use href="#i-book"/></svg></div>
+            <div class="value">{{ fmtNum(stats.total_briefings) }}</div>
+            <div class="label">{{ t('stats.briefings') }}</div>
+        </div>
     </div>
 
-
-<!-- Overview Tab -->
-    <div v-show="activeTab === 'overview'">
+    <!-- ===== Overview Tab ===== -->
+    <main v-show="activeTab === 'overview'">
         <div class="two-col">
             <div class="card">
-                <h3>热门主题</h3>
-                <div class="topic-list">
-                    <div class="topic-item" v-for="t in hotTopics" :key="t.topic">{{ t.topic }}<span class="topic-count">{{ t.count }}</span></div>
-                    <div v-if="!hotTopics.length" class="empty-state"><div class="empty-icon">🔍</div><div class="empty-text">暂无热门主题</div></div>
+                <h3><svg class="icon"><use href="#i-bar"/></svg>{{ t('ov.hotTopics') }}</h3>
+                <div class="topic-list" v-if="hotTopics.length">
+                    <button class="topic-item" v-for="t in hotTopics" :key="t.topic" @click="gotoArticles(t.topic)">
+                        <span :style="topicStyle(t)">{{ t.topic }}</span>
+                        <span class="topic-count">{{ t.count }}</span>
+                    </button>
                 </div>
+                <div v-else class="empty-state"><div class="empty-icon"><svg class="icon-lg"><use href="#i-search"/></svg></div><div class="empty-text">{{ t('common.empty') }}</div></div>
             </div>
             <div class="card">
-                <h3>新兴话题 (加速增长)</h3>
+                <h3><svg class="icon"><use href="#i-trending"/></svg>{{ t('ov.emerging') }}</h3>
                 <div v-if="emergingTopics.length">
                     <div class="emerging-item" v-for="e in emergingTopics" :key="e.topic">
-                        <span>{{ e.topic }} <span style="color:var(--text-dim);font-size:0.72rem">(近期{{ e.recent_count }}次)</span></span>
+                        <span>{{ e.topic }} <span style="color:var(--text-dim);font-size:0.72rem">({{ t('ov.recent') }} {{ e.recent_count }})</span></span>
                         <span v-if="e.is_new" class="new-badge">NEW</span>
                         <span v-else class="growth-badge">+{{ (e.growth_rate * 100).toFixed(0) }}%</span>
                     </div>
                 </div>
-                <div v-else style="color:var(--text-dim)">暂无数据</div>
+                <div v-else style="color:var(--text-dim);font-size:0.83rem">{{ t('common.noData') }}</div>
             </div>
         </div>
+
         <div class="card">
-            <h3>本周重要动态</h3>
+            <h3><svg class="icon"><use href="#i-file"/></svg>{{ t('ov.recent') }}</h3>
             <div v-if="recentArticles.length">
                 <div class="article-item" v-for="a in recentArticles" :key="a.id">
-                    <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                    <a class="article-title" :href="a.url" target="_blank" rel="noopener">{{ a.title }}</a>
                     <div class="article-meta">
-                        <span class="type-badge" v-if="a.classification">{{ typeLabel(a.classification.content_type) }}</span>
+                        <span v-if="a.classification" class="cat-badge" :class="'cat-' + a.classification.content_type">{{ typeLabel(a.classification.content_type) }}</span>
                         <span class="tag" v-for="tag in (a.classification?.tags||[]).slice(0,3)" :key="tag">{{ tag }}</span>
-                        <span v-if="a.score">{{ a.score.total_score.toFixed(2) }}</span>
-                        <span v-if="a.published_at">{{ fmtDate(a.published_at) }}</span>
+                        <span v-if="a.score" class="risk-pill" :class="scoreTier(a.score.total_score)">{{ a.score.total_score.toFixed(2) }}</span>
+                        <span v-if="a.source_id" class="src-name">{{ sourceName(a.source_id) }}</span>
+                        <a v-if="a.url" class="origin-link" :href="a.url" target="_blank" rel="noopener"><svg class="icon-sm"><use href="#i-external"/></svg>{{ t('common.origin') }}</a>
+                        <span v-if="a.published_at" style="color:var(--text-mute)">{{ fmtDate(a.published_at) }}</span>
                     </div>
+                    <div v-if="a.one_line_summary" class="article-summary">{{ a.one_line_summary }}</div>
                 </div>
             </div>
-            <div v-else class="empty-state"><div class="empty-icon">📰</div><div class="empty-text">还没有文章数据</div><div class="empty-action"><button class="btn btn-primary" @click="collectAll" :disabled="collecting">立即采集</button></div></div>
+            <div v-else class="empty-state"><div class="empty-icon"><svg class="icon-lg"><use href="#i-file"/></svg></div><div class="empty-text">{{ t('ov.noArticles') }}</div></div>
         </div>
+
         <div class="two-col">
             <div class="card">
-                <h3>高风险监管</h3>
+                <h3><svg class="icon" style="color:var(--amber)"><use href="#i-alert"/></svg>{{ t('ov.highRisk') }}</h3>
+                <div class="card-sub">{{ t('common.aiDisclaimer') }}</div>
                 <div v-if="highRiskArticles.length">
                     <div class="article-item" v-for="a in highRiskArticles" :key="a.id">
-                        <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
-                        <div class="article-meta"><span class="type-badge regulation">风险 {{ (a.classification?.regulation_risk*100).toFixed(0) }}%</span></div>
+                        <a class="article-title" :href="a.url" target="_blank" rel="noopener">{{ a.title }}</a>
+                        <div class="article-meta">
+                            <span class="risk-pill" :class="riskTier(a.classification?.regulation_risk)">{{ t('common.risk') }} {{ ((a.classification?.regulation_risk||0)*100).toFixed(0) }}%</span>
+                            <span v-if="a.source_id" class="src-name">{{ sourceName(a.source_id) }}</span>
+                            <a v-if="a.url" class="origin-link" :href="a.url" target="_blank" rel="noopener"><svg class="icon-sm"><use href="#i-external"/></svg>{{ t('common.origin') }}</a>
+                        </div>
                     </div>
                 </div>
-                <div v-else style="color:var(--text-dim);font-size:0.83rem">暂无</div>
+                <div v-else style="color:var(--text-dim);font-size:0.83rem">{{ t('common.none') }}</div>
             </div>
             <div class="card">
-                <h3>疑似炒作</h3>
+                <h3><svg class="icon" style="color:var(--red)"><use href="#i-zap"/></svg>{{ t('ov.hype') }}</h3>
+                <div class="card-sub">{{ t('common.aiDisclaimer') }}</div>
                 <div v-if="suspectedHype.length">
                     <div class="article-item" v-for="a in suspectedHype" :key="a.id">
-                        <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
-                        <div class="article-meta"><span class="type-badge hype">炒作 {{ (a.classification?.hype_risk*100).toFixed(0) }}%</span></div>
+                        <a class="article-title" :href="a.url" target="_blank" rel="noopener">{{ a.title }}</a>
+                        <div class="article-meta">
+                            <span class="risk-pill" :class="riskTier(a.classification?.hype_risk)">{{ t('common.hype') }} {{ ((a.classification?.hype_risk||0)*100).toFixed(0) }}%</span>
+                            <span v-if="a.source_id" class="src-name">{{ sourceName(a.source_id) }}</span>
+                            <a v-if="a.url" class="origin-link" :href="a.url" target="_blank" rel="noopener"><svg class="icon-sm"><use href="#i-external"/></svg>{{ t('common.origin') }}</a>
+                        </div>
                     </div>
                 </div>
-                <div v-else style="color:var(--text-dim);font-size:0.83rem">暂无</div>
+                <div v-else style="color:var(--text-dim);font-size:0.83rem">{{ t('common.none') }}</div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Trends Tab -->
-    <div v-show="activeTab === 'trends'">
+    <!-- ===== Trends Tab ===== -->
+    <main v-show="activeTab === 'trends'">
         <div class="card">
-            <h3>每日文章数量</h3>
+            <h3><svg class="icon"><use href="#i-bar"/></svg>{{ t('tr.dailyCount') }}</h3>
             <div class="chart-container"><canvas id="chartArticleCount"></canvas></div>
         </div>
         <div class="two-col">
             <div class="card">
-                <h3>主题趋势 (近30天)</h3>
+                <h3>{{ t('tr.topicTrend') }}</h3>
                 <div class="chart-container"><canvas id="chartTopicTrend"></canvas></div>
             </div>
             <div class="card">
-                <h3>风险趋势</h3>
+                <h3>{{ t('tr.riskTrend') }}</h3>
                 <div class="chart-container"><canvas id="chartRiskTrend"></canvas></div>
             </div>
         </div>
         <div class="two-col">
             <div class="card">
-                <h3>内容类型分布</h3>
+                <h3>{{ t('tr.contentType') }}</h3>
                 <div class="chart-container"><canvas id="chartContentType"></canvas></div>
             </div>
             <div class="card">
-                <h3>信息源活跃度</h3>
+                <h3>{{ t('tr.sourceActivity') }}</h3>
                 <div class="chart-container"><canvas id="chartSourceActivity"></canvas></div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Tracking Tab -->
-    <div v-show="activeTab === 'tracking'">
+    <!-- ===== Tracking Tab ===== -->
+    <main v-show="activeTab === 'tracking'">
         <div class="two-col">
             <div class="card">
-                <h3>人物提及排行</h3>
+                <h3><svg class="icon"><use href="#i-users"/></svg>{{ t('tk.people') }}</h3>
                 <div v-if="peopleLeaderboard.length">
                     <div class="tracker-card" v-for="p in peopleLeaderboard" :key="p.name" @click="viewPerson(p.name)">
-                        <div class="name">{{ p.name }} <span class="topic-count" style="display:inline-flex">{{ p.count }}</span></div>
+                        <div class="name">{{ p.name }} <span class="topic-count">{{ p.count }}</span></div>
                         <div class="meta">{{ p.organization }} · {{ p.category }}</div>
                     </div>
                 </div>
-                <div v-else style="color:var(--text-dim)">暂无数据</div>
+                <div v-else style="color:var(--text-dim)">{{ t('common.noData') }}</div>
             </div>
             <div class="card">
-                <h3>机构/项目提及排行</h3>
+                <h3><svg class="icon"><use href="#i-shield"/></svg>{{ t('tk.orgs') }}</h3>
                 <div v-if="orgLeaderboard.length">
                     <div class="tracker-card" v-for="o in orgLeaderboard" :key="o.name" @click="viewOrg(o.name)">
-                        <div class="name">{{ o.name }} <span class="topic-count" style="display:inline-flex">{{ o.count }}</span></div>
+                        <div class="name">{{ o.name }} <span class="topic-count">{{ o.count }}</span></div>
                         <div class="meta">{{ o.type }} · {{ o.category }}</div>
                     </div>
                 </div>
-                <div v-else style="color:var(--text-dim)">暂无数据</div>
+                <div v-else style="color:var(--text-dim)">{{ t('common.noData') }}</div>
             </div>
         </div>
         <div class="card" v-if="selectedEntity">
-            <h3>{{ selectedEntity.name }} - 相关动态 ({{ selectedEntity.total_mentions }}条)</h3>
+            <h3>{{ selectedEntity.name }} · {{ t('tk.related') }} ({{ selectedEntity.total_mentions }})</h3>
             <div v-if="selectedEntity.articles && selectedEntity.articles.length">
                 <div class="article-item" v-for="a in selectedEntity.articles.slice(0,15)" :key="a.id">
-                    <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                    <a class="article-title" :href="a.url" target="_blank" rel="noopener">{{ a.title }}</a>
                     <div class="article-meta">
-                        <span class="type-badge" v-if="a.content_type">{{ typeLabel(a.content_type) }}</span>
+                        <span v-if="a.content_type" class="cat-badge" :class="'cat-' + a.content_type">{{ typeLabel(a.content_type) }}</span>
                         <span class="tag" v-for="tag in (a.tags||[]).slice(0,3)" :key="tag">{{ tag }}</span>
-                        <span v-if="a.date">{{ fmtDate(a.date) }}</span>
+                        <a v-if="a.url" class="origin-link" :href="a.url" target="_blank" rel="noopener"><svg class="icon-sm"><use href="#i-external"/></svg>{{ t('common.origin') }}</a>
+                        <span v-if="a.date" style="color:var(--text-mute)">{{ fmtDate(a.date) }}</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Articles Tab -->
-    <div v-show="activeTab === 'articles'">
+    <!-- ===== Articles Tab ===== -->
+    <main v-show="activeTab === 'articles'">
         <div class="filter-bar">
-            <input v-model="articleFilter.keyword" placeholder="关键词..." @keyup.enter="fetchArticles">
-            <select v-model="articleFilter.content_type" @change="fetchArticles">
-                <option value="">全部类型</option>
-                <option value="news">新闻</option><option value="opinion">观点</option>
-                <option value="report">报告</option><option value="funding">融资</option>
-                <option value="regulation">监管</option><option value="product_launch">产品发布</option>
-                <option value="partnership">合作</option><option value="market_signal">市场信号</option>
-                <option value="person_speech">人物发言</option><option value="suspected_hype">疑似炒作</option>
+            <input v-model="articleFilter.keyword" :placeholder="t('ar.keyword')" @keyup.enter="fetchArticles(1)">
+            <select v-model="articleFilter.content_type" @change="fetchArticles(1)">
+                <option value="">{{ t('ar.allTypes') }}</option>
+                <option v-for="(label, key) in typeLabels" :key="key" :value="key">{{ label }}</option>
             </select>
-            <select v-model="articleFilter.days" @change="fetchArticles">
-                <option value="1">今天</option><option value="3">3天</option>
-                <option value="7">7天</option><option value="14">14天</option><option value="30">30天</option>
+            <select v-model="articleFilter.days" @change="fetchArticles(1)">
+                <option value="1">{{ t('ar.d1') }}</option>
+                <option value="3">{{ t('ar.d3') }}</option>
+                <option value="7">{{ t('ar.d7') }}</option>
+                <option value="14">{{ t('ar.d14') }}</option>
+                <option value="30">{{ t('ar.d30') }}</option>
             </select>
-            <button class="btn btn-secondary" @click="fetchArticles">搜索</button>
+            <button class="btn btn-secondary" @click="fetchArticles(1)"><svg class="icon-sm"><use href="#i-search"/></svg>{{ t('common.search') }}</button>
         </div>
         <div class="card">
-            <h3>文章 ({{ articleTotal }}篇)</h3>
+            <h3><svg class="icon"><use href="#i-file"/></svg>{{ t('nav.articles') }} ({{ articleTotal }})</h3>
             <div v-if="articleList.length">
                 <div class="article-item" v-for="a in articleList" :key="a.id">
-                    <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                    <a class="article-title" :href="a.url" target="_blank" rel="noopener">{{ a.title }}</a>
                     <div class="article-meta">
-                        <span class="type-badge" v-if="a.classification">{{ typeLabel(a.classification.content_type) }}</span>
+                        <span v-if="a.classification" class="cat-badge" :class="'cat-' + a.classification.content_type">{{ typeLabel(a.classification.content_type) }}</span>
                         <span class="tag" v-for="tag in (a.classification?.tags||[]).slice(0,4)" :key="tag">{{ tag }}</span>
-                        <span v-if="a.score">{{ a.score.total_score.toFixed(2) }}</span>
-                        <span v-if="a.language && a.language !== 'en'" style="color:var(--purple)">{{ a.language }}</span>
-                        <span v-if="a.published_at">{{ fmtDate(a.published_at) }}</span>
+                        <span v-if="a.score" class="risk-pill" :class="scoreTier(a.score.total_score)">{{ a.score.total_score.toFixed(2) }}</span>
+                        <span v-if="a.source_id" class="src-name">{{ sourceName(a.source_id) }}</span>
+                        <a v-if="a.url" class="origin-link" :href="a.url" target="_blank" rel="noopener"><svg class="icon-sm"><use href="#i-external"/></svg>{{ t('common.origin') }}</a>
+                        <span v-if="a.published_at" style="color:var(--text-mute)">{{ fmtDate(a.published_at) }}</span>
                     </div>
-                    <div v-if="a.one_line_summary" style="margin-top:5px;font-size:0.8rem;color:var(--text-dim)">{{ a.one_line_summary }}</div>
+                    <div v-if="a.one_line_summary" class="article-summary">{{ a.one_line_summary }}</div>
                 </div>
             </div>
-            <div v-else class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">暂无匹配的文章</div></div>
-            <div v-if="articleTotal > 20" style="text-align:center;margin-top:14px">
-                <button class="btn btn-secondary" @click="articlePage > 1 && (articlePage--, fetchArticles())">上一页</button>
-                <span style="margin:0 10px;color:var(--text-dim)">第{{ articlePage }}页</span>
-                <button class="btn btn-secondary" @click="articlePage++; fetchArticles()">下一页</button>
+            <div v-else class="empty-state"><div class="empty-icon"><svg class="icon-lg"><use href="#i-search"/></svg></div><div class="empty-text">{{ t('ar.noMatch') }}</div></div>
+            <div v-if="articleTotal > 20" style="text-align:center;margin-top:14px;display:flex;justify-content:center;align-items:center;gap:12px">
+                <button class="btn btn-secondary" :disabled="articlePage <= 1" @click="articlePage--; fetchArticles()">{{ t('common.prev') }}</button>
+                <span style="color:var(--text-dim);font-size:0.83rem">{{ articlePage }} / {{ Math.ceil(articleTotal/20) }}</span>
+                <button class="btn btn-secondary" :disabled="articlePage >= Math.ceil(articleTotal/20)" @click="articlePage++; fetchArticles()">{{ t('common.next') }}</button>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Briefings Tab -->
-    <div v-show="activeTab === 'briefings'">
+    <!-- ===== Briefings Tab ===== -->
+    <main v-show="activeTab === 'briefings'">
         <div class="card" v-if="briefings.length">
+            <h3><svg class="icon"><use href="#i-book"/></svg>{{ t('nav.briefings') }}</h3>
             <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
                 <button class="btn" :class="selectedBriefing?.id === b.id ? 'btn-primary' : 'btn-secondary'"
                     v-for="b in briefings" :key="b.id" @click="selectedBriefing = b">
-                    {{ b.period_type === 'daily' ? '日' : b.period_type === 'weekly' ? '周' : '月' }} {{ b.start_date }}
+                    {{ b.period_type === 'daily' ? t('br.daily') : b.period_type === 'weekly' ? t('br.weekly') : t('br.monthly') }} {{ b.start_date }}
                 </button>
             </div>
             <div v-if="selectedBriefing" class="briefing-content" v-html="renderMd(selectedBriefing.content)"></div>
         </div>
-        <div v-else class="card"><div style="color:var(--text-dim);text-align:center;padding:30px">暂无简报</div></div>
-    </div>
+        <div v-else class="card"><div style="color:var(--text-dim);text-align:center;padding:30px">{{ t('br.none') }}</div></div>
+    </main>
 
-    <!-- Scheduler Tab -->
-    <div v-show="activeTab === 'scheduler'">
+    <!-- ===== Scheduler Tab ===== -->
+    <main v-show="activeTab === 'scheduler'">
         <div class="card">
-            <h3>定时任务状态</h3>
+            <h3><svg class="icon"><use href="#i-clock"/></svg>{{ t('sc.title') }}</h3>
             <div style="margin-bottom:12px;font-size:0.85rem">
-                调度器: <span :style="{color: schedulerRunning ? 'var(--success)' : 'var(--danger)'}">{{ schedulerRunning ? '运行中' : '未启动' }}</span>
+                {{ t('sc.scheduler') }}:
+                <span :style="{color: schedulerRunning ? 'var(--green)' : 'var(--red)', fontWeight:600}">{{ schedulerRunning ? t('sc.running') : t('sc.stopped') }}</span>
             </div>
             <div v-if="schedulerJobs.length">
                 <div class="sched-job" v-for="job in schedulerJobs" :key="job.id">
@@ -730,55 +845,49 @@
                         <strong>{{ job.name }}</strong>
                         <div style="font-size:0.75rem;color:var(--text-dim)">{{ job.trigger }}</div>
                     </div>
-                    <div style="font-size:0.78rem;color:var(--text-dim)">
-                        下次: {{ job.next_run || 'N/A' }}
+                    <div style="font-size:0.78rem;color:var(--text-dim)">{{ t('sc.nextRun') }}: {{ job.next_run || 'N/A' }}</div>
+                </div>
+            </div>
+            <div v-else style="color:var(--text-dim)">{{ t('common.noData') }}</div>
+        </div>
+        <div class="card">
+            <h3>{{ t('sc.configTitle') }}</h3>
+            <div class="about-p" style="font-size:0.83rem;line-height:2;color:var(--text-dim)">
+                {{ t('sc.configBody') }}
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== Alerts Tab (read-only) ===== -->
+    <main v-show="activeTab === 'alerts'">
+        <div class="card">
+            <h3><svg class="icon" style="color:var(--amber)"><use href="#i-alert"/></svg>{{ t('al.title') }}</h3>
+            <div class="card-sub">{{ t('common.aiDisclaimer') }}</div>
+            <div v-if="activeAlerts.length">
+                <div class="alert-item" :class="a.severity" v-for="a in activeAlerts" :key="a.id">
+                    <div class="alert-title">
+                        <span class="severity-badge" :class="a.severity">{{ a.severity.toUpperCase() }}</span>
+                        {{ a.title }}
+                    </div>
+                    <div style="font-size:0.83rem;margin:6px 0;color:var(--text-soft)">{{ a.description }}</div>
+                    <div class="alert-meta">
+                        <span>{{ a.alert_type }}</span>
+                        <span>{{ a.created_at ? fmtDate(a.created_at) : '' }}</span>
                     </div>
                 </div>
             </div>
-            <div v-else style="color:var(--text-dim)">暂无定时任务</div>
-        </div>
-        <div class="card">
-            <h3>配置说明</h3>
-            <div style="font-size:0.83rem;color:var(--text-dim);line-height:2">
-                定时任务在 .env 中通过以下变量控制：<br>
-                <code>SCHEDULER_ENABLED=true</code> - 启用/禁用调度器<br>
-                <code>SCHEDULER_COLLECT_INTERVAL=60</code> - 采集间隔(分钟)<br>
-                默认任务：每小时采集、每天8:00生成日报、每周一9:00生成周报
+            <div v-else class="empty-state">
+                <div class="empty-icon"><svg class="icon-lg" style="color:var(--green)"><use href="#i-shield"/></svg></div>
+                <div class="empty-text">{{ t('al.none') }}</div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Alerts Tab (Phase 3) -->
-    <div v-show="activeTab === 'alerts'">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-            <h3 style="font-size:1rem">风险预警面板</h3>
-            <button class="btn btn-warning" @click="scanAlerts" :disabled="scanningAlerts">
-                {{ scanningAlerts ? '扫描中...' : '扫描预警' }}
-            </button>
-        </div>
-        <div v-if="activeAlerts.length">
-            <div class="alert-item" :class="a.severity" v-for="a in activeAlerts" :key="a.id">
-                <div class="alert-title">
-                    <span class="severity-badge" :class="a.severity">{{ a.severity.toUpperCase() }}</span>
-                    {{ a.title }}
-                </div>
-                <div style="font-size:0.83rem;margin:6px 0;color:var(--text-soft)">{{ a.description }}</div>
-                <div class="alert-meta">
-                    <span>{{ a.alert_type }}</span>
-                    <span>{{ a.created_at ? fmtDate(a.created_at) : '' }}</span>
-                    <button class="btn btn-secondary" style="padding:3px 8px;font-size:0.72rem" @click="ackAlert(a.id)">确认</button>
-                    <button class="btn btn-secondary" style="padding:3px 8px;font-size:0.72rem" @click="resolveAlert(a.id)">解决</button>
-                </div>
-            </div>
-        </div>
-        <div v-else class="card"><div class="empty-state"><div class="empty-icon">✅</div><div class="empty-text">暂无活跃预警，系统运行正常</div><div class="empty-action"><button class="btn btn-warning" @click="scanAlerts" :disabled="scanningAlerts">扫描预警</button></div></div></div>
-    </div>
-
-    <!-- Narrative Tab (Phase 3) -->
-    <div v-show="activeTab === 'narrative'">
+    <!-- ===== Narrative Tab ===== -->
+    <main v-show="activeTab === 'narrative'">
         <div class="two-col">
             <div class="card">
-                <h3>叙事强度排行榜</h3>
+                <h3><svg class="icon"><use href="#i-broadcast"/></svg>{{ t('na.leaderboard') }}</h3>
                 <div v-if="narrativeRankings.length">
                     <div v-for="(n, idx) in narrativeRankings" :key="n.topic" style="padding:8px 0;border-bottom:1px solid var(--border)">
                         <div style="display:flex;justify-content:space-between;align-items:center">
@@ -791,22 +900,19 @@
                         </div>
                     </div>
                 </div>
-                <div v-else style="color:var(--text-dim);padding:20px;text-align:center">暂无数据，采集内容后可查看</div>
+                <div v-else style="color:var(--text-dim);padding:20px;text-align:center">{{ t('na.noData') }}</div>
             </div>
             <div class="card">
-                <h3>叙事分析</h3>
-                <div class="form-group">
-                    <label>输入主题关键词</label>
-                    <div style="display:flex;gap:8px">
-                        <input v-model="narrativeQuery" placeholder="例如: GPT, DeFi, Layer2..." @keyup.enter="analyzeNarrative">
-                        <button class="btn btn-primary" @click="analyzeNarrative" :disabled="!narrativeQuery">分析</button>
-                    </div>
+                <h3>{{ t('na.analyze') }}</h3>
+                <div class="filter-bar" style="margin-bottom:0">
+                    <input v-model="narrativeQuery" :placeholder="t('na.placeholder')" @keyup.enter="analyzeNarrative">
+                    <button class="btn btn-primary" @click="analyzeNarrative" :disabled="!narrativeQuery">{{ t('na.analyze') }}</button>
                 </div>
-                <div v-if="narrativeResult">
-                    <div style="margin:12px 0;font-size:0.88rem">
-                        <strong>主题:</strong> {{ narrativeResult.topic }}<br>
-                        <strong>强度:</strong> {{ (narrativeResult.strength * 100).toFixed(1) }}% ({{ narrativeResult.level }})<br>
-                        <strong>相关文章:</strong> {{ narrativeResult.article_count }}篇
+                <div v-if="narrativeResult" style="margin-top:16px">
+                    <div style="font-size:0.88rem;line-height:2">
+                        <strong>{{ t('na.topic') }}:</strong> {{ narrativeResult.topic }}<br>
+                        <strong>{{ t('na.strength') }}:</strong> {{ (narrativeResult.strength * 100).toFixed(1) }}% ({{ narrativeResult.level }})<br>
+                        <strong>{{ t('na.related') }}:</strong> {{ narrativeResult.article_count }}
                     </div>
                     <div v-if="narrativeResult.factors" style="margin-top:10px">
                         <div v-for="(val, key) in narrativeResult.factors" :key="key" style="display:flex;justify-content:space-between;font-size:0.8rem;padding:3px 0">
@@ -817,245 +923,429 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Watchlist Tab (Phase 3) -->
-    <div v-show="activeTab === 'watchlist'">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-            <h3 style="font-size:1rem">个性化关注列表</h3>
-            <button class="btn btn-primary" @click="showCreateWatch = true">添加关注</button>
-        </div>
-        <div class="card" v-if="watchlistItems.length">
-            <div class="watchlist-item" v-for="w in watchlistItems" :key="w.id">
-                <div>
-                    <strong style="font-size:0.9rem">{{ w.name }}</strong>
-                    <div style="font-size:0.75rem;color:var(--text-dim);margin-top:2px">
-                        <span class="tag">{{ w.watch_type }}</span>
-                        {{ w.watch_value }}
-                        <span v-if="w.match_count" style="margin-left:8px">已匹配 {{ w.match_count }} 次</span>
-                    </div>
-                </div>
-                <div style="display:flex;gap:6px;align-items:center">
-                    <button class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem" @click="viewWatchFeed(w.id)">查看</button>
-                    <button class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem;color:var(--danger)" @click="removeWatch(w.id)">移除</button>
-                </div>
-            </div>
-        </div>
-        <div v-else class="card"><div class="empty-state"><div class="empty-icon">👁️</div><div class="empty-text">还没有关注项</div><div class="empty-action"><button class="btn btn-primary" @click="showCreateWatch = true">添加关注</button></div></div></div>
-
-        <div class="card" v-if="watchFeed && watchFeed.articles">
-            <h3>{{ watchFeed.name }} - 最近动态 ({{ watchFeed.articles.length }}篇)</h3>
-            <div class="article-item" v-for="a in watchFeed.articles.slice(0,15)" :key="a.id">
-                <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
-                <div class="article-meta">
-                    <span v-if="a.published_at">{{ fmtDate(a.published_at) }}</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Create Watch Modal -->
-        <div v-if="showCreateWatch" class="modal-overlay" @click.self="showCreateWatch = false">
-            <div class="modal">
-                <h3>添加关注项</h3>
-                <div class="form-group">
-                    <label>名称</label>
-                    <input v-model="newWatch.name" placeholder="例如: 关注 OpenAI 动态">
-                </div>
-                <div class="form-group">
-                    <label>关注类型</label>
-                    <select v-model="newWatch.watch_type">
-                        <option value="keyword">关键词</option>
-                        <option value="topic">主题</option>
-                        <option value="entity">实体</option>
-                        <option value="source">信息源</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>关注值</label>
-                    <input v-model="newWatch.watch_value" placeholder="关键词、主题名、实体名或信息源名">
-                </div>
-                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
-                    <button class="btn btn-secondary" @click="showCreateWatch = false">取消</button>
-                    <button class="btn btn-primary" @click="createWatch" :disabled="!newWatch.name || !newWatch.watch_value">添加</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sources Tab (updated with Discovery) -->
-    <div v-show="activeTab === 'sources'">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-            <h3 style="font-size:1rem">信息源管理</h3>
-            <button class="btn btn-secondary" @click="discoverSources" :disabled="discovering">
-                {{ discovering ? '发现中...' : '自动发现新源' }}
-            </button>
-        </div>
+    <!-- ===== Sources Tab ===== -->
+    <main v-show="activeTab === 'sources'">
         <div class="card">
-            <h3>信息源 ({{ sources.length }}个)</h3>
-            <div class="source-item" v-for="s in sources" :key="s.id">
-                <div>
-                    <span class="health-dot" :class="s.health_status"></span>
-                    <strong>{{ s.name }}</strong>
-                    <span style="color:var(--text-dim);font-size:0.75rem;margin-left:6px">{{ s.source_type }} · {{ s.category }} · {{ s.region }}</span>
-                </div>
-                <span style="font-size:0.75rem;color:var(--text-dim)">
-                    可信度 {{ (s.credibility_score*100).toFixed(0) }}%
-                    <span v-if="s.last_checked_at" style="margin-left:6px">{{ fmtDate(s.last_checked_at) }}</span>
+            <h3><svg class="icon"><use href="#i-globe"/></svg>{{ t('src.title') }} ({{ sources.length }})</h3>
+            <div class="card-sub">
+                <span class="health-ratio">
+                    <span class="hdot" :class="healthTier"></span>
+                    {{ t('src.healthRatio', {healthy: healthyCount, total: sources.length}) }}
                 </span>
             </div>
+            <div v-for="(group, cat) in groupedSources" :key="cat">
+                <div class="src-group-title">{{ cat }} ({{ group.length }})</div>
+                <div class="source-item" v-for="s in group" :key="s.id">
+                    <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                        <span class="health-dot" :class="s.health_status" :title="s.health_status"></span>
+                        <strong style="font-size:0.88rem">{{ s.name }}</strong>
+                        <span style="color:var(--text-mute);font-size:0.72rem;white-space:nowrap">{{ s.source_type }} · {{ s.region }}</span>
+                    </div>
+                    <span style="font-size:0.75rem;color:var(--text-dim);white-space:nowrap">
+                        {{ t('src.credibility') }} {{ ((s.credibility_score||0)*100).toFixed(0) }}%
+                    </span>
+                </div>
+            </div>
+            <div v-if="!sources.length" class="loading">{{ t('common.loading') }}</div>
         </div>
-        <div class="card" v-if="discoveredSources.length">
-            <h3>待审核新源 ({{ discoveredSources.length }})</h3>
-            <div class="source-item" v-for="ds in discoveredSources" :key="ds.id">
-                <div>
-                    <strong>{{ ds.name || ds.url }}</strong>
-                    <div style="font-size:0.75rem;color:var(--text-dim)">{{ ds.category_guess }} · 相关度 {{ (ds.relevance_score*100).toFixed(0) }}%</div>
+    </main>
+
+    <!-- ===== About Tab ===== -->
+    <main v-show="activeTab === 'about'">
+        <div class="card about-wrap">
+            <h3><svg class="icon"><use href="#i-info"/></svg>{{ t('ab.title') }}</h3>
+            <p class="about-lead">
+                {{ t('ab.lead1') }}
+                {{ t('ab.lead2') }}
+            </p>
+
+            <h4 class="about-h4">{{ t('ab.updateTitle') }}</h4>
+            <div class="about-p">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+                    <svg class="icon-sm" style="color:var(--green)"><use href="#i-clock"/></svg>
+                    <span>{{ t('ab.updateLine') }}</span>
                 </div>
-                <div style="display:flex;gap:6px">
-                    <button class="btn btn-success" style="padding:3px 8px;font-size:0.72rem" @click="approveSource(ds.id)">通过</button>
-                    <button class="btn btn-secondary" style="padding:3px 8px;font-size:0.72rem" @click="rejectSource(ds.id)">拒绝</button>
+                <div style="display:flex;align-items:center;gap:8px">
+                    <svg class="icon-sm" style="color:var(--accent)"><use href="#i-shield"/></svg>
+                    <span>{{ t('ab.uptimeLine') }}</span>
                 </div>
+            </div>
+
+            <h4 class="about-h4">{{ t('ab.methodTitle') }}</h4>
+            <div class="method-item">
+                <div class="mi-title"><svg class="icon-sm"><use href="#i-cpu"/></svg>{{ t('ab.m1') }}</div>
+                <div class="mi-body">{{ t('ab.m1b') }}</div>
+            </div>
+            <div class="method-item">
+                <div class="mi-title"><svg class="icon-sm"><use href="#i-alert"/></svg>{{ t('ab.m2') }}</div>
+                <div class="mi-body">{{ t('ab.m2b') }}</div>
+            </div>
+            <div class="method-item">
+                <div class="mi-title"><svg class="icon-sm"><use href="#i-zap"/></svg>{{ t('ab.m3') }}</div>
+                <div class="mi-body">{{ t('ab.m3b') }}</div>
+            </div>
+            <div class="method-item">
+                <div class="mi-title"><svg class="icon-sm"><use href="#i-book"/></svg>{{ t('ab.m4') }}</div>
+                <div class="mi-body">{{ t('ab.m4b') }}</div>
+            </div>
+
+            <h4 class="about-h4">{{ t('ab.disclaimerTitle') }}</h4>
+            <div class="disclaimer-box">
+                <div class="db-title"><svg class="icon-sm"><use href="#i-shield"/></svg>{{ t('ab.disclaimerSub') }}</div>
+                <ol>
+                    <li>{{ t('ab.d1') }}</li>
+                    <li>{{ t('ab.d2') }}</li>
+                    <li>{{ t('ab.d3') }}</li>
+                </ol>
+            </div>
+
+            <h4 class="about-h4">{{ t('ab.dataTitle') }}</h4>
+            <div class="about-p">
+                <p>{{ t('ab.dataIntro') }}</p>
+                <p style="display:flex;gap:10px;flex-wrap:wrap">
+                    <a class="feed-link" href="/rss/briefing.xml" target="_blank"><svg class="icon-sm"><use href="#i-rss"/></svg>RSS · {{ t('ab.rssBriefing') }}</a>
+                    <a class="feed-link" href="/rss/alerts.xml" target="_blank"><svg class="icon-sm"><use href="#i-rss"/></svg>RSS · {{ t('ab.rssAlerts') }}</a>
+                </p>
+            </div>
+            <div class="api-doc">
+                <b>GET /api/v1/articles</b><br>
+                {{ t('ab.apiDesc') }}<br>
+                <code style="color:var(--accent)">/api/v1/articles?category=funding&amp;date_from=2026-08-01&amp;date_to=2026-08-31&amp;limit=20</code><br>
+                {{ t('ab.apiRate') }}
+            </div>
+
+            <div class="license-box">
+                <div class="lb-title"><svg class="icon-sm"><use href="#i-shield"/></svg>{{ t('ab.licenseTitle') }}</div>
+                <div class="lb-body">{{ t('ab.licenseBody') }}</div>
+            </div>
+
+            <h4 class="about-h4" id="about-contact">{{ t('ab.contactTitle') }}</h4>
+            <div class="about-p">
+                <p>{{ t('ab.contactBody') }}</p>
+                <p><a href="https://github.com/tanghuidao/huidao" target="_blank" rel="noopener" style="color:var(--accent)"><svg class="icon-sm" style="vertical-align:-2px"><use href="#i-github"/></svg> github.com/tanghuidao/huidao</a></p>
+                <div class="cite-box">{{ t('ab.cite') }}</div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- About / License Tab -->
-    <div v-show="activeTab === 'about'">
-        <div class="card" style="max-width:820px;margin:0 auto;">
-            <h3 style="display:flex;align-items:center;gap:10px">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-                关于huidao.cc与开放协议
-            </h3>
-            <div style="font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:18px;">
-                <p><strong>huidao.cc</strong> 是一个 AI 驱动的 Web4 全球智库与实时信息聚合平台。</p>
-                <p>我们采集并结构化全球 Crypto / Web3 / Web4 / AI 相关公开信息源，通过 AI 完成分类、标签、风险识别与趋势分析，帮助研究者、开发者和决策者快速把握行业动态。</p>
+    <!-- Footer -->
+    <footer class="footer-multi">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><span>huidao</span>.cc</div>
+                <div class="footer-desc">{{ t('ft.desc') }}</div>
+                <div class="footer-desc" style="margin-top:8px;opacity:0.75">{{ t('hero.disclaimer') }}</div>
             </div>
-            <div style="background:var(--accent-tint);border:1px solid rgba(29,155,240,0.2);border-radius:12px;padding:16px;margin-bottom:18px;">
-                <div style="font-size:0.85rem;color:var(--accent);font-weight:600;margin-bottom:8px">知识共享署名 4.0 国际 (CC BY 4.0)</div>
-                <div style="font-size:0.82rem;color:var(--text-soft);line-height:1.7">
-                    在本站公开可访问范围内，您有权：自由地共享（复制、分发）和演绎（修改、转换、用于商业目的）本站内容，只要您遵守<strong>署名</strong>要求，并以适当方式提供许可协议链接。
-                </div>
+            <div class="footer-col">
+                <h4>{{ t('ft.protocol') }}</h4>
+                <a @click="switchTab('about')" style="cursor:pointer">{{ t('ft.about') }}</a>
+                <a @click="switchTab('about')" style="cursor:pointer">{{ t('ft.method') }}</a>
+                <a @click="switchTab('sources')" style="cursor:pointer">{{ t('ft.sources') }}</a>
+                <a @click="showFAQ = true" style="cursor:pointer">{{ t('ft.faq') }}</a>
             </div>
-            <div style="font-size:0.82rem;color:var(--text-mute);line-height:1.8">
-                <p><strong>使用建议的引用格式：</strong></p>
-                <div style="background:var(--bg-code);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:monospace;margin-bottom:12px;word-break:break-all;">
-                    huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.
-                </div>
-                <h4 id="about-contact" style="font-size:0.95rem;color:var(--accent);margin:18px 0 8px;font-weight:600">联系我们</h4>
-                <p>huidao.cc 是一个非营利的开放研究项目，运营与维护由作者独立完成。如发现数据异常、来源失效、内容纠错等具体问题，欢迎在 GitHub 仓库提交 Issue 与 PR 协助改进。</p>
-                <p>项目主页：<a href="https://github.com/tanghuidao/huidao" target="_blank" style="color:var(--accent);text-decoration:none;">github.com/tanghuidao/huidao</a></p>
-                <p style="color:var(--text-mute);font-size:0.78rem;margin-top:6px">隐私说明：站点不收集用户身份信息，不设独立邮箱反馈通道，所有沟通通过 GitHub Issue 进行，以保证对话公开可追溯。</p>
+            <div class="footer-col">
+                <h4>{{ t('ft.data') }}</h4>
+                <a href="/rss/briefing.xml" target="_blank">RSS · {{ t('ab.rssBriefing') }}</a>
+                <a href="/rss/alerts.xml" target="_blank">RSS · {{ t('ab.rssAlerts') }}</a>
+                <a href="/api/v1/articles?limit=5" target="_blank">JSON API</a>
+                <a href="https://github.com/tanghuidao/huidao" target="_blank" rel="noopener">GitHub</a>
             </div>
         </div>
-    </div>
+        <div class="footer-bottom">
+            {{ t('ft.rights') }} · <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="noopener">CC BY 4.0</a> · {{ t('ft.aiNote') }}
+        </div>
+    </footer>
 
-
-
-
-    <!-- P2-3: Mobile Navigation Panel -->
+    <!-- Mobile nav panel -->
     <div class="mobile-nav-overlay" :class="{open: mobileNavOpen}" @click="mobileNavOpen = false"></div>
     <div class="mobile-nav-panel" :class="{open: mobileNavOpen}">
-        <button class="nav-close" @click="mobileNavOpen = false">&times;</button>
+        <button class="nav-close" @click="mobileNavOpen = false"><svg class="icon"><use href="#i-x"/></svg></button>
         <div class="nav-section">
-            <div class="nav-section-title">导航</div>
-            <div class="nav-item" :class="{active: activeTab==='overview'}" @click="activeTab='overview'; mobileNavOpen=false">总览</div>
-            <div class="nav-item" :class="{active: activeTab==='trends'}" @click="switchTab('trends'); mobileNavOpen=false">趋势</div>
+            <div class="nav-section-title">{{ t('nav.overview') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='overview'}" @click="switchTab('overview'); mobileNavOpen=false">{{ t('nav.overview') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='trends'}" @click="switchTab('trends'); mobileNavOpen=false">{{ t('nav.trends') }}</div>
         </div>
         <div class="nav-section">
-            <div class="nav-section-title">智能分析</div>
-            <div class="nav-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts'); mobileNavOpen=false">预警</div>
-            <div class="nav-item" :class="{active: activeTab==='narrative'}" @click="switchTab('narrative'); mobileNavOpen=false">叙事强度</div>
-            <div class="nav-item" :class="{active: activeTab==='tracking'}" @click="switchTab('tracking'); mobileNavOpen=false">观点追踪</div>
+            <div class="nav-section-title">{{ t('nav.analysis') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts'); mobileNavOpen=false">{{ t('nav.alerts') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='narrative'}" @click="switchTab('narrative'); mobileNavOpen=false">{{ t('nav.narrative') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='tracking'}" @click="switchTab('tracking'); mobileNavOpen=false">{{ t('nav.tracking') }}</div>
         </div>
         <div class="nav-section">
-            <div class="nav-section-title">内容 & 系统</div>
-            <div class="nav-item" :class="{active: activeTab==='articles'}" @click="activeTab='articles'; mobileNavOpen=false">文章</div>
-            <div class="nav-item" :class="{active: activeTab==='briefings'}" @click="activeTab='briefings'; mobileNavOpen=false">简报</div>
-            <div class="nav-item" :class="{active: activeTab==='sources'}" @click="switchTab('sources'); mobileNavOpen=false">信息源</div>
-            <div class="nav-item" :class="{active: activeTab==='scheduler'}" @click="switchTab('scheduler'); mobileNavOpen=false">定时任务</div>
+            <div class="nav-section-title">{{ t('nav.content') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='articles'}" @click="switchTab('articles'); mobileNavOpen=false">{{ t('nav.articles') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='briefings'}" @click="switchTab('briefings'); mobileNavOpen=false">{{ t('nav.briefings') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='sources'}" @click="switchTab('sources'); mobileNavOpen=false">{{ t('nav.sources') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='scheduler'}" @click="switchTab('scheduler'); mobileNavOpen=false">{{ t('nav.scheduler') }}</div>
         </div>
         <div class="nav-section">
-            <div class="nav-section-title">协议</div>
-            <div class="nav-item" :class="{active: activeTab==='about'}" @click="switchTab('about'); mobileNavOpen=false">关于 & CC-BY 4.0</div>
+            <div class="nav-section-title">{{ t('ft.protocol') }}</div>
+            <div class="nav-item" :class="{active: activeTab==='about'}" @click="switchTab('about'); mobileNavOpen=false">{{ t('ft.about') }}</div>
         </div>
     </div>
 
-    <div v-if="toast.show" class="toast" :class="toast.type">{{ toast.message }}</div>
-
-    <!-- Settings / Profile Tab (hidden in free public version) -->
-    <div v-show="activeTab === 'settings'" class="settings-panel">
-        <div class="card" style="max-width:680px;margin:0 auto;text-align:center;padding:48px 24px">
-            <div style="font-size:2rem;margin-bottom:12px">🔓</div>
-            <h3 style="margin:0 0 12px;font-size:1.1rem;color:var(--text)">已免费开放</h3>
-            <p style="font-size:0.85rem;color:var(--text-mute);line-height:1.7;margin-bottom:20px;">
-                huidao.cc 已取消会员与登录体系，所有可公开访问内容均遵循 CC BY 4.0 协议免费使用。
-            </p>
-            <button class="btn btn-primary" @click="activeTab='about'">查看协议与关于</button>
-        </div>
-    </div>
-
-
-    <!-- Mobile Bottom Navigation -->
+    <!-- Mobile bottom nav -->
     <div class="mobile-bottom-nav">
-        <div class="mnav-item" :class="{active: activeTab==='overview'}" @click="activeTab='overview'">
-            <span class="mnav-icon">🏠</span>
-            <span>总览</span>
+        <div class="mnav-item" :class="{active: activeTab==='overview'}" @click="switchTab('overview')">
+            <svg class="icon"><use href="#i-home"/></svg><span>{{ t('nav.overview') }}</span>
         </div>
         <div class="mnav-item" :class="{active: activeTab==='trends'}" @click="switchTab('trends')">
-            <span class="mnav-icon">📈</span>
-            <span>趋势</span>
+            <svg class="icon"><use href="#i-trending"/></svg><span>{{ t('nav.trends') }}</span>
         </div>
-        <div class="mnav-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts')">
-            <span class="mnav-icon">🚨</span>
-            <span>预警</span>
+        <div class="mnav-item" :class="{active: activeTab==='articles'}" @click="switchTab('articles')">
+            <svg class="icon"><use href="#i-file"/></svg><span>{{ t('nav.articles') }}</span>
         </div>
-        <div class="mnav-item" :class="{active: activeTab==='briefings'}" @click="activeTab='briefings'">
-            <span class="mnav-icon">📋</span>
-            <span>简报</span>
+        <div class="mnav-item" :class="{active: activeTab==='sources'}" @click="switchTab('sources')">
+            <svg class="icon"><use href="#i-globe"/></svg><span>{{ t('nav.sources') }}</span>
         </div>
-        <div class="mnav-item" :class="{active: activeTab==='about'}" @click="activeTab='about'">
-            <span class="mnav-icon">📜</span>
-            <span>协议</span>
+        <div class="mnav-item" :class="{active: activeTab==='about'}" @click="switchTab('about')">
+            <svg class="icon"><use href="#i-info"/></svg><span>{{ t('ft.about') }}</span>
         </div>
     </div>
 
     <!-- FAQ Modal -->
-    <div class="modal-overlay" v-if="showFAQ" @click.self="showFAQ=false" style="z-index:9998;background:var(--overlay);">
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:680px;width:90%;max-height:80vh;overflow:hidden;display:flex;flex-direction:column;">
-            <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-                <h3 style="margin:0;font-size:1.1rem;color:var(--text)">常见问题 (FAQ)</h3>
-                <button @click="showFAQ=false" style="background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;padding:0 4px">&times;</button>
+    <div class="modal-overlay" v-if="showFAQ" @click.self="showFAQ=false" style="position:fixed;inset:0;z-index:9998;background:var(--overlay);display:flex;align-items:center;justify-content:center;padding:20px">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;max-width:680px;width:100%;max-height:80vh;overflow:hidden;display:flex;flex-direction:column;">
+            <div style="padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                <h3 style="margin:0;font-size:1.05rem;color:var(--text);display:flex;align-items:center;gap:8px">
+                    <svg class="icon"><use href="#i-info"/></svg>{{ t('faq.title') }}
+                </h3>
+                <button @click="showFAQ=false" style="background:none;border:none;color:var(--text-dim);cursor:pointer;padding:4px"><svg class="icon"><use href="#i-x"/></svg></button>
             </div>
-            <div style="padding:20px 24px;overflow-y:auto;flex:1;">
-                <div v-for="(item, idx) in faqItems" :key="idx" style="margin-bottom:16px;border-bottom:1px solid var(--bg-elev3);padding-bottom:16px;">
-                    <div @click="item.open=!item.open" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
-                        <span style="font-size:0.9rem;color:var(--text);font-weight:500">{{ item.q }}</span>
-                        <span style="color:var(--text-dim);font-size:0.8rem;transition:transform 0.2s" :style="{transform: item.open ? 'rotate(180deg)' : ''}">▼</span>
+            <div style="padding:18px 22px;overflow-y:auto;flex:1;">
+                <div v-for="(item, idx) in faqItems" :key="idx" style="margin-bottom:14px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+                    <div @click="item.open=!item.open" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px">
+                        <span style="font-size:0.9rem;color:var(--text);font-weight:500">{{ t('faq.q' + idx) }}</span>
+                        <svg class="icon-sm" style="transition:transform 0.2s;color:var(--text-dim)" :style="{transform: item.open ? 'rotate(180deg)' : ''}"><use href="#i-chev"/></svg>
                     </div>
-                    <div v-show="item.open" style="margin-top:8px;font-size:0.82rem;color:var(--text-mute);line-height:1.8" v-html="item.a"></div>
+                    <div v-show="item.open" style="margin-top:8px;font-size:0.82rem;color:var(--text-mute);line-height:1.8" v-html="t('faq.a' + idx)"></div>
                 </div>
             </div>
-            <div style="padding:14px 24px;border-top:1px solid var(--border);text-align:center;">
-                <span style="font-size:0.78rem;color:var(--text-mid)">更多问题？<a href="https://github.com/tanghuidao/huidao" target="_blank" style="color:var(--accent)">GitHub 反馈</a></span>
+            <div style="padding:12px 22px;border-top:1px solid var(--border);text-align:center;">
+                <span style="font-size:0.78rem;color:var(--text-mid)">{{ t('faq.more') }} <a href="https://github.com/tanghuidao/huidao" target="_blank" rel="noopener" style="color:var(--accent)">GitHub</a></span>
             </div>
         </div>
     </div>
+
+    <div v-if="toast.show" class="toast" :class="toast.type">{{ toast.message }}</div>
 </div>
 
 <script>
+/* ===== i18n dictionaries ===== */
+const I18N = {
+zh: {
+    'brand.tagline': 'AI 驱动的 Web4 智库',
+    'nav.overview': '总览', 'nav.analysis': '智能分析', 'nav.alerts': '预警', 'nav.narrative': '叙事强度',
+    'nav.tracking': '观点追踪', 'nav.trends': '趋势', 'nav.content': '内容与系统', 'nav.articles': '文章',
+    'nav.briefings': '简报', 'nav.sources': '信息源', 'nav.scheduler': '定时任务',
+    'ctl.theme': '切换深浅主题',
+    'hero.titleA': 'AI 驱动', 'hero.titleB': '的 Web4 全球智库',
+    'hero.subtitle': '实时监控 60+ 全球信息源，AI 智能分类、风险预警、趋势分析一站式覆盖',
+    'hero.updated': '数据最后更新',
+    'hero.f1': '信息源正常运行', 'hero.f2v': 'AI 分类', 'hero.f2': '智能标签与风险识别',
+    'hero.f3v': '实时', 'hero.f3': '风险预警', 'hero.f4v': '每日', 'hero.f4': '智能简报',
+    'hero.licensePre': '本站所有聚合内容与分析均遵循 ', 'hero.licenseLink': '知识共享署名 4.0 国际许可协议（CC BY 4.0）', 'hero.licensePost': '，免费公开使用。',
+    'hero.disclaimer': '本站内容为 AI 自动聚合与分析结果，仅供研究参考，不构成任何投资建议。',
+    'stats.groupScale': '数据规模', 'stats.groupToday': '近期动态',
+    'stats.sources': '信息源', 'stats.healthy': '健康源', 'stats.healthRatio': '健康源占比',
+    'stats.articles': '文章总数', 'stats.today': '今日新增', 'stats.week': '本周新增', 'stats.briefings': '简报',
+    'ov.hotTopics': '热门主题', 'ov.emerging': '新兴话题（加速增长）', 'ov.recent': '近期重要动态',
+    'ov.noArticles': '还没有文章数据',
+    'common.empty': '暂无数据', 'common.noData': '暂无数据', 'common.loading': '加载中…',
+    'common.aiDisclaimer': '以下评分由 AI 模型自动生成，可能存在误判，请勿作为投资决策依据。',
+    'common.origin': '查看原文', 'common.risk': '风险', 'common.hype': '炒作',
+    'common.none': '暂无', 'common.search': '搜索', 'common.prev': '上一页', 'common.next': '下一页',
+    'tr.dailyCount': '每日文章数量', 'tr.topicTrend': '主题趋势（近 30 天）', 'tr.riskTrend': '风险趋势',
+    'tr.contentType': '内容类型分布', 'tr.sourceActivity': '信息源活跃度',
+    'tk.people': '人物提及排行', 'tk.orgs': '机构/项目提及排行', 'tk.related': '相关动态',
+    'ar.keyword': '关键词…', 'ar.allTypes': '全部类型',
+    'ar.d1': '今天', 'ar.d3': '3 天', 'ar.d7': '7 天', 'ar.d14': '14 天', 'ar.d30': '30 天',
+    'ar.noMatch': '暂无匹配的文章',
+    'br.daily': '日', 'br.weekly': '周', 'br.monthly': '月', 'br.none': '暂无简报',
+    'sc.title': '定时任务状态', 'sc.scheduler': '调度器', 'sc.running': '运行中', 'sc.stopped': '未启动',
+    'sc.nextRun': '下次运行', 'sc.configTitle': '运行说明',
+    'sc.configBody': '数据由后台调度器自动处理，无需人工干预：每 60 分钟自动采集最新文章并生成 AI 摘要；每日 08:00 UTC 生成日报；每周一 09:00 UTC 生成周报。',
+    'al.title': '风险预警面板', 'al.none': '暂无活跃预警，系统运行正常',
+    'na.leaderboard': '叙事强度排行榜', 'na.analyze': '分析', 'na.placeholder': '输入主题关键词，如 GPT / DeFi / Layer2…',
+    'na.topic': '主题', 'na.strength': '强度', 'na.related': '相关文章', 'na.noData': '暂无数据，采集内容后可查看',
+    'src.title': '信息源', 'src.healthRatio': '{healthy}/{total} 个信息源正常运行',
+    'src.credibility': '可信度',
+    'ab.title': '关于 huidao.cc 与开放协议',
+    'ab.lead1': 'huidao.cc 是一个 AI 驱动的 Web4 全球智库与实时信息聚合平台。',
+    'ab.lead2': '我们采集并结构化全球 Crypto / Web3 / Web4 / AI 相关公开信息源，通过 AI 完成分类、标签、风险识别与趋势分析，帮助研究者、开发者和决策者快速把握行业动态。全部内容免费开放。',
+    'ab.updateTitle': '更新频率与运行状态',
+    'ab.updateLine': '数据每 60 分钟自动采集一次；日报每日 08:00 UTC 生成，周报每周一 09:00 UTC 生成。',
+    'ab.uptimeLine': '站点 7×24 小时自动运行，采集、分类、评分、摘要、简报全流程无人值守。',
+    'ab.methodTitle': '方法论',
+    'ab.m1': 'AI 内容分类', 'ab.m1b': '每篇文章经过规则引擎与 AI 模型双重处理，被划分为新闻、观点、报告、融资、监管、产品发布、合作、市场信号、人物发言、疑似炒作共 10 类，并自动提取主题标签。',
+    'ab.m2': '监管风险评分', 'ab.m2b': '采用 √ 阻尼连续评分模型，由标签命中（25%）、软性措辞（40%）、硬性监管词（20%）、监管机构提及（15%）四部分加权构成，词边界匹配避免误判（如 bank 不会误命中 ban），分数越高表示监管相关信号越强。',
+    'ab.m3': '炒作识别', 'ab.m3b': '基于收紧后的炒作词库（已剔除 moon、exclusive 等日常词汇），仅当至少 2 个炒作词命中才计分，并对播客/视频/直播类 URL 自动降权，降低误报率。',
+    'ab.m4': 'AI 摘要简报', 'ab.m4b': '使用大语言模型为每篇文章生成一句话摘要（当前覆盖率约 99.5%），并基于全量数据自动生成每日/每周智能简报。',
+    'ab.disclaimerTitle': '免责声明',
+    'ab.disclaimerSub': '请在使用本站内容前仔细阅读以下条款',
+    'ab.d1': '本站内容来自第三方公开信息源的自动聚合，不代表本站立场，也不保证原文的准确性与完整性；',
+    'ab.d2': '本站的分类标签、风险评分、炒作识别等均为算法与 AI 模型自动生成的量化参考，不构成任何金融、投资或法律意见；',
+    'ab.d3': '用户基于本站内容做出的任何决策及后果，由用户自行承担。如发现数据异常，欢迎通过 GitHub Issue 反馈。',
+    'ab.dataTitle': '数据出口',
+    'ab.dataIntro': '本站提供机器可读的数据订阅接口，欢迎研究者与开发者接入：',
+    'ab.rssBriefing': '智能简报', 'ab.rssAlerts': '风险预警',
+    'ab.apiDesc': '参数：category（分类）、tag（标签）、date_from / date_to（日期范围）、source_id（信息源）、limit（1-100，默认 20）、offset（分页偏移）。无需鉴权。',
+    'ab.apiRate': '频率限制：60 次请求 / 分钟 / IP，超出返回 429。',
+    'ab.licenseTitle': '知识共享署名 4.0 国际（CC BY 4.0）',
+    'ab.licenseBody': '在本站公开可访问范围内，您有权自由地共享（复制、分发）和演绎（修改、转换、用于商业目的）本站内容，只要您遵守署名要求，并以适当方式提供许可协议链接。',
+    'ab.contactTitle': '联系我们',
+    'ab.contactBody': 'huidao.cc 是一个非营利的开放研究项目。如发现数据异常、来源失效、内容纠错等具体问题，欢迎在 GitHub 仓库提交 Issue 与 PR 协助改进。所有沟通公开可追溯。',
+    'ab.cite': 'huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.',
+    'ft.desc': 'AI 驱动的 Web4 全球智库：60+ 全球信息源实时监测、智能分类、风险预警与趋势分析。',
+    'ft.protocol': '协议', 'ft.about': '关于与许可', 'ft.method': '方法论', 'ft.sources': '信息源列表', 'ft.faq': '常见问题',
+    'ft.data': '数据出口', 'ft.rights': '© 2026 huidao.cc', 'ft.aiNote': '内容由 AI 自动聚合生成，仅供参考',
+    'faq.title': '常见问题（FAQ）',
+    'faq.q0': 'huidao.cc 是什么？',
+    'faq.a0': 'huidao.cc 是一个 AI 驱动的 Web4 全球智库平台，提供全球 Crypto/Web3/Web4 领域的实时动态监控、智能分类、风险预警和趋势分析服务。平台通过 AI 技术自动采集和分析 60+ 个全球信息源，帮助您快速掌握行业动态。',
+    'faq.q1': '数据源包括哪些？',
+    'faq.a1': '目前覆盖 60+ 个全球信息源，包括主流加密媒体、区块链新闻网站、研究报告平台等。完整信息源列表可在「信息源」页面查看，我们会持续扩展覆盖范围。',
+    'faq.q2': '使用本站内容需要付费或登录吗？',
+    'faq.a2': '不需要。huidao.cc 已全面免费开放，无需注册或登录即可浏览。本站公开内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent)">CC BY 4.0</a> 协议，您可以在正确署名的情况下自由使用、共享和演绎。',
+    'faq.q3': '如何正确引用本站内容？',
+    'faq.a3': '建议引用格式：<br><strong>huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.</strong><br>您需要保留原文链接或来源标注，并在使用时提供许可协议链接。',
+    'faq.q4': '数据多久更新一次？',
+    'faq.a4': '平台每 <strong>60 分钟</strong>自动采集一次最新数据。AI 简报每日早上 8:00（UTC）自动生成，每周一 9:00（UTC）生成周报。页面顶部的「数据最后更新」时间戳可查看最近一次采集时间。',
+    'faq.q5': '如何通过 API 或 RSS 获取数据？',
+    'faq.a5': '本站提供两个 RSS 订阅源（<code>/rss/briefing.xml</code> 简报、<code>/rss/alerts.xml</code> 风险预警）和一个公开 JSON API（<code>/api/v1/articles</code>），均无需鉴权，频率限制为 60 次/分钟/IP。详见「关于」页面的数据出口说明。',
+    'faq.more': '更多问题？欢迎通过',
+},
+en: {
+    'brand.tagline': 'AI-Powered Web4 Think Tank',
+    'nav.overview': 'Overview', 'nav.analysis': 'Analysis', 'nav.alerts': 'Alerts', 'nav.narrative': 'Narrative',
+    'nav.tracking': 'Tracking', 'nav.trends': 'Trends', 'nav.content': 'Content & System', 'nav.articles': 'Articles',
+    'nav.briefings': 'Briefings', 'nav.sources': 'Sources', 'nav.scheduler': 'Scheduler',
+    'ctl.theme': 'Toggle theme',
+    'hero.titleA': 'AI-Powered', 'hero.titleB': ' Web4 Global Think Tank',
+    'hero.subtitle': 'Real-time monitoring of 60+ global sources — AI classification, risk alerts and trend analysis in one place',
+    'hero.updated': 'Data last updated',
+    'hero.f1': 'sources healthy', 'hero.f2v': 'AI', 'hero.f2': 'Classification & tagging',
+    'hero.f3v': 'Real-time', 'hero.f3': 'Risk alerts', 'hero.f4v': 'Daily', 'hero.f4': 'AI briefings',
+    'hero.licensePre': 'All aggregated content and analysis on this site are licensed under ', 'hero.licenseLink': 'Creative Commons Attribution 4.0 International (CC BY 4.0)', 'hero.licensePost': ' — free and open to use.',
+    'hero.disclaimer': 'All content on this site is automatically aggregated and analyzed by AI. For research reference only — not investment advice.',
+    'stats.groupScale': 'Data scale', 'stats.groupToday': 'Recent activity',
+    'stats.sources': 'Sources', 'stats.healthy': 'Healthy', 'stats.healthRatio': 'Healthy source ratio',
+    'stats.articles': 'Total articles', 'stats.today': 'New today', 'stats.week': 'This week', 'stats.briefings': 'Briefings',
+    'ov.hotTopics': 'Hot Topics', 'ov.emerging': 'Emerging Topics (Accelerating)', 'ov.recent': 'Recent Highlights',
+    'ov.noArticles': 'No articles yet',
+    'common.empty': 'No data', 'common.noData': 'No data', 'common.loading': 'Loading…',
+    'common.aiDisclaimer': 'Scores below are auto-generated by AI models and may be inaccurate. Do not use them as a basis for investment decisions.',
+    'common.origin': 'View source', 'common.risk': 'Risk', 'common.hype': 'Hype',
+    'common.none': 'None', 'common.search': 'Search', 'common.prev': 'Prev', 'common.next': 'Next',
+    'tr.dailyCount': 'Daily Article Count', 'tr.topicTrend': 'Topic Trends (Last 30 Days)', 'tr.riskTrend': 'Risk Trends',
+    'tr.contentType': 'Content Type Distribution', 'tr.sourceActivity': 'Source Activity',
+    'tk.people': 'People Mentions', 'tk.orgs': 'Organization / Project Mentions', 'tk.related': 'Related News',
+    'ar.keyword': 'Keyword…', 'ar.allTypes': 'All types',
+    'ar.d1': 'Today', 'ar.d3': '3 days', 'ar.d7': '7 days', 'ar.d14': '14 days', 'ar.d30': '30 days',
+    'ar.noMatch': 'No matching articles',
+    'br.daily': 'Daily', 'br.weekly': 'Weekly', 'br.monthly': 'Monthly', 'br.none': 'No briefings yet',
+    'sc.title': 'Scheduler Status', 'sc.scheduler': 'Scheduler', 'sc.running': 'Running', 'sc.stopped': 'Stopped',
+    'sc.nextRun': 'Next run', 'sc.configTitle': 'How it works',
+    'sc.configBody': 'Data is processed automatically by the backend scheduler: articles are collected and summarized with AI every 60 minutes; daily briefings are generated at 08:00 UTC; weekly briefings every Monday at 09:00 UTC.',
+    'al.title': 'Risk Alert Panel', 'al.none': 'No active alerts — all systems normal',
+    'na.leaderboard': 'Narrative Strength Leaderboard', 'na.analyze': 'Analyze', 'na.placeholder': 'Enter a topic keyword, e.g. GPT / DeFi / Layer2…',
+    'na.topic': 'Topic', 'na.strength': 'Strength', 'na.related': 'Related articles', 'na.noData': 'No data yet — available after collection',
+    'src.title': 'Sources', 'src.healthRatio': '{healthy}/{total} sources healthy',
+    'src.credibility': 'Credibility',
+    'ab.title': 'About huidao.cc & Open Protocols',
+    'ab.lead1': 'huidao.cc is an AI-powered Web4 global think tank and real-time information aggregation platform.',
+    'ab.lead2': 'We collect and structure public sources across Crypto / Web3 / Web4 / AI, then use AI to classify, tag, score risk and analyze trends — helping researchers, developers and decision-makers stay on top of the industry. All content is free and open.',
+    'ab.updateTitle': 'Update Frequency & Operations',
+    'ab.updateLine': 'Data is collected automatically every 60 minutes; daily briefings at 08:00 UTC, weekly briefings every Monday 09:00 UTC.',
+    'ab.uptimeLine': 'The site runs 24/7 fully automated — collection, classification, scoring, summarization and briefings require no manual intervention.',
+    'ab.methodTitle': 'Methodology',
+    'ab.m1': 'AI Content Classification', 'ab.m1b': 'Every article is processed by a rules engine plus AI models, and classified into 10 types — news, opinion, report, funding, regulation, product launch, partnership, market signal, person speech, suspected hype — with automatic topic tags.',
+    'ab.m2': 'Regulation Risk Score', 'ab.m2b': 'A √-damped continuous scoring model weighted by label hits (25%), soft wording (40%), hard regulation terms (20%) and regulator mentions (15%). Word-boundary matching avoids false positives (e.g. "bank" never matches "ban"). Higher scores indicate stronger regulatory signals.',
+    'ab.m3': 'Hype Detection', 'ab.m3b': 'Built on a tightened hype lexicon (common words like "moon" and "exclusive" removed). A score is only assigned when at least 2 hype terms match, and podcast/video/live URLs are automatically down-weighted to reduce false positives.',
+    'ab.m4': 'AI Summaries & Briefings', 'ab.m4b': 'A large language model generates a one-line summary for each article (~99.5% coverage), and daily/weekly intelligent briefings are compiled automatically from the full dataset.',
+    'ab.disclaimerTitle': 'Disclaimer',
+    'ab.disclaimerSub': 'Please read the following before using content from this site',
+    'ab.d1': 'Content on this site is automatically aggregated from third-party public sources. It does not represent the position of this site, and accuracy or completeness of original texts is not guaranteed.',
+    'ab.d2': 'Classification labels, risk scores and hype detection are quantitative references generated automatically by algorithms and AI models. They do not constitute financial, investment or legal advice.',
+    'ab.d3': 'Any decisions made based on content from this site, and their consequences, are borne by the user. If you spot data anomalies, please report them via GitHub Issues.',
+    'ab.dataTitle': 'Data Access',
+    'ab.dataIntro': 'We provide machine-readable data feeds for researchers and developers:',
+    'ab.rssBriefing': 'Briefings', 'ab.rssAlerts': 'Risk Alerts',
+    'ab.apiDesc': 'Parameters: category, tag, date_from / date_to, source_id, limit (1-100, default 20), offset (pagination). No authentication required.',
+    'ab.apiRate': 'Rate limit: 60 requests / minute / IP; returns 429 when exceeded.',
+    'ab.licenseTitle': 'Creative Commons Attribution 4.0 International (CC BY 4.0)',
+    'ab.licenseBody': 'Within the publicly accessible scope of this site, you are free to share (copy, redistribute) and adapt (modify, transform, build upon) the content for any purpose, including commercial, provided you give appropriate credit and link to the license.',
+    'ab.contactTitle': 'Contact',
+    'ab.contactBody': 'huidao.cc is a non-profit open research project. For data anomalies, dead sources or content corrections, please open an Issue or PR on GitHub. All communication is public and traceable.',
+    'ab.cite': 'huidao.cc, "AI-Powered Web4 Global Think Tank", https://huidao.cc, CC BY 4.0.',
+    'ft.desc': 'AI-powered Web4 global think tank: real-time monitoring of 60+ sources with intelligent classification, risk alerts and trend analysis.',
+    'ft.protocol': 'Protocols', 'ft.about': 'About & License', 'ft.method': 'Methodology', 'ft.sources': 'Source List', 'ft.faq': 'FAQ',
+    'ft.data': 'Data Access', 'ft.rights': '© 2026 huidao.cc', 'ft.aiNote': 'Content auto-aggregated by AI — reference only',
+    'faq.title': 'FAQ',
+    'faq.q0': 'What is huidao.cc?',
+    'faq.a0': 'huidao.cc is an AI-powered Web4 global think tank offering real-time monitoring, intelligent classification, risk alerts and trend analysis for the global Crypto/Web3/Web4 space. It automatically collects and analyzes 60+ global sources.',
+    'faq.q1': 'What sources are covered?',
+    'faq.a1': '60+ global sources including mainstream crypto media, blockchain news sites and research platforms. The full list is available on the Sources page, and coverage keeps expanding.',
+    'faq.q2': 'Do I need to pay or sign up?',
+    'faq.a2': 'No. huidao.cc is fully free and open — no registration required. Public content is licensed under <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" style="color:var(--accent)">CC BY 4.0</a>, so you can freely use, share and adapt it with proper attribution.',
+    'faq.q3': 'How should I cite this site?',
+    'faq.a3': 'Suggested format:<br><strong>huidao.cc, "AI-Powered Web4 Global Think Tank", https://huidao.cc, CC BY 4.0.</strong><br>Keep the source attribution and link to the license.',
+    'faq.q4': 'How often is data updated?',
+    'faq.a4': 'Data is collected automatically every <strong>60 minutes</strong>. Daily briefings are generated at 08:00 UTC and weekly briefings every Monday at 09:00 UTC. Check the "Data last updated" timestamp at the top of the page.',
+    'faq.q5': 'How can I access data via API or RSS?',
+    'faq.a5': 'We offer two RSS feeds (<code>/rss/briefing.xml</code> and <code>/rss/alerts.xml</code>) and a public JSON API (<code>/api/v1/articles</code>). No authentication; rate limited to 60 requests/minute/IP. See the Data Access section on the About page.',
+    'faq.more': 'More questions? Reach us via',
+}};
+</script>
 
-        const { createApp, ref, reactive, onMounted, nextTick } = Vue;
+<script>
+const { createApp, ref, reactive, computed, onMounted, nextTick } = Vue;
 
 createApp({
     setup() {
+        /* ===== UI state ===== */
         const activeTab = ref('overview');
-        const collecting = ref(false);
-        const generatingBriefing = ref(false);
-        const summarizing = ref(false);
-        const stats = ref({}); const dashboardLoading = ref(true); const statsLoading = ref(true);
+        const lang = ref(localStorage.getItem('hd_lang') || 'zh');
+        const theme = ref(localStorage.getItem('hd_theme') || 'dark');
+        const mobileNavOpen = ref(false);
+        const openNavGroup = ref('');
+        const showFAQ = ref(false);
+        const toast = reactive({ show: false, message: '', type: 'info' });
+        const faqItems = ref([0,1,2,3,4,5].map(i => ({ open: false })));
+
+        /* ===== i18n ===== */
+        function t(key, params) {
+            let s = (I18N[lang.value] || I18N.zh)[key];
+            if (s === undefined) s = I18N.zh[key] || key;
+            if (params) for (const k in params) s = s.replace('{' + k + '}', params[k]);
+            return s;
+        }
+        const TYPE_LABELS = {
+            zh: { news:'新闻', opinion:'观点', report:'报告', funding:'融资', regulation:'监管', product_launch:'产品发布', partnership:'合作', market_signal:'市场信号', person_speech:'人物发言', suspected_hype:'疑似炒作' },
+            en: { news:'News', opinion:'Opinion', report:'Report', funding:'Funding', regulation:'Regulation', product_launch:'Launch', partnership:'Partnership', market_signal:'Signal', person_speech:'Speech', suspected_hype:'Hype' },
+        };
+        const typeLabels = computed(() => TYPE_LABELS[lang.value] || TYPE_LABELS.zh);
+        function typeLabel(ty) { return typeLabels.value[ty] || ty; }
+        function toggleLang() {
+            lang.value = lang.value === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('hd_lang', lang.value);
+            document.documentElement.setAttribute('lang', lang.value === 'zh' ? 'zh-CN' : 'en');
+            if (activeTab.value === 'trends') setTimeout(renderTrendCharts, 50);
+        }
+        function toggleTheme() {
+            theme.value = theme.value === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('hd_theme', theme.value);
+            document.documentElement.setAttribute('data-theme', theme.value);
+            if (activeTab.value === 'trends') setTimeout(renderTrendCharts, 50);
+        }
+
+        /* ===== Data state ===== */
+        const stats = ref({});
+        const statsLoading = ref(true);
+        const lastUpdated = ref(null);
         const recentArticles = ref([]);
         const hotTopics = ref([]);
-        const topEntities = ref([]);
         const highRiskArticles = ref([]);
         const suspectedHype = ref([]);
         const emergingTopics = ref([]);
@@ -1066,347 +1356,227 @@ createApp({
         const briefings = ref([]);
         const selectedBriefing = ref(null);
         const sources = ref([]);
-        const toast = reactive({ show: false, message: '', type: 'success' });
         const schedulerRunning = ref(false);
         const schedulerJobs = ref([]);
         const peopleLeaderboard = ref([]);
         const orgLeaderboard = ref([]);
         const selectedEntity = ref(null);
-        let charts = {};
-
-        // Phase 3 state
         const activeAlerts = ref([]);
-        const scanningAlerts = ref(false);
         const narrativeRankings = ref([]);
         const narrativeQuery = ref('');
         const narrativeResult = ref(null);
-        // Agent 功能已移除（与取消监测中心同步）
-        const watchlistItems = ref([]);
-        const showCreateWatch = ref(false);
-        const newWatch = reactive({ name: '', watch_type: 'keyword', watch_value: '' });
-        const watchFeed = ref(null);
-        const discoveredSources = ref([]);
-        const discovering = ref(false);
+        let charts = {};
 
-        const currentUser = ref(null);
-        const authToken = ref(null);
-        const showAuthModal = ref(false);
-        const authMode = ref('login');
-        const authForm = reactive({ email: '', password: '', display_name: '' });
-        const authError = ref(''); const authSuccess = ref(''); const forgotSending = ref(false); const pendingResetToken = ref(''); const resetPassword = ref('');
-        const membershipPlans = ref([]);
-        const showPassword = ref(false); const showFAQ = ref(false); const settingsForm = reactive({ display_name: '', old_password: '', new_password: ''  });
-        const rememberLogin = ref(false);
-        const faqItems = ref([
-            { q: 'huidao.cc 是什么？', a: 'huidao.cc 是一个 AI 驱动的 Web4 全球智库平台，提供全球 Crypto/Web3/Web4 领域的实时动态监控、智能分类、风险预警和趋势分析服务。平台通过 AI 技术自动采集和分析 60+ 个全球信息源，帮助您快速掌握行业动态。', open: false },
-            { q: '数据源包括哪些？', a: '目前覆盖 60+ 个全球信息源，包括主流加密媒体、区块链新闻网站、研究报告平台、社交媒体 KOL 账号、GitHub 开源项目等。我们会持续扩展信息源覆盖范围。', open: false },
-            { q: '使用本站内容需要付费或登录吗？', a: '不需要。huidao.cc 已全面免费开放，无需注册或登录即可浏览。本站公开内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent)">CC BY 4.0</a> 协议，您可以在正确署名的情况下自由使用、共享和演绎。', open: false },
-            { q: '如何正确引用本站内容？', a: '建议引用格式：<br><strong>huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.</strong><br>您需要保留原文链接或来源标注，并在使用时提供许可协议链接。', open: false },
-            { q: '数据多久更新一次？', a: '平台默认每 <strong>1 小时</strong>自动采集一次最新数据。AI 简报每日早上 8:00 (UTC) 自动生成，每周一 9:00 (UTC) 生成周报。您也可以手动触发采集和简报生成。', open: false },
-            { q: '如何联系我们？', a: '推荐通过 <a href="https://github.com/tanghuidao/huidao" target="_blank" style="color:var(--accent)">GitHub 仓库</a> 提交 Issue 或 PR 来反馈问题、报告数据异常或纠错，所有沟通公开可追溯。', open: false },
-        ]);
-        const mobileNavOpen = ref(false);
-        const openNavGroup = ref('');
+        /* ===== Computed helpers ===== */
+        const sourceMap = computed(() => {
+            const m = {};
+            for (const s of sources.value) m[s.id] = s;
+            return m;
+        });
+        function sourceName(id) { return sourceMap.value[id]?.name || ''; }
+        const healthyCount = computed(() => sources.value.filter(s => s.health_status === 'healthy').length);
+        const healthTier = computed(() => {
+            const total = sources.value.length || 1;
+            const ratio = healthyCount.value / total;
+            return ratio >= 0.9 ? 'ok' : ratio >= 0.6 ? 'warn' : 'bad';
+        });
+        const groupedSources = computed(() => {
+            const g = {};
+            for (const s of sources.value) {
+                const c = s.category || 'Other';
+                (g[c] = g[c] || []).push(s);
+            }
+            for (const c in g) g[c].sort((a, b) => a.name.localeCompare(b.name));
+            return g;
+        });
+        function riskTier(v) { return v >= 0.7 ? 'r-high' : v >= 0.4 ? 'r-mid' : 'r-low'; }
+        function scoreTier(v) { return v >= 0.7 ? 'r-high' : v >= 0.4 ? 'r-mid' : 'r-low'; }
+        function topicStyle(topic) {
+            const max = hotTopics.value[0]?.count || 1;
+            const item = hotTopics.value.find(x => x.topic === topic);
+            const ratio = item ? item.count / max : 0.3;
+            return { fontSize: (0.78 + ratio * 0.55).toFixed(2) + 'rem', fontWeight: ratio > 0.66 ? 700 : 500, opacity: 0.55 + ratio * 0.45 };
+        }
 
-        function showToast(msg, type = 'success') {
-            toast.show = true; toast.message = msg; toast.type = type;
+        /* ===== Format helpers ===== */
+        function showToast(msg, type) {
+            toast.show = true; toast.message = msg; toast.type = type || 'info';
             setTimeout(() => { toast.show = false; }, 3000);
         }
         function fmtDate(d) {
             if (!d) return '';
-            return new Date(d).toLocaleDateString('zh-CN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            return new Date(d).toLocaleString(lang.value === 'zh' ? 'zh-CN' : 'en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
         }
-        const typeLabels = { news:'新闻', opinion:'观点', report:'报告', funding:'融资', regulation:'监管', product_launch:'产品发布', partnership:'合作', market_signal:'市场信号', person_speech:'人物发言', suspected_hype:'疑似炒作' };
-        function typeLabel(t) { return typeLabels[t] || t; }
+        function fmtNum(n) {
+            if (n === null || n === undefined) return '0';
+            return Number(n).toLocaleString('en-US');
+        }
+        function relTime(d) {
+            if (!d) return '';
+            const diff = Date.now() - new Date(d).getTime();
+            const m = Math.floor(diff / 60000);
+            if (m < 1) return lang.value === 'zh' ? '刚刚' : 'just now';
+            if (m < 60) return lang.value === 'zh' ? m + ' 分钟前' : m + ' min ago';
+            const h = Math.floor(m / 60);
+            if (h < 24) return lang.value === 'zh' ? h + ' 小时前' : h + ' h ago';
+            const dd = Math.floor(h / 24);
+            return lang.value === 'zh' ? dd + ' 天前' : dd + ' d ago';
+        }
         function renderMd(text) {
             if (!text) return '';
             return text.replace(/^# (.+)$/gm,'<h1>$1</h1>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
         }
+        function gotoArticles(topic) {
+            articleFilter.keyword = topic;
+            switchTab('articles');
+            fetchArticles(1);
+        }
 
+        /* ===== Fetchers ===== */
         async function fetchDashboard() {
             try {
                 const r = await fetch('/api/dashboard/');
                 if (!r.ok) throw new Error('HTTP ' + r.status);
                 const d = await r.json();
-                stats.value = d.stats || {}; dashboardLoading.value = false; statsLoading.value = false;
+                stats.value = d.stats || {};
+                statsLoading.value = false;
+                lastUpdated.value = d.stats?.last_updated || d.stats?.last_fetched || null;
                 recentArticles.value = d.recent_articles || [];
                 hotTopics.value = d.hot_topics || [];
-                topEntities.value = d.top_entities || [];
                 highRiskArticles.value = d.high_risk_articles || [];
                 suspectedHype.value = d.suspected_hype || [];
-            } catch(e) {
+                hotTopics.value.sort((a, b) => b.count - a.count);
+            } catch (e) {
                 console.error('Dashboard fetch error:', e);
-                // Retry once after 3 seconds
+                statsLoading.value = false;
                 setTimeout(async () => {
                     try {
                         const r2 = await fetch('/api/dashboard/');
                         if (r2.ok) {
                             const d2 = await r2.json();
                             stats.value = d2.stats || {};
+                            lastUpdated.value = d2.stats?.last_updated || null;
                             recentArticles.value = d2.recent_articles || [];
+                            hotTopics.value = (d2.hot_topics || []).sort((a, b) => b.count - a.count);
                         }
-                    } catch(e2) { console.error('Dashboard retry failed:', e2); }
+                    } catch (e2) { console.error('Dashboard retry failed:', e2); }
                 }, 3000);
             }
         }
-        async function fetchArticles() {
+        async function fetchArticles(page) {
+            if (page) articlePage.value = page;
             try {
                 const p = new URLSearchParams({ page: articlePage.value, days: articleFilter.days });
                 if (articleFilter.keyword) p.set('keyword', articleFilter.keyword);
                 if (articleFilter.content_type) p.set('content_type', articleFilter.content_type);
-                const r = await fetch(`/api/articles?${p}`);
+                const r = await fetch('/api/articles?' + p);
                 const d = await r.json();
-                articleList.value = d.articles; articleTotal.value = d.total;
-            } catch(e) { console.error(e); }
+                articleList.value = d.articles || []; articleTotal.value = d.total || 0;
+            } catch (e) { console.error(e); }
         }
         async function fetchBriefings() {
             try {
                 const r = await fetch('/api/briefings/');
                 briefings.value = await r.json();
                 if (briefings.value.length) selectedBriefing.value = briefings.value[0];
-            } catch(e) { console.error(e); }
+            } catch (e) { console.error(e); }
         }
         async function fetchSources() {
-            try { sources.value = await (await fetch('/api/sources/')).json(); } catch(e) { console.error(e); }
+            try { sources.value = await (await fetch('/api/sources/')).json(); } catch (e) { console.error(e); }
         }
         async function fetchScheduler() {
             try {
                 const d = await (await fetch('/api/v2/scheduler/status')).json();
                 schedulerRunning.value = d.running; schedulerJobs.value = d.jobs || [];
-            } catch(e) { console.error(e); }
+            } catch (e) { console.error(e); }
         }
         async function fetchEmerging() {
-            try { emergingTopics.value = await (await fetch('/api/trends/emerging')).json(); } catch(e) { console.error(e); }
+            try { emergingTopics.value = await (await fetch('/api/trends/emerging')).json(); } catch (e) { console.error(e); }
         }
         async function fetchLeaderboards() {
             try {
                 peopleLeaderboard.value = await (await fetch('/api/tracking/people/leaderboard?days=14')).json();
                 orgLeaderboard.value = await (await fetch('/api/tracking/organizations/leaderboard?days=14')).json();
-            } catch(e) { console.error(e); }
+            } catch (e) { console.error(e); }
         }
-
-        async function collectAll() { showToast('数据由后台定时任务自动采集', 'info'); }
-        async function generateBriefing() { showToast('简报由后台每天 08:00 UTC 自动生成', 'info'); }
-        async function triggerSummarize() { showToast('摘要由后台定时任务自动完成', 'info'); }
         async function viewPerson(name) {
-            try { selectedEntity.value = await (await fetch(`/api/tracking/person/${encodeURIComponent(name)}?days=30`)).json(); } catch(e) { console.error(e); }
+            try { selectedEntity.value = await (await fetch('/api/tracking/person/' + encodeURIComponent(name) + '?days=30')).json(); } catch (e) { console.error(e); }
         }
         async function viewOrg(name) {
-            try { selectedEntity.value = await (await fetch(`/api/tracking/organization/${encodeURIComponent(name)}?days=30`)).json(); } catch(e) { console.error(e); }
+            try { selectedEntity.value = await (await fetch('/api/tracking/organization/' + encodeURIComponent(name) + '?days=30')).json(); } catch (e) { console.error(e); }
         }
-
-        // === Phase 3 methods ===
         async function fetchAlerts() {
             try {
                 const d = await (await fetch('/api/v3/alerts')).json();
                 activeAlerts.value = d.alerts || [];
-            } catch(e) { console.error(e); }
-        }
-        async function scanAlerts() {
-            scanningAlerts.value = true;
-            try {
-                const d = await (await fetch('/api/v3/alerts/scan', { method: 'POST' })).json();
-                showToast(`预警扫描完成: ${d.total_new || 0} 条新预警`);
-                fetchAlerts();
-            } catch(e) { showToast('扫描失败', 'error'); }
-            scanningAlerts.value = false;
-        }
-        async function ackAlert(id) {
-            try { await fetch(`/api/v3/alerts/${id}/acknowledge`, { method: 'POST' }); fetchAlerts(); } catch(e) {}
-        }
-        async function resolveAlert(id) {
-            try { await fetch(`/api/v3/alerts/${id}/resolve`, { method: 'POST' }); fetchAlerts(); } catch(e) {}
+            } catch (e) { console.error(e); }
         }
         async function fetchNarrativeRankings() {
             try {
                 const d = await (await fetch('/api/v3/narrative/leaderboard?days=14&top_n=15')).json();
                 narrativeRankings.value = d.rankings || [];
-            } catch(e) { console.error(e); }
+            } catch (e) { console.error(e); }
         }
         async function analyzeNarrative() {
             if (!narrativeQuery.value) return;
             try {
                 const r = await fetch('/api/v3/narrative/analyze', {
-                    method: 'POST', headers: {'Content-Type':'application/json'},
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ topic: narrativeQuery.value, days: 30 })
                 });
                 narrativeResult.value = await r.json();
-            } catch(e) { showToast('分析失败', 'error'); }
-        }
-        async function fetchWatchlist() {
-            try {
-                const d = await (await fetch('/api/v3/watchlist')).json();
-                watchlistItems.value = d.watchlist || [];
-            } catch(e) { console.error(e); }
-        }
-        async function createWatch() {
-            try {
-                await fetch('/api/v3/watchlist', {
-                    method: 'POST', headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify(newWatch)
-                });
-                showToast('已添加关注项'); showCreateWatch.value = false;
-                newWatch.name = ''; newWatch.watch_value = '';
-                fetchWatchlist();
-            } catch(e) { showToast('添加失败', 'error'); }
-        }
-        async function removeWatch(id) {
-            try { await fetch(`/api/v3/watchlist/${id}`, { method: 'DELETE' }); fetchWatchlist(); } catch(e) {}
-        }
-        async function viewWatchFeed(id) {
-            try { watchFeed.value = await (await fetch(`/api/v3/watchlist/${id}/feed?days=7`)).json(); } catch(e) {}
-        }
-        async function discoverSources() {
-            discovering.value = true;
-            try {
-                const d = await (await fetch('/api/v3/discovery/scan', { method: 'POST' })).json();
-                showToast(`发现 ${d.discovered || 0} 个潜在新源`);
-                fetchDiscoveredSources();
-            } catch(e) { showToast('发现失败', 'error'); }
-            discovering.value = false;
-        }
-        async function fetchDiscoveredSources() {
-            try {
-                const d = await (await fetch('/api/v3/discovery/pending')).json();
-                discoveredSources.value = d.pending_sources || [];
-            } catch(e) { console.error(e); }
-        }
-        async function approveSource(id) {
-            try { await fetch(`/api/v3/discovery/${id}/approve`, { method: 'POST' }); showToast('已添加为正式源'); fetchDiscoveredSources(); fetchSources(); } catch(e) {}
-        }
-        async function rejectSource(id) {
-            try { await fetch(`/api/v3/discovery/${id}/reject`, { method: 'POST' }); fetchDiscoveredSources(); } catch(e) {}
-        }
-        // === Phase 4A - Auth & Membership methods ===
-        function toggleNavGroup(group) {
-            openNavGroup.value = openNavGroup.value === group ? '' : group;
-        }
-        document.addEventListener('click', function() { openNavGroup.value = ''; });
-        function tierLabel(tier) {
-            const labels = { free: '免费版', basic: '基础版', pro: '专业版', max: '旗舰版' };
-            return labels[tier] || tier;
+            } catch (e) { showToast(t('na.noData'), 'error'); }
         }
 
-        // Auth-aware fetch wrapper
-        async function authFetch(url, options = {}) {
-            const headers = { ...authHeaders(), ...(options.headers || {}) };
-            const r = await fetch(url, { ...options, headers });
-            if (r.status === 401 && authToken.value) {
-                // Token expired/invalid - clear silently (free version has no login UI)
-                authToken.value = null;
-                currentUser.value = null;
-            }
-            return r;
+        /* ===== Charts ===== */
+        const PALETTE = ['#6e82f8','#2dd4bf','#fbbf24','#f87171','#a78bfa','#38bdf8','#34d399','#fb7185','#94a3b8','#60a5fa'];
+        function cssVar(name) {
+            return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#888';
         }
-
-        function authHeaders() {
-            return authToken.value ? { 'Authorization': `Bearer ${authToken.value}` } : {};
-        }
-        async function doAuth() {
-            showToast('本站已取消登录体系，所有内容免费开放', 'info');
-        }
-        async function fetchCurrentUser() {
-            if (!authToken.value) return;
-            try {
-                const r = await fetch('/api/auth/me', { headers: authHeaders() });
-                if (r.ok) {
-                    currentUser.value = await r.json();
-                    // 4B-1: Show unverified email banner
-                    if (currentUser.value && !currentUser.value.email_verified) {
-                        nextTick(() => showUnverifiedBanner());
-                    }
-                }
-                else { authToken.value = null; currentUser.value = null; }
-            } catch(e) { console.error(e); }
-        }
-        function logout() {
-            authToken.value = null;
-            currentUser.value = null;
-            showToast('已退出', 'info');
-        }
-        async function subscribe(tier) {
-            showToast('本站已取消会员体系，所有内容免费开放', 'info');
-        }
-
-
-        // === Password Reset Methods (disabled in free version) ===
-        async function forgotPassword() {
-            showToast('本站已取消登录体系，无需找回密码', 'info');
-        }
-        async function resetPasswordSubmit() {
-            showToast('本站已取消登录体系', 'info');
-        }
-
-
-        // === Profile / Settings Methods ===
-        async function updateProfile() {
-            if (!settingsForm.display_name || !authToken.value) return;
-            try {
-                const r = await authFetch('/api/auth/me', {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ display_name: settingsForm.display_name })
-                });
-                if (r.ok) {
-                    currentUser.value = await r.json();
-                    showToast('昵称已更新', 'success');
-                    settingsForm.display_name = '';
-                } else {
-                    const d = await r.json();
-                    showToast(d.detail || '更新失败', 'error');
-                }
-            } catch(e) { showToast('网络错误', 'error'); }
-        }
-        async function changePassword() {
-            if (!settingsForm.old_password || !settingsForm.new_password || settingsForm.new_password.length < 6) return;
-            try {
-                const r = await authFetch('/api/auth/change-password', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ old_password: settingsForm.old_password, new_password: settingsForm.new_password })
-                });
-                if (r.ok) {
-                    showToast('密码已修改', 'success');
-                    settingsForm.old_password = '';
-                    settingsForm.new_password = '';
-                } else {
-                    const d = await r.json();
-                    showToast(d.detail || '修改失败', 'error');
-                }
-            } catch(e) { showToast('网络错误', 'error'); }
-        }
-
-        // Charts
-        const COLORS = ['#1d9bf0','#00ba7c','#ffad1f','#f4212e','#a970ff','#1da1f2','#ff6b6b','#ffd93d','#6bcb77','#4d96ff'];
         function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
 
         async function renderTrendCharts() {
             await nextTick();
+            const tickColor = cssVar('--text-dim');
+            const labelColor = cssVar('--text-soft');
+            const gridColor = cssVar('--border');
+            const accent = cssVar('--accent');
+            const amber = cssVar('--amber');
+            const red = cssVar('--red');
+            const baseOpts = {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: labelColor, font: { size: 10 } } } },
+                scales: {
+                    y: { beginAtZero: true, ticks: { color: tickColor }, grid: { color: gridColor } },
+                    x: { ticks: { color: tickColor, maxTicksLimit: 10 }, grid: { display: false } },
+                },
+            };
             // Article count
             try {
                 const data = await (await fetch('/api/trends/article-count?days=30')).json();
                 destroyChart('chartArticleCount');
                 const ctx = document.getElementById('chartArticleCount');
-                if (ctx) {
+                if (ctx && data) {
                     charts['chartArticleCount'] = new Chart(ctx, {
-                        type: 'bar', data: { labels: data.map(d=>d.date.slice(5)), datasets: [{ label: '文章数', data: data.map(d=>d.count), backgroundColor: '#1d9bf033', borderColor: '#1d9bf0', borderWidth: 1 }] },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: '#71767b' } }, x: { ticks: { color: '#71767b' } } } }
+                        type: 'bar',
+                        data: { labels: data.map(d => d.date.slice(5)), datasets: [{ label: t('stats.articles'), data: data.map(d => d.count), backgroundColor: accent + '33', borderColor: accent, borderWidth: 1, borderRadius: 3 }] },
+                        options: JSON.parse(JSON.stringify({ ...baseOpts, plugins: { legend: { display: false } } })),
                     });
                 }
-            } catch(e) {}
+            } catch (e) {}
             // Topic trend
             try {
                 const data = await (await fetch('/api/trends/topics?days=30&top_n=5')).json();
                 destroyChart('chartTopicTrend');
                 const ctx = document.getElementById('chartTopicTrend');
                 if (ctx && data.topics) {
-                    const datasets = data.topics.map((t,i) => ({ label: t, data: (data.series[t]||[]).map(d=>d.count), borderColor: COLORS[i%COLORS.length], fill: false, tension: 0.3 }));
+                    const datasets = data.topics.map((tp, i) => ({ label: tp, data: (data.series[tp] || []).map(d => d.count), borderColor: PALETTE[i % PALETTE.length], backgroundColor: 'transparent', fill: false, tension: 0.3, borderWidth: 2, pointRadius: 0 }));
                     charts['chartTopicTrend'] = new Chart(ctx, {
-                        type: 'line', data: { labels: (data.dates||[]).map(d=>d.slice(5)), datasets },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e7e9ea', font: { size: 10 } } } }, scales: { y: { beginAtZero: true, ticks: { color: '#71767b' } }, x: { ticks: { color: '#71767b', maxTicksLimit: 10 } } } }
+                        type: 'line', data: { labels: (data.dates || []).map(d => d.slice(5)), datasets },
+                        options: JSON.parse(JSON.stringify(baseOpts)),
                     });
                 }
-            } catch(e) {}
+            } catch (e) {}
             // Risk trend
             try {
                 const data = await (await fetch('/api/trends/risk?days=30')).json();
@@ -1414,14 +1584,15 @@ createApp({
                 const ctx = document.getElementById('chartRiskTrend');
                 if (ctx && data.length) {
                     charts['chartRiskTrend'] = new Chart(ctx, {
-                        type: 'line', data: { labels: data.map(d=>d.date.slice(5)), datasets: [
-                            { label: '监管风险', data: data.map(d=>d.regulation_risk), borderColor: '#ffad1f', fill: false, tension: 0.3 },
-                            { label: '炒作风险', data: data.map(d=>d.hype_risk), borderColor: '#f4212e', fill: false, tension: 0.3 },
+                        type: 'line',
+                        data: { labels: data.map(d => d.date.slice(5)), datasets: [
+                            { label: t('ab.m2'), data: data.map(d => d.regulation_risk), borderColor: amber, backgroundColor: 'transparent', fill: false, tension: 0.3, borderWidth: 2, pointRadius: 0 },
+                            { label: t('ov.hype'), data: data.map(d => d.hype_risk), borderColor: red, backgroundColor: 'transparent', fill: false, tension: 0.3, borderWidth: 2, pointRadius: 0 },
                         ] },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e7e9ea', font: { size: 10 } } } }, scales: { y: { min: 0, max: 1, ticks: { color: '#71767b' } }, x: { ticks: { color: '#71767b', maxTicksLimit: 10 } } } }
+                        options: JSON.parse(JSON.stringify({ ...baseOpts, scales: { ...baseOpts.scales, y: { min: 0, max: 1, ticks: { color: tickColor }, grid: { color: gridColor } } } })),
                     });
                 }
-            } catch(e) {}
+            } catch (e) {}
             // Content type distribution
             try {
                 const data = await (await fetch('/api/trends/content-types?days=7')).json();
@@ -1429,11 +1600,12 @@ createApp({
                 const ctx = document.getElementById('chartContentType');
                 if (ctx && data.length) {
                     charts['chartContentType'] = new Chart(ctx, {
-                        type: 'doughnut', data: { labels: data.map(d=>typeLabel(d.type)), datasets: [{ data: data.map(d=>d.count), backgroundColor: COLORS }] },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#e7e9ea', font: { size: 10 } } } } }
+                        type: 'doughnut',
+                        data: { labels: data.map(d => typeLabel(d.type)), datasets: [{ data: data.map(d => d.count), backgroundColor: PALETTE, borderColor: cssVar('--bg-card'), borderWidth: 2 }] },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: labelColor, font: { size: 10 }, boxWidth: 12 } } } },
                     });
                 }
-            } catch(e) {}
+            } catch (e) {}
             // Source activity
             try {
                 const data = await (await fetch('/api/trends/source-activity?days=7')).json();
@@ -1441,13 +1613,15 @@ createApp({
                 const ctx = document.getElementById('chartSourceActivity');
                 if (ctx && data.length) {
                     charts['chartSourceActivity'] = new Chart(ctx, {
-                        type: 'bar', data: { labels: data.map(d=>d.source.slice(0,15)), datasets: [{ label: '文章数', data: data.map(d=>d.count), backgroundColor: COLORS.map(c=>c+'88') }] },
-                        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#71767b' } }, y: { ticks: { color: '#71767b', font: { size: 10 } } } } }
+                        type: 'bar',
+                        data: { labels: data.map(d => d.source.slice(0, 18)), datasets: [{ label: t('stats.articles'), data: data.map(d => d.count), backgroundColor: data.map((_, i) => PALETTE[i % PALETTE.length] + 'cc'), borderRadius: 3 }] },
+                        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: tickColor }, grid: { color: gridColor } }, y: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } } } },
                     });
                 }
-            } catch(e) {}
+            } catch (e) {}
         }
 
+        /* ===== Tab switching ===== */
         function switchTab(tab) {
             activeTab.value = tab;
             if (tab === 'trends') { setTimeout(renderTrendCharts, 100); }
@@ -1455,117 +1629,49 @@ createApp({
             if (tab === 'scheduler') { fetchScheduler(); }
             if (tab === 'alerts') { fetchAlerts(); }
             if (tab === 'narrative') { fetchNarrativeRankings(); }
-            if (tab === 'watchlist') { fetchWatchlist(); }
-            if (tab === 'sources') { fetchSources(); fetchDiscoveredSources(); }
+            if (tab === 'sources') { fetchSources(); }
         }
 
+        /* ===== Lifecycle ===== */
         onMounted(() => {
-            fetchDashboard(); fetchArticles(); fetchBriefings();
-            fetchSources(); fetchScheduler(); fetchEmerging();
-            fetchAlerts(); fetchWatchlist();
-            // Hash navigation for footer links
+            fetchDashboard();
+            fetchArticles();
+            fetchBriefings();
+            fetchSources();
+            fetchScheduler();
+            fetchEmerging();
+            fetchAlerts();
+            // Auto-refresh every 5 minutes
+            setInterval(fetchDashboard, 5 * 60 * 1000);
+            // Hash navigation
             function handleHashNav() {
-                var h = window.location.hash.replace('#','');
-                var validTabs = ['overview','trends','alerts','briefings','articles','about','narrative','tracking','watchlist','sources','scheduler'];
+                var h = window.location.hash.replace('#', '');
+                var validTabs = ['overview','trends','alerts','briefings','articles','about','narrative','tracking','sources','scheduler'];
                 if (h && validTabs.includes(h)) {
                     activeTab.value = h;
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (h === 'trends') setTimeout(renderTrendCharts, 100);
                 }
             }
             window.addEventListener('hashchange', handleHashNav);
-            window.addEventListener('hashnav', handleHashNav);
-            // Check initial hash
-            if (window.location.hash) { handleHashNav(); }
-            // Custom event listeners for footer
-            window.addEventListener('open-faq', function() { showFAQ.value = true; });
-            // open-register listener removed (free version)
+            if (window.location.hash) handleHashNav();
         });
 
-// === 4B-1: Email verification banners ===
-        function showVerifyBanner(email) {
-            var existing = document.getElementById('verify-banner');
-            if (existing) existing.remove();
-            var banner = document.createElement('div');
-            banner.id = 'verify-banner';
-            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(135deg,#1e40af,#3b82f6);color:white;padding:12px 20px;text-align:center;font-size:14px;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
-            banner.innerHTML = '<span>\ud83d\udce7 \u9a8c\u8bc1\u90ae\u4ef6\u5df2\u53d1\u9001\u81f3 <strong>' + (email||'') + '</strong>\uff0c\u8bf7\u67e5\u6536\u5e76\u70b9\u51fb\u94fe\u63a5\u5b8c\u6210\u9a8c\u8bc1\u3002</span>'
-                + '<button onclick="resendVerify(\'' + (email||'') + '\')" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);color:white;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:13px;white-space:nowrap;">\u91cd\u65b0\u53d1\u9001</button>'
-                + '<button onclick="this.parentElement.remove()" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:18px;padding:0 4px;">\u00d7</button>';
-            document.body.prepend(banner);
-            setTimeout(function() { if (banner.parentElement) banner.remove(); }, 30000);
-        }
-        function showUnverifiedBanner() {
-            if (document.getElementById('unverified-banner')) return;
-            var banner = document.createElement('div');
-            banner.id = 'unverified-banner';
-            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#92400e;color:#fef3c7;padding:10px 20px;text-align:center;font-size:13px;display:flex;align-items:center;justify-content:center;gap:10px;';
-            var email = (currentUser.value && currentUser.value.email) ? currentUser.value.email : '';
-            banner.innerHTML = '<span>\u26a0\ufe0f \u90ae\u7bb1\u672a\u9a8c\u8bc1\uff0c\u90e8\u5206\u529f\u80fd\u53d7\u9650\u3002</span>'
-                + '<button onclick="resendVerify(\'' + email + '\')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:var(--warn-text);padding:3px 12px;border-radius:5px;cursor:pointer;font-size:12px;">\u91cd\u65b0\u53d1\u9001\u9a8c\u8bc1\u90ae\u4ef6</button>'
-                + '<button onclick="this.parentElement.remove()" style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;padding:0 4px;">\u00d7</button>';
-            document.body.prepend(banner);
-        }
-        async function resendVerify(email) {
-            try {
-                var r = await fetch('/api/auth/resend-verification', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) });
-                var data = await r.json();
-                if (r.ok) { showToast('\u9a8c\u8bc1\u90ae\u4ef6\u5df2\u91cd\u65b0\u53d1\u9001', 'success'); showVerifyBanner(email); }
-                else { showToast(data.detail || '\u53d1\u9001\u5931\u8d25', 'error'); }
-            } catch(e) { showToast('\u7f51\u7edc\u9519\u8bef', 'error'); }
-        }
-
-
         return {
-            activeTab, collecting, generatingBriefing, summarizing, statsLoading,
-            stats, recentArticles, hotTopics, topEntities, highRiskArticles, suspectedHype, emergingTopics,
-            articleList, articleTotal, articlePage, articleFilter,
-            briefings, selectedBriefing, sources, toast,
-            schedulerRunning, schedulerJobs,
-            peopleLeaderboard, orgLeaderboard, selectedEntity,
-            // Phase 3
-            activeAlerts, scanningAlerts, narrativeRankings, narrativeQuery, narrativeResult, watchlistItems, showCreateWatch, newWatch, watchFeed,
-            discoveredSources, discovering,
-            currentUser, authToken, showAuthModal: ref(false), authMode: ref('login'), authForm, authError, membershipPlans,
-            tierLabel, doAuth, logout, subscribe, showPassword, showFAQ, faqItems, rememberLogin: ref(false), mobileNavOpen, openNavGroup, toggleNavGroup, showVerifyBanner, showUnverifiedBanner, resendVerify,
-            // Methods
-            collectAll, generateBriefing: generateBriefing, triggerSummarize, fetchArticles,
-            viewPerson, viewOrg, switchTab,
-            scanAlerts, ackAlert, resolveAlert, analyzeNarrative,
-                 
-            createWatch, removeWatch, viewWatchFeed,
-            discoverSources, approveSource, rejectSource,
-            fmtDate, typeLabel, renderMd, showToast, forgotPassword, resetPasswordSubmit, authSuccess, forgotSending, pendingResetToken, resetPassword, settingsForm, updateProfile, changePassword,
+            activeTab, lang, theme, mobileNavOpen, openNavGroup, showFAQ, toast, faqItems,
+            t, typeLabels, typeLabel, toggleLang, toggleTheme,
+            stats, statsLoading, lastUpdated, recentArticles, hotTopics, highRiskArticles, suspectedHype,
+            emergingTopics, articleList, articleTotal, articlePage, articleFilter,
+            briefings, selectedBriefing, sources, schedulerRunning, schedulerJobs,
+            peopleLeaderboard, orgLeaderboard, selectedEntity, activeAlerts,
+            narrativeRankings, narrativeQuery, narrativeResult,
+            healthyCount, healthTier, groupedSources, sourceName,
+            riskTier, scoreTier, topicStyle,
+            showToast, fmtDate, fmtNum, relTime, renderMd, gotoArticles,
+            fetchArticles, analyzeNarrative, viewPerson, viewOrg, switchTab,
         };
     }
 }).mount('#app');
 </script>
-<!-- Footer -->
-    <div class="footer-multi">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="footer-logo">huidao.cc</div>
-                <div class="footer-desc">AI 驱动的 Web4 智库平台<br>实时监控全球 Crypto/Web3/4 动态<br>智能分类 · 风险预警 · 趋势分析</div>
-            </div>
-            <div class="footer-col">
-                <h4>产品</h4>
-                <a href="#overview" onclick="window.dispatchEvent(new Event('hashnav'))">总览面板</a>
-                <a href="#trends" onclick="window.dispatchEvent(new Event('hashnav'))">趋势分析</a>
-                <a href="#alerts" onclick="window.dispatchEvent(new Event('hashnav'))">风险预警</a>
-                <a href="#briefings" onclick="window.dispatchEvent(new Event('hashnav'))">智能简报</a>
-                <a href="#articles" onclick="window.dispatchEvent(new Event('hashnav'))">文章库</a>
-                <a href="#briefings" onclick="window.dispatchEvent(new Event('hashnav'))">简报库</a>
-            </div>
-            <div class="footer-col">
-                <h4>协议</h4>
-                <a href="#about" onclick="window.dispatchEvent(new Event('hashnav'))">方法论</a>
-                <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" target="_blank">许可协议</a>
-                <a href="#" onclick="window.dispatchEvent(new CustomEvent('open-faq'));return false">常见问题</a>
-                <a href="#about-contact" onclick="window.dispatchEvent(new Event('hashnav'))">联系我们</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 huidao.cc · 所有可公开访问内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" target="_blank" style="color:var(--accent);text-decoration:none;">CC BY 4.0</a> 协议免费开放使用
-        </div>
-    </div>
 </body>
 </html>

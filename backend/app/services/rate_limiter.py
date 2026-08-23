@@ -16,15 +16,30 @@ RATE_LIMIT_RULES = {
     "/api/auth/forgot-password": {"max": 3, "window": 3600, "msg": "密码重置请求过于频繁，请1小时后再试"},
 }
 
+# Public data endpoints: prefix-matched, GET allowed (60 req/min per IP)
+RATE_LIMIT_PREFIX_RULES = [
+    {"prefix": "/api/v1/", "max": 60, "window": 60, "method": "GET",
+     "msg": "API rate limit exceeded: 60 requests per minute per IP"},
+    {"prefix": "/rss/", "max": 60, "window": 60, "method": "GET",
+     "msg": "RSS rate limit exceeded: 60 requests per minute per IP"},
+]
+
 
 class RateLimiterMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         path = request.url.path
         rule = RATE_LIMIT_RULES.get(path)
 
-        if rule is None or request.method != "POST":
-            return await call_next(request)
+        if rule is not None and request.method == "POST":
+            return await self._guard(request, call_next, path, rule)
 
+        for prule in RATE_LIMIT_PREFIX_RULES:
+            if path.startswith(prule["prefix"]) and request.method == prule["method"]:
+                return await self._guard(request, call_next, path, prule)
+
+        return await call_next(request)
+
+    async def _guard(self, request: Request, call_next, key_path: str, rule: dict):
         client_ip = request.headers.get("X-Forwarded-For", "").split(",")[0].strip()
         if not client_ip:
             client_ip = request.headers.get("X-Real-IP", "")
@@ -33,9 +48,9 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
         if not client_ip:
             client_ip = "unknown"
 
-        blocked = await self._check(f"rl:{path}:{client_ip}", rule)
+        blocked = await self._check(f"rl:{key_path}:{client_ip}", rule)
         if blocked:
-            logger.warning(f"Rate limited: {client_ip} -> {path}")
+            logger.warning(f"Rate limited: {client_ip} -> {key_path}")
             return JSONResponse(status_code=429, content={"detail": rule["msg"]},
                                 headers={"Retry-After": str(blocked)})
 

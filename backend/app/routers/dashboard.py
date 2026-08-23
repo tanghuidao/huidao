@@ -32,6 +32,9 @@ def get_dashboard(db: Session = Depends(get_db)):
     from app.models import Briefing
     total_briefings = db.query(Briefing).count()
 
+    # Last data update time (latest fetched article)
+    last_updated = db.query(func.max(Article.fetched_at)).scalar()
+
     stats = DashboardStats(
         total_sources=total_sources,
         active_sources=active_sources,
@@ -40,6 +43,7 @@ def get_dashboard(db: Session = Depends(get_db)):
         articles_today=articles_today,
         articles_this_week=articles_this_week,
         total_briefings=total_briefings,
+        last_updated=last_updated,
     )
 
     # Recent articles (top scored)

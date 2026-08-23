@@ -19,27 +19,32 @@ BASE_URL = "https://huidao.cc"
 _CSS = """
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-       background: #0f1419; color: #e7e9ea; line-height: 1.7; }
+       background: #0d1017; color: #e8ebf2; line-height: 1.7; }
 .wrap { max-width: 760px; margin: 0 auto; padding: 24px 20px 60px; }
-a { color: #1d9bf0; text-decoration: none; }
+a { color: #8b9cfa; text-decoration: none; }
 a:hover { text-decoration: underline; }
-.site-nav { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid #2f3336; margin-bottom: 28px; font-size: 0.9rem; }
-.site-nav .logo { font-weight: 700; color: #e7e9ea; font-size: 1.05rem; }
-.site-nav .logo span { color: #1d9bf0; }
+.site-nav { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid #232b3b; margin-bottom: 28px; font-size: 0.9rem; }
+.site-nav .logo { font-weight: 700; color: #e8ebf2; font-size: 1.05rem; }
+.site-nav .logo span { color: #6e82f8; }
 h1 { font-size: 1.6rem; line-height: 1.4; margin-bottom: 12px; }
 h2 { font-size: 1.25rem; margin: 24px 0 10px; }
 h3 { font-size: 1.05rem; margin: 18px 0 8px; }
-.meta { color: #71767b; font-size: 0.85rem; margin-bottom: 20px; }
-.meta .tag { display: inline-block; background: #16202a; border: 1px solid #2f3336; border-radius: 12px; padding: 1px 10px; margin: 2px 4px 2px 0; font-size: 0.78rem; }
-.card { background: #16202a; border: 1px solid #2f3336; border-radius: 12px; padding: 20px 22px; margin-bottom: 20px; }
+.meta { color: #8b95a8; font-size: 0.85rem; margin-bottom: 20px; }
+.meta .tag { display: inline-block; background: #131823; border: 1px solid #232b3b; border-radius: 12px; padding: 1px 10px; margin: 2px 4px 2px 0; font-size: 0.78rem; }
+.card { background: #131823; border: 1px solid #232b3b; border-radius: 12px; padding: 20px 22px; margin-bottom: 20px; }
 .card h2:first-child { margin-top: 0; }
 .origin-link { display: inline-block; margin-top: 8px; font-size: 0.9rem; }
-.list-item { padding: 12px 0; border-bottom: 1px solid #1e2732; }
+.list-item { padding: 12px 0; border-bottom: 1px solid #1a2230; }
 .list-item .t { font-size: 1rem; }
-.list-item .m { color: #71767b; font-size: 0.8rem; margin-top: 2px; }
+.list-item .m { color: #8b95a8; font-size: 0.8rem; margin-top: 2px; }
 .pager { display: flex; gap: 20px; margin-top: 24px; font-size: 0.9rem; }
-.footer { border-top: 1px solid #2f3336; margin-top: 40px; padding-top: 16px; color: #536471; font-size: 0.78rem; }
-.footer a { color: #71767b; margin-right: 14px; }
+.footer { border-top: 1px solid #232b3b; margin-top: 40px; padding-top: 16px; color: #626d80; font-size: 0.78rem; }
+.footer a { color: #8b95a8; margin-right: 14px; }
+.disclaimer { background: #131823; border: 1px solid #232b3b; border-left: 3px solid #6e82f8; border-radius: 8px; padding: 12px 16px; margin-top: 24px; font-size: 0.82rem; color: #8b95a8; }
+.src-cat { margin: 10px 0; }
+.src-cat b { color: #e8ebf2; }
+.src-cat span { color: #8b95a8; font-size: 0.85rem; }
+code { background: #131823; border: 1px solid #232b3b; border-radius: 6px; padding: 2px 6px; font-size: 0.85em; }
 """
 
 _NAV = (
@@ -48,6 +53,7 @@ _NAV = (
     f'<a href="{BASE_URL}/a">文章</a>'
     f'<a href="{BASE_URL}/b">简报</a>'
     f'<a href="{BASE_URL}/about">关于</a>'
+    f'<a href="{BASE_URL}/rss/briefing.xml">RSS</a>'
     '</nav>'
 )
 
@@ -55,8 +61,11 @@ _FOOTER = (
     '<div class="footer">'
     f'<a href="{BASE_URL}/">首页</a>'
     f'<a href="{BASE_URL}/about">关于与方法论</a>'
-    '<a href="mailto:tanghuidao01@gmail.com">联系我们</a>'
-    '<div style="margin-top:8px">&copy; 2026 huidao.cc - AI驱动的Web4全球智库</div>'
+    f'<a href="{BASE_URL}/rss/briefing.xml">RSS 简报</a>'
+    f'<a href="{BASE_URL}/rss/alerts.xml">RSS 预警</a>'
+    f'<a href="https://github.com/tanghuidao/huidao" target="_blank" rel="noopener">GitHub</a>'
+    '<div style="margin-top:8px">&copy; 2026 huidao.cc - AI驱动的Web4全球智库 · CC BY 4.0</div>'
+    '<div style="margin-top:6px">本站内容为 AI 自动聚合与分析结果，仅供研究参考，不构成任何投资建议。</div>'
     '</div>'
 )
 
@@ -72,7 +81,7 @@ def _page(title: str, description: str, canonical: str, body: str, jsonld: dict 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f1419">
+<meta name="theme-color" content="#0d1017">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
 <link rel="canonical" href="{canonical}">
@@ -155,12 +164,12 @@ def article_index(page: int = Query(1, ge=1), db: Session = Depends(get_db)):
     pager += '</div>'
 
     body = (f'<h1>文章库</h1>'
-            f'<p class="meta">huidao.cc 从 68+ 全球信息源采集并经 AI 摘要的公开文章,第 {page} 页</p>'
+            f'<p class="meta">huidao.cc 从 60+ 全球信息源采集并经 AI 摘要的公开文章,第 {page} 页</p>'
             + "".join(items) + pager)
     canonical = f"{BASE_URL}/a" if page == 1 else f"{BASE_URL}/a?page={page}"
     return HTMLResponse(_page(
         f"文章库 第{page}页 - huidao.cc" if page > 1 else "文章库 - huidao.cc",
-        "AI摘要的全球AI/Crypto/Web3/Web4文章库,来自68+信息源,每日更新。",
+        "AI摘要的全球AI/Crypto/Web3/Web4文章库,来自60+信息源,每日更新。",
         canonical, body))
 
 
@@ -237,7 +246,7 @@ def briefing_index(db: Session = Depends(get_db)):
             + "".join(items))
     return HTMLResponse(_page(
         "智能简报 - huidao.cc",
-        "AI自动生成的AI/Crypto/Web3/Web4每日与每周简报,汇总全球68+信息源的关键动态。",
+        "AI自动生成的AI/Crypto/Web3/Web4每日与每周简报,汇总全球60+信息源的关键动态。",
         f"{BASE_URL}/b", body))
 
 
@@ -277,30 +286,72 @@ def briefing_page(briefing_id: int, db: Session = Depends(get_db)):
 # ============ About page ============
 
 @router.get("/about", response_class=HTMLResponse)
-def about_page():
-    body = """
+def about_page(db: Session = Depends(get_db)):
+    from app.models import Source
+
+    sources = db.query(Source).filter(Source.enabled == True).all()  # noqa: E712
+    total_sources = len(sources)
+    by_cat = {}
+    for s in sources:
+        by_cat.setdefault(s.category or "other", []).append(s.name)
+    cat_html = "".join(
+        f'<div class="src-cat"><b>{html.escape(cat)}</b> ({len(names)})：<span>'
+        + html.escape(" · ".join(names)) + "</span></div>"
+        for cat, names in sorted(by_cat.items(), key=lambda kv: -len(kv[1]))
+    )
+
+    body = f"""
 <h1>关于 huidao.cc</h1>
 <p class="meta">AI 驱动的 Web4.0 时代全球智库</p>
 
 <div class="card">
 <h2>我们做什么</h2>
-<p>huidao.cc 持续监控全球 68+ 公开信息源(主流媒体、Crypto/AI 垂直媒体、研究机构、企业与关键人物),
+<p>huidao.cc 持续监控全球 {total_sources}+ 公开信息源(主流媒体、Crypto/AI 垂直媒体、研究机构、企业与关键人物),
 聚焦 AI、Crypto、Web3 与 Web4.0 领域,用 AI 完成信息的采集、分类、评分与提炼,
 帮助读者在噪音中捕捉真正重要的信号。</p>
 </div>
 
 <div class="card">
 <h2>方法论</h2>
-<h3>1. 采集</h3>
-<p>通过 RSS、网页抓取与 API 定时采集,按内容指纹去重,保留原文链接与出处。</p>
+<h3>1. 采集与去重</h3>
+<p>通过 RSS、网页抓取与 API 定时采集(默认每 60 分钟一轮),按内容指纹去重,保留原文链接与出处。</p>
 <h3>2. AI 分类与标注</h3>
-<p>大语言模型对每篇内容判定类型(新闻/观点/研报/融资/监管/产品发布等)、提取主题标签与实体(人物、公司、项目),并评估炒作风险与监管风险。</p>
-<h3>3. 多维评分</h3>
-<p>从可信度、影响力、执行力、资本信号、叙事强度、风险六个维度打分,综合得出总分,用于排序与筛选。</p>
-<h3>4. 预警与追踪</h3>
-<p>识别高风险与疑似炒作内容并实时预警;追踪关键人物与机构的观点变化;计算话题的叙事强度与新兴话题增速。</p>
-<h3>5. 简报生成</h3>
-<p>AI 每日/每周自动汇总关键动态,生成结构化简报。</p>
+<p>对每篇内容判定类型(新闻/观点/研报/融资/监管/产品发布/市场信号等),提取主题标签与实体(人物、公司、项目)。融资类判定采用"金额锚定"规则(如 raised $X / Series A / 完成X亿融资),避免把一般价格新闻误判为融资。</p>
+<h3>3. 监管风险评分 (0-100%)</h3>
+<p>采用连续评分模型:命中监管类标签、软性监管词汇(审查/合规/听证等)、硬性监管词汇(禁令/罚款/起诉等)与监管机构名称,分别按权重累加,再经平方根阻尼函数压缩,使结果落在一个连续、可比的 0-1 区间,避免单一关键词导致分数饱和。</p>
+<h3>4. 炒作识别 (0-100%)</h3>
+<p>基于收紧后的炒作词库(moonshot/革命性/稳赚 等强承诺词汇),需要命中 2 个及以上关键词才计分,并过滤播客/视频类 URL,以降低误报。</p>
+<h3>5. 多维总分</h3>
+<p>从可信度、影响力、执行力、资本信号、叙事强度、风险六个维度加权合成总分,用于排序与筛选。</p>
+<h3>6. 预警与追踪</h3>
+<p>识别高风险监管与疑似炒作内容并生成预警;追踪关键人物与机构的观点变化;计算话题的叙事强度与新兴话题增速。</p>
+<h3>7. 简报生成</h3>
+<p>AI 每日 08:00 (UTC) 生成日报,每周一 09:00 (UTC) 生成周报,自动汇总关键动态。</p>
+</div>
+
+<div class="card">
+<h2>免责声明</h2>
+<p><strong>1.</strong> 本站内容来源于第三方公开信息聚合,版权归原始出处所有,聚合与转载不代表本站立场;<br>
+<strong>2.</strong> 风险评分与炒作评分为算法自动生成的量化指标,并非专业金融意见,可能存在误判;<br>
+<strong>3.</strong> 用户需自行判断信息准确性并承担相应决策风险。本站所有内容仅供研究参考,不构成任何投资建议。</p>
+</div>
+
+<div class="card">
+<h2>数据源 ({total_sources} 个,按类别)</h2>
+<p style="color:#8b95a8;font-size:0.85rem;margin-bottom:8px">当前监控的全部启用信息源,便于您自行判断信息覆盖面:</p>
+{cat_html}
+</div>
+
+<div class="card">
+<h2>数据出口</h2>
+<p>RSS 订阅:<a href="{BASE_URL}/rss/briefing.xml">简报 feed</a> · <a href="{BASE_URL}/rss/alerts.xml">风险预警 feed</a></p>
+<p style="margin-top:6px">公开 JSON API(限流 60 次/分钟/IP):<br>
+<code>GET {BASE_URL}/api/v1/articles?category=regulation&amp;date_from=2026-08-01&amp;limit=20</code></p>
+</div>
+
+<div class="card">
+<h2>更新频率与运行状态</h2>
+<p>信息源每 60 分钟自动采集一次,AI 分类/摘要随采集批处理;日报每日 08:00 (UTC)、周报每周一 09:00 (UTC) 自动生成。站点自 2026 年上线以来持续运行,由作者独立维护。</p>
 </div>
 
 <div class="card">
@@ -311,20 +362,22 @@ def about_page():
 
 <div class="card">
 <h2>联系我们</h2>
-<p>邮箱:<a href="mailto:tanghuidao01@gmail.com">tanghuidao01@gmail.com</a></p>
+<p>GitHub 仓库:<a href="https://github.com/tanghuidao/huidao" target="_blank" rel="noopener">github.com/tanghuidao/huidao</a>(通过 Issue / PR 反馈,公开可追溯)</p>
 </div>
+
+<div class="disclaimer">本站内容为 AI 自动聚合与分析结果,仅供研究参考,不构成任何投资建议。风险/炒作评分由算法自动生成,可能存在误判,请勿作为投资决策依据。</div>
 """
     jsonld = {
         "@context": "https://schema.org",
         "@type": "AboutPage",
-        "name": "关于 huidao.cc",
+        "name": "关于与方法论 - huidao.cc",
         "url": f"{BASE_URL}/about",
         "mainEntity": {"@id": f"{BASE_URL}/#organization"},
         "inLanguage": "zh-CN",
     }
     return HTMLResponse(_page(
         "关于与方法论 - huidao.cc",
-        "huidao.cc 是 AI 驱动的 Web4.0 全球智库:监控68+全球信息源,以采集-分类-评分-预警-简报的流水线提炼AI/Crypto/Web3关键信号。",
+        f"huidao.cc 是 AI 驱动的 Web4.0 全球智库:监控{total_sources}+全球信息源,以采集-分类-评分-预警-简报的流水线提炼AI/Crypto/Web3关键信号。内容仅供研究参考,不构成投资建议。",
         f"{BASE_URL}/about", body, jsonld))
 
 

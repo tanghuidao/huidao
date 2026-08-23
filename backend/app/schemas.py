@@ -123,6 +123,7 @@ class DashboardStats(BaseModel):
     articles_today: int
     articles_this_week: int
     total_briefings: int
+    last_updated: Optional[datetime.datetime] = None
 
 
 class TopicCount(BaseModel):

@@ -47,8 +47,8 @@ class NarrativeQuery(BaseModel):
 # ========== ALERTS ==========
 
 @router.get("/alerts")
-def list_alerts(limit: int = 50, db: Session = Depends(get_db), user=Depends(get_current_user)):
-    """Get all active alerts."""
+def list_alerts(limit: int = 50, db: Session = Depends(get_db)):
+    """Get all active alerts (public read-only)."""
     from app.services.alerts import get_active_alerts
     alerts = get_active_alerts(db, limit=limit)
     return {"alerts": alerts, "count": len(alerts)}
