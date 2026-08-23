@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f1419">
+    <meta name="theme-color" content="#4a6b2a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="huidao.cc">
     <link rel="manifest" href="/static/manifest.json">
     <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
-    <meta name="description" content="huidao.cc - 免费开放的AI驱动Web4智库，实时监控68+全球信息源，CC BY 4.0协议共享">
+    <meta name="description" content="huidao.cc - 免费开放的AI驱动Web4智库，实时监控60+全球信息源，CC BY 4.0协议共享">
     <meta property="og:title" content="huidao.cc - 免费开放的AI驱动Web4智库">
-    <meta property="og:description" content="68+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
+    <meta property="og:description" content="60+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://huidao.cc/static/og-banner.png">
     <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://huidao.cc">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="huidao.cc - 免费开放的AI驱动Web4智库">
-    <meta name="twitter:description" content="68+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
+    <meta name="twitter:description" content="60+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
     <title>huidao.cc - 免费开放的AI驱动Web4智库</title>
     <script type="application/ld+json">
     {
@@ -34,7 +34,7 @@
           "name": "huidao.cc",
           "url": "https://huidao.cc",
           "logo": "https://huidao.cc/static/og-banner.png",
-          "description": "AI驱动的Web4.0全球智库，实时监控68+全球信息源，提供AI智能分类、风险预警、趋势分析与每日简报。",
+          "description": "AI驱动的Web4.0全球智库，实时监控60+全球信息源，提供AI智能分类、风险预警、趋势分析与每日简报。",
           "email": "mailto:tanghuidao01@gmail.com"
         },
         {
@@ -50,92 +50,46 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-        <script>
-    (function(){try{var t=localStorage.getItem('huidao-theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
-    </script>
     <style>
 
-        /* ===== 主题变量系统 (dark 默认 / light 可切换) ===== */
+        /* ===== 草绿色单主题 (huidao 自然主题) ===== */
         :root {
-            --bg: var(--bg);
-            --bg-card: var(--bg-card);
-            --bg-elev: var(--bg-elev);
-            --bg-elev2: var(--bg-elev2);
-            --bg-elev3: var(--bg-elev3);
-            --bg-code: var(--bg-code);
-            --border: var(--border);
-            --border-strong: var(--border-strong);
-            --text: var(--text);
-            --text-soft: var(--text-soft);
-            --text-mute: var(--text-mute);
-            --text-mid: var(--text-mid);
-            --text-dim: var(--text-dim);
-            --accent: var(--accent);
-            --accent-hover: var(--accent-hover);
-            --success: var(--success);
-            --success-hover: var(--success-hover);
-            --warn: var(--warn);
-            --danger: var(--danger);
-            --purple: var(--purple);
-            --accent-dim: var(--accent-dim);
-            --danger-bg: var(--danger-bg);
-            --success-bg: var(--success-bg);
-            --warn-bg: var(--warn-bg);
-            --warn-text: var(--warn-text);
-            --warn-text-strong: var(--warn-text-strong);
-            --purple-bg: var(--purple-bg);
-            --info-bg: var(--info-bg);
-            --magenta-bg: var(--magenta-bg);
-            --overlay: var(--overlay);
-            --accent-tint: var(--accent-tint);
-            --accent-tint2: rgba(29,155,240,0.16);
-            --accent-tint-border: var(--accent-tint-border);
-            --success-tint: var(--success-tint);
-            --card-shadow: rgba(0,0,0,0.35);
-            --hero-grad: linear-gradient(135deg, var(--bg) 0%, var(--bg-elev2) 40%, var(--bg) 100%);
-        }
-        html[data-theme="light"] {
-            --bg: #f7f9fa;
-            --bg-card: #ffffff;
-            --bg-elev: #ebeef0;
-            --bg-elev2: #e8edf1;
-            --bg-elev3: #edf1f4;
-            --bg-code: #f0f4f8;
-            --border: #dce3e8;
-            --border-strong: #c8d1d8;
-            --text: var(--bg);
-            --text-soft: #3d4a55;
-            --text-mute: #62707c;
-            --text-mid: #6e7b87;
-            --text-dim: var(--text-mid);
-            --accent: #0d8de6;
-            --accent-hover: #0b7ecf;
-            --success: #009e6a;
-            --success-hover: #008a5c;
-            --warn: #d98e00;
-            --danger: #de1b27;
-            --purple: #7d4de0;
-            --accent-dim: #e3f1fb;
-            --danger-bg: #fde8e8;
-            --success-bg: #e0f7ec;
-            --warn-bg: #fdf3d9;
-            --warn-text: var(--warn-text-strong);
-            --warn-text-strong: #7c3508;
-            --purple-bg: #f0e8fd;
-            --info-bg: #e0f2f8;
-            --magenta-bg: #fbe4fb;
-            --overlay: rgba(0,0,0,0.35);
-            --accent-tint: rgba(13,141,230,0.07);
-            --accent-tint2: rgba(13,141,230,0.12);
-            --accent-tint-border: rgba(13,141,230,0.3);
-            --success-tint: rgba(0,158,106,0.07);
-            --card-shadow: rgba(15,20,25,0.12);
-            --hero-grad: linear-gradient(135deg, var(--bg) 0%, var(--bg-elev2) 40%, var(--bg) 100%);
-        }
-        /* ===== 主题切换过渡 ===== */
-        body, .card, .header, .btn, .footer-multi, .hero, .stat-card,
-        .nav-dropdown, .nav-dropdown-item, input, select, textarea, .modal-overlay, .auth-bar {
-            transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+            --bg: #4a6b2a;            /* 草绿色主背景 */
+            --bg-card: rgba(255,255,255,0.10);  /* 卡片：白半透 */
+            --bg-elev: rgba(255,255,255,0.16);   /* 卡片悬停提亮 */
+            --bg-elev2: rgba(255,255,255,0.06);
+            --bg-elev3: rgba(255,255,255,0.04);
+            --bg-code: rgba(0,0,0,0.18);
+            --border: rgba(255,255,255,0.20);
+            --border-strong: rgba(255,255,255,0.38);
+            --text: #f6e8a0;          /* 鹅黄色 - 正文 */
+            --text-soft: #ecdc88;     /* 较深鹅黄 */
+            --text-mute: #c9d8a0;     /* 草绿浅色 */
+            --text-mid: #a8b97a;      /* 草绿暗 */
+            --text-dim: #8aa060;      /* 更淡草绿（最次要文字） */
+            --accent: #ffd700;        /* 金色 - 标题/强调 */
+            --accent-hover: #ffe34a;
+            --success: #c8f0a0;       /* 健康绿（亮） */
+            --success-hover: #dff6c2;
+            --warn: #ffd166;
+            --danger: #ff9090;
+            --purple: #e0c0ff;
+            --accent-dim: rgba(255,215,0,0.18);
+            --danger-bg: rgba(255,144,144,0.18);
+            --success-bg: rgba(200,240,160,0.18);
+            --warn-bg: rgba(255,209,102,0.18);
+            --warn-text: #ffe34a;
+            --warn-text-strong: #ffd166;
+            --purple-bg: rgba(224,192,255,0.18);
+            --info-bg: rgba(135,206,235,0.18);
+            --magenta-bg: rgba(255,180,230,0.18);
+            --overlay: rgba(0,0,0,0.55);
+            --accent-tint: rgba(255,215,0,0.10);
+            --accent-tint2: rgba(255,215,0,0.22);
+            --accent-tint-border: rgba(255,215,0,0.38);
+            --success-tint: rgba(200,240,160,0.10);
+            --card-shadow: rgba(0,0,0,0.4);
+            --hero-grad: linear-gradient(135deg, #4a6b2a 0%, #5d8036 40%, #4a6b2a 100%);
         }
         /* ===== 交互动效 ===== */
         .card { transition: transform .25s ease, box-shadow .25s ease, background-color .3s, border-color .3s; }
@@ -155,15 +109,6 @@
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
         }
-        /* ===== 主题切换按钮 ===== */
-        .theme-toggle {
-            background: var(--bg-elev); border: 1px solid var(--border); color: var(--text);
-            border-radius: 999px; width: 34px; height: 34px; cursor: pointer; font-size: 1rem;
-            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-            transition: border-color .2s, transform .2s;
-        }
-        .theme-toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -302,9 +247,6 @@
         .severity-badge.high { background: var(--warn-bg); color: var(--warn); }
         .severity-badge.medium { background: var(--accent-dim); color: var(--accent); }
         .severity-badge.low { background: var(--border); color: var(--text-dim); }
-        .agent-card { padding: 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; }
-        .agent-card .title { font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
-        .agent-card .info { font-size: 0.78rem; color: var(--text-dim); }
         .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
         .status-dot.active { background: var(--success); }
         .status-dot.paused { background: var(--warn); }
@@ -426,7 +368,7 @@
         .empty-state .empty-text { font-size: 0.88rem; margin-bottom: 12px; }
         .empty-state .empty-action { margin-top: 8px; }
 
-        /* === P2: Hero Section === */
+        /* === Hero Gradient Field === */
         .hero { background: linear-gradient(135deg, var(--bg) 0%, var(--bg-elev2) 40%, var(--bg) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; margin-bottom: 24px; text-align: center; position: relative; overflow: hidden; }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, var(--accent-tint) 0%, transparent 60%), radial-gradient(circle at 70% 30%, var(--success-tint) 0%, transparent 50%); pointer-events: none; }
         .hero-content { position: relative; z-index: 1; }
@@ -449,7 +391,7 @@
 
         /* === P2: Footer Multi-column === */
         .footer-multi { border-top: 1px solid var(--border); margin-top: 40px; padding: 32px 20px 20px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px; max-width: 1440px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; max-width: 1440px; margin: 0 auto; }
         .footer-brand .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
         .footer-brand .footer-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; }
         .footer-col h4 { font-size: 0.78rem; color: var(--text); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -539,7 +481,6 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
                 CC BY 4.0 免费开源
             </a>
-            <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="切换亮/暗主题" aria-label="切换主题">☀️</button>
         </div>
     </div>
 
@@ -548,11 +489,11 @@
     <div v-show="!currentUser" class="hero">
         <div class="hero-content">
             <h1><span>AI 驱动</span>的 Web4 全球智库</h1>
-            <p class="hero-subtitle">实时监控 68+ 全球信息源，AI 智能分类、风险预警、趋势分析一站式覆盖</p>
+            <p class="hero-subtitle">实时监控 60+ 全球信息源，AI 智能分类、风险预警、趋势分析一站式覆盖</p>
             <div class="hero-features">
                 <div class="hero-feature">
                     <div class="hf-icon">📡</div>
-                    <div class="hf-value">68+</div>
+                    <div class="hf-value">60+</div>
                     <div class="hf-label">信息源</div>
                 </div>
                 <div class="hero-feature">
@@ -581,19 +522,6 @@
         </div>
     </div>
 
-    <!-- P1: Action buttons moved to overview toolbar -->
-    <div v-show="false" class="actions" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="btn btn-primary" @click="collectAll" :disabled="collecting">
-            {{ collecting ? '采集中...' : '采集全部' }}
-        </button>
-        <button class="btn btn-success" @click="generateBriefing" :disabled="generatingBriefing">
-            {{ generatingBriefing ? '生成中...' : '生成简报' }}
-        </button>
-        <button class="btn btn-secondary" @click="triggerSummarize" :disabled="summarizing">
-            {{ summarizing ? '...' : 'LLM摘要' }}
-        </button>
-    </div>
-
     <!-- Stats: Loading Skeleton -->
     <div v-if="statsLoading" class="stats-grid">
         <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
@@ -612,27 +540,11 @@
         <div class="stat-card"><div class="stat-icon">📈</div><div class="value">{{ stats.articles_this_week || 0 }}</div><div class="label">本周新增</div></div>
         <div class="stat-card"><div class="stat-icon">📋</div><div class="value">{{ stats.total_briefings || 0 }}</div><div class="label">简报</div></div>
         <div class="stat-card"><div class="stat-icon">🔔</div><div class="value" :class="activeAlerts.length > 5 ? 'red' : activeAlerts.length > 0 ? 'yellow' : ''">{{ activeAlerts.length }}</div><div class="label">活跃预警</div></div>
-        <div class="stat-card"><div class="stat-icon">🤖</div><div class="value purple">{{ agentTasks.length }}</div><div class="label">Agent任务</div></div>
     </div>
 
 
 <!-- Overview Tab -->
     <div v-show="activeTab === 'overview'">
-        <!-- Admin Toolbar -->
-        <div class="action-toolbar">
-            <button class="btn btn-primary" @click="collectAll" :disabled="collecting">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                {{ collecting ? '采集中...' : '采集全部' }}
-            </button>
-            <button class="btn btn-success" @click="generateBriefing" :disabled="generatingBriefing">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                {{ generatingBriefing ? '生成中...' : '生成简报' }}
-            </button>
-            <button class="btn btn-secondary" @click="triggerSummarize" :disabled="summarizing">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                {{ summarizing ? '...' : 'LLM摘要' }}
-            </button>
-        </div>
         <div class="two-col">
             <div class="card">
                 <h3>热门主题</h3>
@@ -917,73 +829,6 @@
         </div>
     </div>
 
-    <!-- Agent Tasks Tab (Phase 3) -->
-    <div v-show="activeTab === 'agents'">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-            <h3 style="font-size:1rem">Agent 监测任务</h3>
-            <button class="btn btn-primary" @click="showCreateAgent = true">新建任务</button>
-        </div>
-        <div v-if="agentTasks.length">
-            <div class="agent-card" v-for="t in agentTasks" :key="t.id">
-                <div class="title">
-                    <span class="status-dot" :class="t.status"></span>
-                    {{ t.name }}
-                </div>
-                <div class="info">
-                    类型: {{ t.task_type }} | 目标: {{ t.target }} | 状态: {{ t.status }}
-                    <span v-if="t.last_run_at"> | 上次运行: {{ fmtDate(t.last_run_at) }}</span>
-                    <span v-if="t.run_count"> | 已运行 {{ t.run_count }} 次</span>
-                </div>
-                <div style="margin-top:8px;display:flex;gap:6px">
-                    <button class="btn btn-primary" style="padding:4px 10px;font-size:0.75rem" @click="executeAgent(t.id)">执行</button>
-                    <button v-if="t.status==='active'" class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem" @click="pauseAgent(t.id)">暂停</button>
-                    <button v-if="t.status==='paused'" class="btn btn-success" style="padding:4px 10px;font-size:0.75rem" @click="resumeAgent(t.id)">恢复</button>
-                    <button class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem;color:var(--danger)" @click="deleteAgent(t.id)">删除</button>
-                </div>
-                <div v-if="t.last_result" style="margin-top:8px;padding:10px;background:var(--bg);border-radius:6px;font-size:0.8rem;max-height:200px;overflow-y:auto;white-space:pre-wrap">{{ t.last_result }}</div>
-            </div>
-        </div>
-        <div v-else class="card"><div class="empty-state"><div class="empty-icon">🤖</div><div class="empty-text">还没有 Agent 监测任务</div><div class="empty-action"><button class="btn btn-primary" @click="showCreateAgent = true">创建第一个任务</button></div></div></div>
-
-        <!-- Create Agent Modal -->
-        <div v-if="showCreateAgent" class="modal-overlay" @click.self="showCreateAgent = false">
-            <div class="modal">
-                <h3>创建 Agent 任务</h3>
-                <div class="form-group">
-                    <label>任务名称</label>
-                    <input v-model="newAgent.name" placeholder="例如: 监测 AI Agent 赛道">
-                </div>
-                <div class="form-group">
-                    <label>模板</label>
-                    <select v-model="newAgent.template" @change="applyTemplate">
-                        <option value="">自定义</option>
-                        <option value="monitor_topic">主题监测</option>
-                        <option value="investigate_entity">实体调查</option>
-                        <option value="verify_narrative">叙事验证</option>
-                        <option value="risk_assessment">风险评估</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>任务类型</label>
-                    <select v-model="newAgent.task_type">
-                        <option value="monitor">监测</option>
-                        <option value="investigate">调查</option>
-                        <option value="verify">验证</option>
-                        <option value="analyze">分析</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>监测目标</label>
-                    <input v-model="newAgent.target" placeholder="例如: AI Agent, OpenAI, 监管动态...">
-                </div>
-                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
-                    <button class="btn btn-secondary" @click="showCreateAgent = false">取消</button>
-                    <button class="btn btn-primary" @click="createAgent" :disabled="!newAgent.name || !newAgent.target">创建</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Watchlist Tab (Phase 3) -->
     <div v-show="activeTab === 'watchlist'">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
@@ -1110,7 +955,10 @@
                 <div style="background:var(--bg-code);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:monospace;margin-bottom:12px;word-break:break-all;">
                     huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.
                 </div>
-                <p>联系与反馈：<a href="mailto:tanghuidao01@gmail.com" style="color:var(--accent);text-decoration:none;">tanghuidao01@gmail.com</a></p>
+                <h4 id="about-contact" style="font-size:0.95rem;color:var(--accent);margin:18px 0 8px;font-weight:600">联系我们</h4>
+                <p>huidao.cc 是一个非营利的开放研究项目，运营与维护由作者独立完成。如发现数据异常、来源失效、内容纠错等具体问题，欢迎在 GitHub 仓库提交 Issue 与 PR 协助改进。</p>
+                <p>项目主页：<a href="https://github.com/tanghuidao/huidao" target="_blank" style="color:var(--accent);text-decoration:none;">github.com/tanghuidao/huidao</a></p>
+                <p style="color:var(--text-mute);font-size:0.78rem;margin-top:6px">隐私说明：站点不收集用户身份信息，不设独立邮箱反馈通道，所有沟通通过 GitHub Issue 进行，以保证对话公开可追溯。</p>
             </div>
         </div>
     </div>
@@ -1186,7 +1034,7 @@
     </div>
 
     <!-- FAQ Modal -->
-    <div class="modal-overlay" v-if="showFAQ" @click.self="showFAQ=false" style="z-index:9998">
+    <div class="modal-overlay" v-if="showFAQ" @click.self="showFAQ=false" style="z-index:9998;background:var(--overlay);">
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:680px;width:90%;max-height:80vh;overflow:hidden;display:flex;flex-direction:column;">
             <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
                 <h3 style="margin:0;font-size:1.1rem;color:var(--text)">常见问题 (FAQ)</h3>
@@ -1202,36 +1050,13 @@
                 </div>
             </div>
             <div style="padding:14px 24px;border-top:1px solid var(--border);text-align:center;">
-                <span style="font-size:0.78rem;color:var(--text-mid)">更多问题？<a href="mailto:tanghuidao01@gmail.com" style="color:var(--accent)">联系我们</a></span>
+                <span style="font-size:0.78rem;color:var(--text-mid)">更多问题？<a href="https://github.com/tanghuidao/huidao" target="_blank" style="color:var(--accent)">GitHub 反馈</a></span>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-
-        // ===== 主题管理 (双主题) =====
-        function applyTheme(t) {
-            document.documentElement.setAttribute('data-theme', t);
-            try { localStorage.setItem('huidao-theme', t); } catch(e) {}
-            var mc = document.querySelector('meta[name="theme-color"]');
-            if (mc) mc.setAttribute('content', t === 'light' ? '#f7f9fa' : '#0f1419');
-            var btn = document.getElementById('themeToggleBtn');
-            if (btn) btn.textContent = (t === 'light') ? '🌙' : '☀️';
-            if (window.Chart) {
-                Chart.defaults.color = (t === 'light') ? '#536471' : '#71767b';
-                Chart.defaults.borderColor = (t === 'light') ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
-            }
-            window.dispatchEvent(new Event('theme-changed'));
-        }
-        function toggleTheme() {
-            var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-            applyTheme(cur === 'light' ? 'dark' : 'light');
-        }
-        (function initTheme() {
-            var t = document.documentElement.getAttribute('data-theme') || 'dark';
-            applyTheme(t);
-        })();
 
         const { createApp, ref, reactive, onMounted, nextTick } = Vue;
 
@@ -1269,9 +1094,7 @@ createApp({
         const narrativeRankings = ref([]);
         const narrativeQuery = ref('');
         const narrativeResult = ref(null);
-        const agentTasks = ref([]);
-        const showCreateAgent = ref(false);
-        const newAgent = reactive({ name: '', task_type: 'monitor', target: '', template: '' });
+        // Agent 功能已移除（与取消监测中心同步）
         const watchlistItems = ref([]);
         const showCreateWatch = ref(false);
         const newWatch = reactive({ name: '', watch_type: 'keyword', watch_value: '' });
@@ -1289,12 +1112,12 @@ createApp({
         const showPassword = ref(false); const showFAQ = ref(false); const settingsForm = reactive({ display_name: '', old_password: '', new_password: ''  });
         const rememberLogin = ref(false);
         const faqItems = ref([
-            { q: 'huidao.cc 是什么？', a: 'huidao.cc 是一个 AI 驱动的 Web4 全球智库平台，提供全球 Crypto/Web3/Web4 领域的实时动态监控、智能分类、风险预警和趋势分析服务。平台通过 AI 技术自动采集和分析 68+ 个全球信息源，帮助您快速掌握行业动态。', open: false },
-            { q: '数据源包括哪些？', a: '目前覆盖 68+ 个全球信息源，包括主流加密媒体、区块链新闻网站、研究报告平台、社交媒体 KOL 账号、GitHub 开源项目等。我们会持续扩展信息源覆盖范围。', open: false },
+            { q: 'huidao.cc 是什么？', a: 'huidao.cc 是一个 AI 驱动的 Web4 全球智库平台，提供全球 Crypto/Web3/Web4 领域的实时动态监控、智能分类、风险预警和趋势分析服务。平台通过 AI 技术自动采集和分析 60+ 个全球信息源，帮助您快速掌握行业动态。', open: false },
+            { q: '数据源包括哪些？', a: '目前覆盖 60+ 个全球信息源，包括主流加密媒体、区块链新闻网站、研究报告平台、社交媒体 KOL 账号、GitHub 开源项目等。我们会持续扩展信息源覆盖范围。', open: false },
             { q: '使用本站内容需要付费或登录吗？', a: '不需要。huidao.cc 已全面免费开放，无需注册或登录即可浏览。本站公开内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent)">CC BY 4.0</a> 协议，您可以在正确署名的情况下自由使用、共享和演绎。', open: false },
             { q: '如何正确引用本站内容？', a: '建议引用格式：<br><strong>huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.</strong><br>您需要保留原文链接或来源标注，并在使用时提供许可协议链接。', open: false },
             { q: '数据多久更新一次？', a: '平台默认每 <strong>1 小时</strong>自动采集一次最新数据。AI 简报每日早上 8:00 (UTC) 自动生成，每周一 9:00 (UTC) 生成周报。您也可以手动触发采集和简报生成。', open: false },
-            { q: '如何联系我们？', a: '您可以通过邮箱 <a href="mailto:tanghuidao01@gmail.com" style="color:var(--accent)">tanghuidao01@gmail.com</a> 联系我们，我们会尽快回复您的问题。', open: false },
+            { q: '如何联系我们？', a: '推荐通过 <a href="https://github.com/tanghuidao/huidao" target="_blank" style="color:var(--accent)">GitHub 仓库</a> 提交 Issue 或 PR 来反馈问题、报告数据异常或纠错，所有沟通公开可追溯。', open: false },
         ]);
         const mobileNavOpen = ref(false);
         const openNavGroup = ref('');
@@ -1376,33 +1199,9 @@ createApp({
             } catch(e) { console.error(e); }
         }
 
-        async function collectAll() {
-            collecting.value = true;
-            try {
-                const r = await fetch('/api/collect', { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{}' });
-                const results = await r.json();
-                const n = results.reduce((s,r) => s + r.new_articles, 0);
-                showToast(`采集完成！新增 ${n} 篇`);
-                fetchDashboard(); fetchSources(); fetchEmerging();
-            } catch(e) { showToast('采集失败', 'error'); }
-            collecting.value = false;
-        }
-        async function generateBriefing() {
-            generatingBriefing.value = true;
-            try {
-                await fetch('/api/briefings/generate', { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{"period_type":"daily"}' });
-                showToast('简报已生成'); fetchBriefings(); fetchDashboard();
-            } catch(e) { showToast('生成失败', 'error'); }
-            generatingBriefing.value = false;
-        }
-        async function triggerSummarize() {
-            summarizing.value = true;
-            try {
-                const d = await (await fetch('/api/summarize', { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{"limit":20}' })).json();
-                showToast(`摘要完成 ${d.summarized} 篇`); fetchDashboard();
-            } catch(e) { showToast('摘要失败', 'error'); }
-            summarizing.value = false;
-        }
+        async function collectAll() { showToast('数据由后台定时任务自动采集', 'info'); }
+        async function generateBriefing() { showToast('简报由后台每天 08:00 UTC 自动生成', 'info'); }
+        async function triggerSummarize() { showToast('摘要由后台定时任务自动完成', 'info'); }
         async function viewPerson(name) {
             try { selectedEntity.value = await (await fetch(`/api/tracking/person/${encodeURIComponent(name)}?days=30`)).json(); } catch(e) { console.error(e); }
         }
@@ -1447,44 +1246,6 @@ createApp({
                 });
                 narrativeResult.value = await r.json();
             } catch(e) { showToast('分析失败', 'error'); }
-        }
-        async function fetchAgentTasks() {
-            try {
-                const d = await (await fetch('/api/v3/agents/tasks')).json();
-                agentTasks.value = d.tasks || [];
-            } catch(e) { console.error(e); }
-        }
-        function applyTemplate() {
-            const templates = { monitor_topic: 'monitor', investigate_entity: 'investigate', verify_narrative: 'verify', risk_assessment: 'analyze' };
-            if (newAgent.template) { newAgent.task_type = templates[newAgent.template] || 'monitor'; }
-        }
-        async function createAgent() {
-            try {
-                await fetch('/api/v3/agents/tasks', {
-                    method: 'POST', headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify(newAgent)
-                });
-                showToast('Agent任务已创建'); showCreateAgent.value = false;
-                newAgent.name = ''; newAgent.target = ''; newAgent.template = '';
-                fetchAgentTasks();
-            } catch(e) { showToast('创建失败', 'error'); }
-        }
-        async function executeAgent(id) {
-            try {
-                showToast('Agent执行中...');
-                const d = await (await fetch(`/api/v3/agents/tasks/${id}/execute`, { method: 'POST' })).json();
-                showToast('Agent执行完成'); fetchAgentTasks();
-            } catch(e) { showToast('执行失败', 'error'); }
-        }
-        async function pauseAgent(id) {
-            try { await fetch(`/api/v3/agents/tasks/${id}/pause`, { method: 'POST' }); fetchAgentTasks(); } catch(e) {}
-        }
-        async function resumeAgent(id) {
-            try { await fetch(`/api/v3/agents/tasks/${id}/resume`, { method: 'POST' }); fetchAgentTasks(); } catch(e) {}
-        }
-        async function deleteAgent(id) {
-            if (!confirm('确认删除此Agent任务？')) return;
-            try { await fetch(`/api/v3/agents/tasks/${id}`, { method: 'DELETE' }); fetchAgentTasks(); } catch(e) {}
         }
         async function fetchWatchlist() {
             try {
@@ -1708,24 +1469,18 @@ createApp({
             if (tab === 'scheduler') { fetchScheduler(); }
             if (tab === 'alerts') { fetchAlerts(); }
             if (tab === 'narrative') { fetchNarrativeRankings(); }
-            if (tab === 'agents') { fetchAgentTasks(); }
             if (tab === 'watchlist') { fetchWatchlist(); }
             if (tab === 'sources') { fetchSources(); fetchDiscoveredSources(); }
         }
 
-        document.addEventListener('theme-changed', () => {
-            Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} });
-            charts = {};
-            renderTrendCharts();
-        });
         onMounted(() => {
             fetchDashboard(); fetchArticles(); fetchBriefings();
             fetchSources(); fetchScheduler(); fetchEmerging();
-            fetchAlerts(); fetchAgentTasks(); fetchWatchlist();
+            fetchAlerts(); fetchWatchlist();
             // Hash navigation for footer links
             function handleHashNav() {
                 var h = window.location.hash.replace('#','');
-                var validTabs = ['overview','trends','alerts','briefings','articles','about','narrative','tracking','agents','watchlist','sources','scheduler'];
+                var validTabs = ['overview','trends','alerts','briefings','articles','about','narrative','tracking','watchlist','sources','scheduler'];
                 if (h && validTabs.includes(h)) {
                     activeTab.value = h;
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1782,8 +1537,7 @@ createApp({
             schedulerRunning, schedulerJobs,
             peopleLeaderboard, orgLeaderboard, selectedEntity,
             // Phase 3
-            activeAlerts, scanningAlerts, narrativeRankings, narrativeQuery, narrativeResult,
-            agentTasks, showCreateAgent, newAgent, watchlistItems, showCreateWatch, newWatch, watchFeed,
+            activeAlerts, scanningAlerts, narrativeRankings, narrativeQuery, narrativeResult, watchlistItems, showCreateWatch, newWatch, watchFeed,
             discoveredSources, discovering,
             currentUser, authToken, showAuthModal: ref(false), authMode: ref('login'), authForm, authError, membershipPlans,
             tierLabel, doAuth, logout, subscribe, showPassword, showFAQ, faqItems, rememberLogin: ref(false), mobileNavOpen, openNavGroup, toggleNavGroup, showVerifyBanner, showUnverifiedBanner, resendVerify,
@@ -1791,7 +1545,7 @@ createApp({
             collectAll, generateBriefing: generateBriefing, triggerSummarize, fetchArticles,
             viewPerson, viewOrg, switchTab,
             scanAlerts, ackAlert, resolveAlert, analyzeNarrative,
-            createAgent, executeAgent, pauseAgent, resumeAgent, deleteAgent, applyTemplate,
+                 
             createWatch, removeWatch, viewWatchFeed,
             discoverSources, approveSource, rejectSource,
             fmtDate, typeLabel, renderMd, showToast, forgotPassword, resetPasswordSubmit, authSuccess, forgotSending, pendingResetToken, resetPassword, settingsForm, updateProfile, changePassword,
@@ -1812,23 +1566,19 @@ createApp({
                 <a href="#trends" onclick="window.dispatchEvent(new Event('hashnav'))">趋势分析</a>
                 <a href="#alerts" onclick="window.dispatchEvent(new Event('hashnav'))">风险预警</a>
                 <a href="#briefings" onclick="window.dispatchEvent(new Event('hashnav'))">智能简报</a>
-                <a href="/a">文章库</a>
-                <a href="/b">简报库</a>
+                <a href="#articles" onclick="window.dispatchEvent(new Event('hashnav'))">文章库</a>
+                <a href="#briefings" onclick="window.dispatchEvent(new Event('hashnav'))">简报库</a>
             </div>
             <div class="footer-col">
                 <h4>协议</h4>
-                <a href="#about" onclick="window.dispatchEvent(new Event('hashnav'))">关于 & CC-BY 4.0</a>
-                <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">许可协议中文</a>
+                <a href="#about" onclick="window.dispatchEvent(new Event('hashnav'))">方法论</a>
+                <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" target="_blank">许可协议</a>
                 <a href="#" onclick="window.dispatchEvent(new CustomEvent('open-faq'));return false">常见问题</a>
-            </div>
-            <div class="footer-col">
-                <h4>关于</h4>
-                <a href="#about" onclick="window.dispatchEvent(new Event('hashnav'))">关于与方法论</a>
-                <a href="mailto:tanghuidao01@gmail.com">联系我们</a>
+                <a href="#about-contact" onclick="window.dispatchEvent(new Event('hashnav'))">联系我们</a>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 huidao.cc · 所有可公开访问内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent);text-decoration:none;">CC BY 4.0</a> 协议免费开放使用
+            &copy; 2026 huidao.cc · 所有可公开访问内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" target="_blank" style="color:var(--accent);text-decoration:none;">CC BY 4.0</a> 协议免费开放使用
         </div>
     </div>
 </body>
