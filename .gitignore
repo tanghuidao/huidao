@@ -1,0 +1,26 @@
+# Secrets & credentials
+.env
+*.env
+!deploy/.env.production
+.server_auth.json
+*.pem
+*.key
+
+# Backups & temp
+*.bak
+*.bak_*
+*~
+tmp_*.json
+api_*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

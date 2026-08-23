@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f1419">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="huidao.cc">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+    <meta name="description" content="huidao.cc - 免费开放的AI驱动Web4智库，实时监控68+全球信息源，CC BY 4.0协议共享">
+    <meta property="og:title" content="huidao.cc - 免费开放的AI驱动Web4智库">
+    <meta property="og:description" content="68+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://huidao.cc/static/og-banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="huidao.cc">
+    <meta name="twitter:image" content="https://huidao.cc/static/og-banner.png">
+    <link rel="canonical" href="https://huidao.cc">
+    <meta property="og:url" content="https://huidao.cc">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="huidao.cc - 免费开放的AI驱动Web4智库">
+    <meta name="twitter:description" content="68+信息源实时监控，AI智能分类，风险预警，每日简报，CC BY 4.0免费开放">
+    <title>huidao.cc - 免费开放的AI驱动Web4智库</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://huidao.cc/#organization",
+          "name": "huidao.cc",
+          "url": "https://huidao.cc",
+          "logo": "https://huidao.cc/static/og-banner.png",
+          "description": "AI驱动的Web4.0全球智库，实时监控68+全球信息源，提供AI智能分类、风险预警、趋势分析与每日简报。",
+          "email": "mailto:tanghuidao01@gmail.com"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://huidao.cc/#website",
+          "name": "huidao.cc - 免费开放的AI驱动Web4智库",
+          "url": "https://huidao.cc",
+          "inLanguage": "zh-CN",
+          "publisher": { "@id": "https://huidao.cc/#organization" }
+        }
+      ]
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+        <script>
+    (function(){try{var t=localStorage.getItem('huidao-theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+    </script>
+    <style>
+
+        /* ===== 主题变量系统 (dark 默认 / light 可切换) ===== */
+        :root {
+            --bg: var(--bg);
+            --bg-card: var(--bg-card);
+            --bg-elev: var(--bg-elev);
+            --bg-elev2: var(--bg-elev2);
+            --bg-elev3: var(--bg-elev3);
+            --bg-code: var(--bg-code);
+            --border: var(--border);
+            --border-strong: var(--border-strong);
+            --text: var(--text);
+            --text-soft: var(--text-soft);
+            --text-mute: var(--text-mute);
+            --text-mid: var(--text-mid);
+            --text-dim: var(--text-dim);
+            --accent: var(--accent);
+            --accent-hover: var(--accent-hover);
+            --success: var(--success);
+            --success-hover: var(--success-hover);
+            --warn: var(--warn);
+            --danger: var(--danger);
+            --purple: var(--purple);
+            --accent-dim: var(--accent-dim);
+            --danger-bg: var(--danger-bg);
+            --success-bg: var(--success-bg);
+            --warn-bg: var(--warn-bg);
+            --warn-text: var(--warn-text);
+            --warn-text-strong: var(--warn-text-strong);
+            --purple-bg: var(--purple-bg);
+            --info-bg: var(--info-bg);
+            --magenta-bg: var(--magenta-bg);
+            --overlay: var(--overlay);
+            --accent-tint: var(--accent-tint);
+            --accent-tint2: rgba(29,155,240,0.16);
+            --accent-tint-border: var(--accent-tint-border);
+            --success-tint: var(--success-tint);
+            --card-shadow: rgba(0,0,0,0.35);
+            --hero-grad: linear-gradient(135deg, var(--bg) 0%, var(--bg-elev2) 40%, var(--bg) 100%);
+        }
+        html[data-theme="light"] {
+            --bg: #f7f9fa;
+            --bg-card: #ffffff;
+            --bg-elev: #ebeef0;
+            --bg-elev2: #e8edf1;
+            --bg-elev3: #edf1f4;
+            --bg-code: #f0f4f8;
+            --border: #dce3e8;
+            --border-strong: #c8d1d8;
+            --text: var(--bg);
+            --text-soft: #3d4a55;
+            --text-mute: #62707c;
+            --text-mid: #6e7b87;
+            --text-dim: var(--text-mid);
+            --accent: #0d8de6;
+            --accent-hover: #0b7ecf;
+            --success: #009e6a;
+            --success-hover: #008a5c;
+            --warn: #d98e00;
+            --danger: #de1b27;
+            --purple: #7d4de0;
+            --accent-dim: #e3f1fb;
+            --danger-bg: #fde8e8;
+            --success-bg: #e0f7ec;
+            --warn-bg: #fdf3d9;
+            --warn-text: var(--warn-text-strong);
+            --warn-text-strong: #7c3508;
+            --purple-bg: #f0e8fd;
+            --info-bg: #e0f2f8;
+            --magenta-bg: #fbe4fb;
+            --overlay: rgba(0,0,0,0.35);
+            --accent-tint: rgba(13,141,230,0.07);
+            --accent-tint2: rgba(13,141,230,0.12);
+            --accent-tint-border: rgba(13,141,230,0.3);
+            --success-tint: rgba(0,158,106,0.07);
+            --card-shadow: rgba(15,20,25,0.12);
+            --hero-grad: linear-gradient(135deg, var(--bg) 0%, var(--bg-elev2) 40%, var(--bg) 100%);
+        }
+        /* ===== 主题切换过渡 ===== */
+        body, .card, .header, .btn, .footer-multi, .hero, .stat-card,
+        .nav-dropdown, .nav-dropdown-item, input, select, textarea, .modal-overlay, .auth-bar {
+            transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+        }
+        /* ===== 交互动效 ===== */
+        .card { transition: transform .25s ease, box-shadow .25s ease, background-color .3s, border-color .3s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--card-shadow); }
+        .stat-card { transition: transform .2s ease, box-shadow .2s ease, background-color .3s; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px var(--card-shadow); }
+        .btn { transition: transform .15s ease, background-color .2s, border-color .2s, box-shadow .2s; }
+        .btn:active { transform: scale(0.97); }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .hero-content { animation: fadeUp .55s ease both; }
+        .hero-feature { animation: fadeUp .55s ease both; }
+        .hero-feature:nth-child(2) { animation-delay: .07s; }
+        .hero-feature:nth-child(3) { animation-delay: .14s; }
+        .hero-feature:nth-child(4) { animation-delay: .21s; }
+        .hero-cta { animation: fadeUp .55s ease both; animation-delay: .25s; }
+        .chart-container { animation: fadeUp .4s ease both; }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+        /* ===== 主题切换按钮 ===== */
+        .theme-toggle {
+            background: var(--bg-elev); border: 1px solid var(--border); color: var(--text);
+            border-radius: 999px; width: 34px; height: 34px; cursor: pointer; font-size: 1rem;
+            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+            transition: border-color .2s, transform .2s;
+        }
+        .theme-toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .app { max-width: 1440px; margin: 0 auto; padding: 20px; }
+        .header {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .header h1 { font-size: 1.4rem; color: var(--accent); }
+        .header .version { font-size: 0.75rem; color: var(--text-dim); margin-left: 8px; }
+        .header .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn {
+            padding: 7px 14px; border: none; border-radius: 6px;
+            cursor: pointer; font-size: 0.82rem; font-weight: 500; transition: all 0.2s;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-secondary { background: var(--border); color: var(--text); }
+        .btn-secondary:hover { background: var(--border-strong); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-success:hover { background: var(--success-hover); }
+        .btn-warning { background: var(--warn); color: #0f1419; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px; margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 14px; text-align: center;
+        }
+        .stat-card .value { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+        .stat-card .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+        .tabs {
+            display: flex; gap: 2px; flex: 1; align-items: center;
+            min-width: 0; overflow: visible;
+        }
+        .tab {
+            padding: 10px 16px; cursor: pointer; border: none;
+            background: transparent; color: var(--text-dim); font-size: 0.85rem;
+            border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+        }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab:hover { color: var(--text); }
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 20px; margin-bottom: 16px;
+        }
+        .card h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text); }
+        .article-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .article-item:last-child { border-bottom: none; }
+        .article-title {
+            font-size: 0.92rem; font-weight: 500; color: var(--text);
+            text-decoration: none; display: block; margin-bottom: 5px;
+        }
+        .article-title:hover { color: var(--accent); }
+        .article-meta {
+            display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.73rem; color: var(--text-dim);
+        }
+        .tag { background: var(--accent-dim); color: var(--accent); padding: 2px 7px; border-radius: 4px; font-size: 0.68rem; }
+        .type-badge { background: var(--border); color: var(--text); padding: 2px 7px; border-radius: 4px; }
+        .hype { background: var(--danger-bg); color: var(--danger); }
+        .regulation { background: var(--warn-bg); color: var(--warn); }
+        .topic-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .topic-item {
+            background: var(--accent-dim); color: var(--accent); padding: 5px 11px;
+            border-radius: 16px; font-size: 0.78rem; display: flex; align-items: center; gap: 5px;
+        }
+        .topic-count {
+            background: var(--accent); color: white; min-width: 18px; height: 18px;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 0.68rem; font-weight: 700;
+        }
+        .entity-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .entity-item { padding: 5px 11px; border-radius: 16px; font-size: 0.78rem; cursor: pointer; transition: opacity 0.2s; }
+        .entity-item:hover { opacity: 0.8; }
+        .entity-item.person { background: var(--purple-bg); color: var(--purple); }
+        .entity-item.company { background: var(--success-bg); color: var(--success); }
+        .entity-item.project { background: var(--warn-bg); color: var(--warn); }
+        .entity-item.organization { background: var(--info-bg); color: var(--accent); }
+        .source-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem;
+        }
+        .source-item:last-child { border-bottom: none; }
+        .health-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+        .health-dot.healthy { background: var(--success); }
+        .health-dot.degraded { background: var(--warn); }
+        .health-dot.error { background: var(--danger); }
+        .health-dot.unknown { background: var(--text-dim); }
+        .briefing-content { white-space: pre-wrap; font-size: 0.88rem; line-height: 1.8; max-height: 600px; overflow-y: auto; }
+        .briefing-content h1, .briefing-content h2 { color: var(--accent); margin: 14px 0 8px; }
+        .filter-bar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter-bar input, .filter-bar select {
+            background: var(--bg-card); border: 1px solid var(--border);
+            color: var(--text); padding: 7px 11px; border-radius: 6px; font-size: 0.83rem;
+        }
+        .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--accent); }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        @media (max-width: 900px) { .two-col, .three-col { grid-template-columns: 1fr; } }
+        .chart-container { position: relative; height: 280px; margin: 10px 0; }
+        .toast {
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 12px 20px; border-radius: 8px;
+            box-shadow: 0 4px 12px var(--overlay); z-index: 1000;
+        }
+        .toast.success { border-color: var(--success); }
+        .toast.error { border-color: var(--danger); }
+        .tracker-card { padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s; }
+        .tracker-card:hover { border-color: var(--accent); }
+        .tracker-card .name { font-weight: 600; font-size: 0.9rem; }
+        .tracker-card .meta { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+        .sched-job { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .sched-job:last-child { border-bottom: none; }
+        .emerging-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .emerging-item:last-child { border-bottom: none; }
+        .growth-badge { background: var(--success-bg); color: var(--success); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; }
+        .new-badge { background: var(--magenta-bg); color: var(--purple); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; }
+        .loading { text-align: center; padding: 30px; color: var(--text-dim); }
+        .alert-item { padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; }
+        .alert-item.critical { border-left: 3px solid var(--danger); }
+        .alert-item.high { border-left: 3px solid var(--warn); }
+        .alert-item.medium { border-left: 3px solid var(--accent); }
+        .alert-item.low { border-left: 3px solid var(--text-dim); }
+        .alert-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+        .alert-meta { font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 10px; align-items: center; }
+        .severity-badge { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+        .severity-badge.critical { background: var(--danger-bg); color: var(--danger); }
+        .severity-badge.high { background: var(--warn-bg); color: var(--warn); }
+        .severity-badge.medium { background: var(--accent-dim); color: var(--accent); }
+        .severity-badge.low { background: var(--border); color: var(--text-dim); }
+        .agent-card { padding: 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; }
+        .agent-card .title { font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+        .agent-card .info { font-size: 0.78rem; color: var(--text-dim); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .status-dot.active { background: var(--success); }
+        .status-dot.paused { background: var(--warn); }
+        .status-dot.completed { background: var(--accent); }
+        .status-dot.failed { background: var(--danger); }
+        .watchlist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .watchlist-item:last-child { border-bottom: none; }
+        .narrative-bar { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; margin-top: 4px; }
+        .narrative-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .narrative-fill.strong { background: var(--success); }
+        .narrative-fill.moderate { background: var(--accent); }
+        .narrative-fill.weak { background: var(--text-dim); }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 4px; }
+        .form-group input, .form-group select {
+            width: 100%; background: var(--bg); border: 1px solid var(--border);
+            color: var(--text); padding: 8px 12px; border-radius: 6px; font-size: 0.85rem;
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); }
+        .modal-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: var(--overlay); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+        .modal { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; width: 90%; max-width: 480px; }
+        .modal h3 { margin-bottom: 16px; }
+        .auth-bar { display:flex; align-items:center; gap:10px; }
+        .auth-bar .user-info { font-size:0.82rem; color:var(--text-dim); }
+        .auth-bar .user-info strong { color:var(--accent); }
+        .tier-badge { padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; text-transform:uppercase; }
+        .tier-badge.free { background:var(--border); color:var(--text-dim); }
+        .tier-badge.pro { background:var(--accent-dim); color:var(--accent); }
+        .tier-badge.max { background:var(--warn-bg); color:var(--warn); }
+        .plan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+        .plan-card { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center; transition:border-color 0.2s; }
+        .plan-card:hover { border-color:var(--accent); }
+        .plan-card.current { border-color:var(--success); }
+        .plan-card .plan-name { font-size:1.1rem; font-weight:700; margin-bottom:6px; }
+        .plan-card .plan-price { font-size:1.8rem; font-weight:700; color:var(--accent); margin:10px 0; }
+        .plan-card .plan-price span { font-size:0.8rem; color:var(--text-dim); font-weight:400; }
+        .plan-card .plan-features { text-align:left; font-size:0.8rem; color:var(--text-dim); margin-top:12px; }
+        .plan-card .plan-features div { padding:3px 0; }
+        .plan-card .plan-features div::before { content:'✓ '; color:var(--success); }
+        .auth-tabs { display:flex; gap:0; margin-bottom:16px; }
+        .auth-tab { flex:1; padding:10px; text-align:center; cursor:pointer; background:var(--bg); border:1px solid var(--border); color:var(--text-dim); font-size:0.85rem; transition:all 0.2s; }
+        .auth-tab:first-child { border-radius:8px 0 0 8px; }
+        .auth-tab:last-child { border-radius:0 8px 8px 0; }
+        .auth-tab.active { background:var(--accent-dim); color:var(--accent); border-color:var(--accent); }
+
+        /* P2-3: Mobile Responsive */
+        .hamburger { display:none; background:none; border:none; color:var(--text); font-size:1.5rem; cursor:pointer; padding:6px 10px; }
+        .mobile-nav-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--overlay); z-index:3000; }
+        .mobile-nav-overlay.open { display:block; }
+        .mobile-nav-panel { position:fixed; top:0; right:-300px; width:280px; height:100%; background:var(--bg-card); z-index:3001; transition:right 0.3s; overflow-y:auto; padding:20px; }
+        .mobile-nav-panel.open { right:0; }
+        .mobile-nav-panel .nav-section { margin-bottom:16px; }
+        .mobile-nav-panel .nav-section-title { font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--border); }
+        .mobile-nav-panel .nav-item { display:block; padding:10px 12px; color:var(--text); font-size:0.85rem; border-radius:6px; cursor:pointer; transition:background 0.2s; }
+        .mobile-nav-panel .nav-item:hover { background:var(--accent-dim); }
+        .mobile-nav-panel .nav-item.active { background:var(--accent-dim); color:var(--accent); }
+        .mobile-nav-panel .nav-close { position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text-dim); font-size:1.2rem; cursor:pointer; }
+        /* P2-1: Nav dropdown groups */
+        .nav-group { position:relative; }
+        .nav-group-btn { padding:10px 16px; cursor:pointer; border:none; background:transparent; color:var(--text-dim); font-size:0.85rem; border-bottom:2px solid transparent; transition:all 0.2s; white-space:nowrap; }
+        .nav-group-btn:hover { color:var(--text); }
+        .nav-group-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
+        .nav-group-btn::after { content:' \25BE'; font-size:0.7rem; }
+        .nav-dropdown { display:none; position:absolute; top:100%; left:0; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; min-width:140px; box-shadow:0 4px 12px var(--overlay); z-index:100; padding:4px 0; }
+        .nav-dropdown.show { display:block; }
+        .nav-dropdown-item { display:block; padding:8px 16px; color:var(--text); font-size:0.83rem; cursor:pointer; white-space:nowrap; transition:background 0.15s; }
+        .nav-dropdown-item:hover { background:var(--accent-dim); }
+        .nav-dropdown-item.active { color:var(--accent); background:var(--bg); }
+        /* P2-2: Login enhancements */
+        .password-wrapper { position:relative; }
+        .password-wrapper input { padding-right:42px; }
+        .password-toggle { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.82rem; padding:4px; }
+        .password-toggle:hover { color:var(--accent); }
+        .remember-row { display:flex; align-items:center; gap:8px; margin-bottom:12px; font-size:0.8rem; color:var(--text-dim); }
+        .remember-row input[type="checkbox"] { accent-color:var(--accent); }
+        .register-hint { font-size:0.75rem; color:var(--text-dim); text-align:center; margin-top:8px; }
+        @media (max-width: 768px) {
+            .hamburger { display:block; }
+            .header { flex-wrap:wrap; }
+            .header .actions { width:100%; margin-top:10px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .filter-bar { flex-direction:column; }
+            .filter-bar input, .filter-bar select { width:100%; }
+            .modal { width:95%; max-width:none; margin:10px; }
+            .tabs { display:none; }
+            .two-col { grid-template-columns:1fr; }
+        }
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* === P1: Skeleton Loading === */
+        .skeleton { background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elev) 50%, var(--bg-card) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+        .skeleton-card { height: 80px; border-radius: 10px; }
+        .skeleton-line { height: 14px; margin: 8px 0; border-radius: 4px; }
+        .skeleton-line.short { width: 60%; }
+
+        /* === P1: Header Brand === */
+        .brand-logo { display: flex; align-items: center; gap: 10px; }
+        .brand-logo svg { flex-shrink: 0; }
+        .brand-logo .brand-name { font-size: 1.3rem; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+        .brand-logo .brand-name span { background: linear-gradient(135deg, var(--accent), var(--success)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .brand-logo .brand-tagline { font-size: 0.68rem; color: var(--text-dim); margin-top: -2px; }
+        .header-bottom-line { height: 2px; background: linear-gradient(90deg, var(--accent), var(--success), transparent); margin-bottom: 24px; border-radius: 1px; }
+
+        /* === P1: Stats Icons === */
+        .stats-group-header { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-left: 4px; grid-column: 1 / -1; }
+        .stat-card .stat-icon { font-size: 1.2rem; margin-bottom: 4px; }
+        .stat-card .value.green { color: var(--success); }
+        .stat-card .value.yellow { color: var(--warn); }
+        .stat-card .value.red { color: var(--danger); }
+        .stat-card .value.purple { color: var(--purple); }
+        .stat-card:hover { border-color: var(--accent); transform: translateY(-2px); transition: all 0.2s; }
+
+        /* === P1: Empty States === */
+        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-dim); }
+        .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.5; }
+        .empty-state .empty-text { font-size: 0.88rem; margin-bottom: 12px; }
+        .empty-state .empty-action { margin-top: 8px; }
+
+        /* === P2: Hero Section === */
+        .hero { background: linear-gradient(135deg, var(--bg) 0%, var(--bg-elev2) 40%, var(--bg) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; margin-bottom: 24px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, var(--accent-tint) 0%, transparent 60%), radial-gradient(circle at 70% 30%, var(--success-tint) 0%, transparent 50%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+        .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--success)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero .hero-subtitle { font-size: 1rem; color: var(--text-dim); margin-bottom: 24px; }
+        .hero-features { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+        .hero-feature { text-align: center; }
+        .hero-feature .hf-icon { font-size: 1.8rem; margin-bottom: 6px; }
+        .hero-feature .hf-label { font-size: 0.78rem; color: var(--text-dim); }
+        .hero-feature .hf-value { font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+        .hero-cta { display: flex; gap: 12px; justify-content: center; }
+        .hero-cta .btn { padding: 10px 28px; font-size: 0.92rem; border-radius: 8px; }
+
+        /* === P2: Membership Recommend Badge === */
+        .plan-card.recommended { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-tint2); position: relative; }
+        .recommend-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--success)); color: white; padding: 2px 14px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
+        .plan-card.flagship { border-color: var(--warn); }
+        .plan-card.flagship .plan-price { color: var(--warn); }
+
+        /* === P2: Footer Multi-column === */
+        .footer-multi { border-top: 1px solid var(--border); margin-top: 40px; padding: 32px 20px 20px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px; max-width: 1440px; margin: 0 auto; }
+        .footer-brand .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .footer-brand .footer-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; }
+        .footer-col h4 { font-size: 0.78rem; color: var(--text); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col a { display: block; color: var(--text-dim); text-decoration: none; font-size: 0.78rem; padding: 3px 0; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--bg-elev3); font-size: 0.72rem; color: var(--text-mid); max-width: 1440px; margin-left: auto; margin-right: auto; }
+        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+
+        /* === P2: Toast Enhancement === */
+        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); bottom: auto; right: auto; min-width: 280px; text-align: center; border-radius: 10px; padding: 12px 24px; font-size: 0.85rem; }
+        .toast.success { background: linear-gradient(135deg, var(--success-bg), var(--bg-card)); }
+        .toast.error { background: linear-gradient(135deg, var(--danger-bg), var(--bg-card)); }
+        .toast.warning { background: linear-gradient(135deg, var(--warn-bg), var(--bg-card)); border-color: var(--warn); }
+
+        /* === P1: Action Toolbar === */
+        .action-toolbar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 16px; }
+        .action-toolbar .btn { font-size: 0.78rem; padding: 6px 12px; }
+        .action-toolbar .btn svg { vertical-align: middle; margin-right: 4px; }
+
+        /* === P3: Mobile Enhancement === */
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .stat-card { padding: 10px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .hero { padding: 30px 20px; }
+            .hero h1 { font-size: 1.4rem; }
+            .hero-features { gap: 16px; }
+            .hero-cta { flex-direction: column; align-items: center; }
+        }
+
+        .mobile-bottom-nav { display: none; }
+        @media (max-width: 768px) {
+            .mobile-bottom-nav {
+                display: flex; position: fixed; bottom: 0; left: 0; right: 0;
+                background: var(--bg-card); border-top: 1px solid var(--border);
+                padding: 6px 0 env(safe-area-inset-bottom, 6px); z-index: 900;
+                justify-content: space-around;
+            }
+            .mobile-bottom-nav .mnav-item {
+                display: flex; flex-direction: column; align-items: center;
+                padding: 4px 8px; cursor: pointer; color: var(--text-dim); font-size: 0.65rem;
+                transition: color 0.2s; min-width: 52px;
+            }
+            .mobile-bottom-nav .mnav-item.active { color: var(--accent); }
+            .mobile-bottom-nav .mnav-item .mnav-icon { font-size: 1.2rem; margin-bottom: 2px; }
+            body { padding-bottom: 60px; }
+        }
+            .license-badge:hover { background: var(--accent-tint2) !important; }
+    </style>
+    <script src="https://turing.captcha.qcloud.com/TJCaptcha.js"></script>
+</head>
+<body>
+<div id="app" class="app">
+    <div class="header">
+        <div class="brand-logo">
+            <div>
+                <div class="brand-name"><span>huidao</span>.cc</div>
+                <div class="brand-tagline">AI驱动的Web4智库</div>
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tab" :class="{active: activeTab === 'overview'}" @click="activeTab = 'overview'">总览</button>
+            <div class="nav-group">
+                <button class="nav-group-btn" :class="{active: ['alerts','narrative','tracking'].includes(activeTab)}" @click.stop="toggleNavGroup('analysis')">智能分析</button>
+                <div class="nav-dropdown" :class="{show: openNavGroup === 'analysis'}">
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts'); openNavGroup=''">预警</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='narrative'}" @click="switchTab('narrative'); openNavGroup=''">叙事强度</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='tracking'}" @click="switchTab('tracking'); openNavGroup=''">观点追踪</div>
+                </div>
+            </div>
+            <button class="tab" :class="{active: activeTab === 'trends'}" @click="switchTab('trends')">趋势</button>
+            <div class="nav-group">
+                <button class="nav-group-btn" :class="{active: ['articles','briefings','sources','scheduler'].includes(activeTab)}" @click.stop="toggleNavGroup('content')">内容 & 系统</button>
+                <div class="nav-dropdown" :class="{show: openNavGroup === 'content'}">
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='articles'}" @click="activeTab='articles'; openNavGroup=''">文章</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='briefings'}" @click="activeTab='briefings'; openNavGroup=''">简报</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='sources'}" @click="switchTab('sources'); openNavGroup=''">信息源</div>
+                    <div class="nav-dropdown-item" :class="{active: activeTab==='scheduler'}" @click="switchTab('scheduler'); openNavGroup=''">定时任务</div>
+                </div>
+            </div>
+
+        </div>
+        <button class="hamburger" @click="mobileNavOpen = !mobileNavOpen">&#9776;</button>
+        <div class="auth-bar">
+            <a href="#about" class="license-badge" onclick="window.dispatchEvent(new Event('hashnav')); return false;" title="查看授权协议" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:var(--accent-tint);border:1px solid var(--accent-tint-border);color:var(--accent);font-size:0.78rem;text-decoration:none;white-space:nowrap;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                CC BY 4.0 免费开源
+            </a>
+            <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="切换亮/暗主题" aria-label="切换主题">☀️</button>
+        </div>
+    </div>
+
+    <div class="header-bottom-line"></div>
+    <!-- P2: Hero Section (unlogged users only) -->
+    <div v-show="!currentUser" class="hero">
+        <div class="hero-content">
+            <h1><span>AI 驱动</span>的 Web4 全球智库</h1>
+            <p class="hero-subtitle">实时监控 68+ 全球信息源，AI 智能分类、风险预警、趋势分析一站式覆盖</p>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="hf-icon">📡</div>
+                    <div class="hf-value">68+</div>
+                    <div class="hf-label">信息源</div>
+                </div>
+                <div class="hero-feature">
+                    <div class="hf-icon">🤖</div>
+                    <div class="hf-value">AI 分类</div>
+                    <div class="hf-label">智能标签</div>
+                </div>
+                <div class="hero-feature">
+                    <div class="hf-icon">⚠️</div>
+                    <div class="hf-value">实时</div>
+                    <div class="hf-label">风险预警</div>
+                </div>
+                <div class="hero-feature">
+                    <div class="hf-icon">📊</div>
+                    <div class="hf-value">每日</div>
+                    <div class="hf-label">智能简报</div>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <button class="btn btn-primary" @click="activeTab='articles'">免费浏览全部内容</button>
+                <a href="#about" class="btn btn-secondary" onclick="window.dispatchEvent(new Event('hashnav')); return false;" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">CC BY 4.0 使用协议</a>
+            </div>
+            <div style="margin-top:14px;font-size:0.78rem;color:var(--text-mute);">
+                本站所有聚合内容与分析均遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent);text-decoration:none;">知识共享署名 4.0 国际许可协议</a>，免费公开使用。
+            </div>
+        </div>
+    </div>
+
+    <!-- P1: Action buttons moved to overview toolbar -->
+    <div v-show="false" class="actions" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary" @click="collectAll" :disabled="collecting">
+            {{ collecting ? '采集中...' : '采集全部' }}
+        </button>
+        <button class="btn btn-success" @click="generateBriefing" :disabled="generatingBriefing">
+            {{ generatingBriefing ? '生成中...' : '生成简报' }}
+        </button>
+        <button class="btn btn-secondary" @click="triggerSummarize" :disabled="summarizing">
+            {{ summarizing ? '...' : 'LLM摘要' }}
+        </button>
+    </div>
+
+    <!-- Stats: Loading Skeleton -->
+    <div v-if="statsLoading" class="stats-grid">
+        <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
+    </div>
+    <!-- Stats: Data -->
+    <div v-else class="stats-grid">
+        <div class="stats-group-header">📊 数据规模</div>
+        <div class="stat-card"><div class="stat-icon">📡</div><div class="value">{{ stats.total_sources || 0 }}</div><div class="label">信息源</div></div>
+        <div class="stat-card"><div class="stat-icon">💚</div><div class="value green">{{ stats.healthy_sources || 0 }}</div><div class="label">健康源</div></div>
+        <div class="stat-card"><div class="stat-icon">📄</div><div class="value">{{ stats.total_articles || 0 }}</div><div class="label">文章总数</div></div>
+        <div class="stats-group-header">⚡ 今日动态</div>
+        <div class="stat-card"><div class="stat-icon">🆕</div><div class="value green">{{ stats.articles_today || 0 }}</div><div class="label">今日新增</div></div>
+        <div class="stat-card"><div class="stat-icon">📈</div><div class="value">{{ stats.articles_this_week || 0 }}</div><div class="label">本周新增</div></div>
+        <div class="stat-card"><div class="stat-icon">📋</div><div class="value">{{ stats.total_briefings || 0 }}</div><div class="label">简报</div></div>
+        <div class="stat-card"><div class="stat-icon">🔔</div><div class="value" :class="activeAlerts.length > 5 ? 'red' : activeAlerts.length > 0 ? 'yellow' : ''">{{ activeAlerts.length }}</div><div class="label">活跃预警</div></div>
+        <div class="stat-card"><div class="stat-icon">🤖</div><div class="value purple">{{ agentTasks.length }}</div><div class="label">Agent任务</div></div>
+    </div>
+
+
+<!-- Overview Tab -->
+    <div v-show="activeTab === 'overview'">
+        <!-- Admin Toolbar -->
+        <div class="action-toolbar">
+            <button class="btn btn-primary" @click="collectAll" :disabled="collecting">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                {{ collecting ? '采集中...' : '采集全部' }}
+            </button>
+            <button class="btn btn-success" @click="generateBriefing" :disabled="generatingBriefing">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                {{ generatingBriefing ? '生成中...' : '生成简报' }}
+            </button>
+            <button class="btn btn-secondary" @click="triggerSummarize" :disabled="summarizing">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                {{ summarizing ? '...' : 'LLM摘要' }}
+            </button>
+        </div>
+        <div class="two-col">
+            <div class="card">
+                <h3>热门主题</h3>
+                <div class="topic-list">
+                    <div class="topic-item" v-for="t in hotTopics" :key="t.topic">{{ t.topic }}<span class="topic-count">{{ t.count }}</span></div>
+                    <div v-if="!hotTopics.length" class="empty-state"><div class="empty-icon">🔍</div><div class="empty-text">暂无热门主题</div></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>新兴话题 (加速增长)</h3>
+                <div v-if="emergingTopics.length">
+                    <div class="emerging-item" v-for="e in emergingTopics" :key="e.topic">
+                        <span>{{ e.topic }} <span style="color:var(--text-dim);font-size:0.72rem">(近期{{ e.recent_count }}次)</span></span>
+                        <span v-if="e.is_new" class="new-badge">NEW</span>
+                        <span v-else class="growth-badge">+{{ (e.growth_rate * 100).toFixed(0) }}%</span>
+                    </div>
+                </div>
+                <div v-else style="color:var(--text-dim)">暂无数据</div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>本周重要动态</h3>
+            <div v-if="recentArticles.length">
+                <div class="article-item" v-for="a in recentArticles" :key="a.id">
+                    <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                    <div class="article-meta">
+                        <span class="type-badge" v-if="a.classification">{{ typeLabel(a.classification.content_type) }}</span>
+                        <span class="tag" v-for="tag in (a.classification?.tags||[]).slice(0,3)" :key="tag">{{ tag }}</span>
+                        <span v-if="a.score">{{ a.score.total_score.toFixed(2) }}</span>
+                        <span v-if="a.published_at">{{ fmtDate(a.published_at) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="empty-state"><div class="empty-icon">📰</div><div class="empty-text">还没有文章数据</div><div class="empty-action"><button class="btn btn-primary" @click="collectAll" :disabled="collecting">立即采集</button></div></div>
+        </div>
+        <div class="two-col">
+            <div class="card">
+                <h3>高风险监管</h3>
+                <div v-if="highRiskArticles.length">
+                    <div class="article-item" v-for="a in highRiskArticles" :key="a.id">
+                        <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                        <div class="article-meta"><span class="type-badge regulation">风险 {{ (a.classification?.regulation_risk*100).toFixed(0) }}%</span></div>
+                    </div>
+                </div>
+                <div v-else style="color:var(--text-dim);font-size:0.83rem">暂无</div>
+            </div>
+            <div class="card">
+                <h3>疑似炒作</h3>
+                <div v-if="suspectedHype.length">
+                    <div class="article-item" v-for="a in suspectedHype" :key="a.id">
+                        <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                        <div class="article-meta"><span class="type-badge hype">炒作 {{ (a.classification?.hype_risk*100).toFixed(0) }}%</span></div>
+                    </div>
+                </div>
+                <div v-else style="color:var(--text-dim);font-size:0.83rem">暂无</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trends Tab -->
+    <div v-show="activeTab === 'trends'">
+        <div class="card">
+            <h3>每日文章数量</h3>
+            <div class="chart-container"><canvas id="chartArticleCount"></canvas></div>
+        </div>
+        <div class="two-col">
+            <div class="card">
+                <h3>主题趋势 (近30天)</h3>
+                <div class="chart-container"><canvas id="chartTopicTrend"></canvas></div>
+            </div>
+            <div class="card">
+                <h3>风险趋势</h3>
+                <div class="chart-container"><canvas id="chartRiskTrend"></canvas></div>
+            </div>
+        </div>
+        <div class="two-col">
+            <div class="card">
+                <h3>内容类型分布</h3>
+                <div class="chart-container"><canvas id="chartContentType"></canvas></div>
+            </div>
+            <div class="card">
+                <h3>信息源活跃度</h3>
+                <div class="chart-container"><canvas id="chartSourceActivity"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tracking Tab -->
+    <div v-show="activeTab === 'tracking'">
+        <div class="two-col">
+            <div class="card">
+                <h3>人物提及排行</h3>
+                <div v-if="peopleLeaderboard.length">
+                    <div class="tracker-card" v-for="p in peopleLeaderboard" :key="p.name" @click="viewPerson(p.name)">
+                        <div class="name">{{ p.name }} <span class="topic-count" style="display:inline-flex">{{ p.count }}</span></div>
+                        <div class="meta">{{ p.organization }} · {{ p.category }}</div>
+                    </div>
+                </div>
+                <div v-else style="color:var(--text-dim)">暂无数据</div>
+            </div>
+            <div class="card">
+                <h3>机构/项目提及排行</h3>
+                <div v-if="orgLeaderboard.length">
+                    <div class="tracker-card" v-for="o in orgLeaderboard" :key="o.name" @click="viewOrg(o.name)">
+                        <div class="name">{{ o.name }} <span class="topic-count" style="display:inline-flex">{{ o.count }}</span></div>
+                        <div class="meta">{{ o.type }} · {{ o.category }}</div>
+                    </div>
+                </div>
+                <div v-else style="color:var(--text-dim)">暂无数据</div>
+            </div>
+        </div>
+        <div class="card" v-if="selectedEntity">
+            <h3>{{ selectedEntity.name }} - 相关动态 ({{ selectedEntity.total_mentions }}条)</h3>
+            <div v-if="selectedEntity.articles && selectedEntity.articles.length">
+                <div class="article-item" v-for="a in selectedEntity.articles.slice(0,15)" :key="a.id">
+                    <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                    <div class="article-meta">
+                        <span class="type-badge" v-if="a.content_type">{{ typeLabel(a.content_type) }}</span>
+                        <span class="tag" v-for="tag in (a.tags||[]).slice(0,3)" :key="tag">{{ tag }}</span>
+                        <span v-if="a.date">{{ fmtDate(a.date) }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Articles Tab -->
+    <div v-show="activeTab === 'articles'">
+        <div class="filter-bar">
+            <input v-model="articleFilter.keyword" placeholder="关键词..." @keyup.enter="fetchArticles">
+            <select v-model="articleFilter.content_type" @change="fetchArticles">
+                <option value="">全部类型</option>
+                <option value="news">新闻</option><option value="opinion">观点</option>
+                <option value="report">报告</option><option value="funding">融资</option>
+                <option value="regulation">监管</option><option value="product_launch">产品发布</option>
+                <option value="partnership">合作</option><option value="market_signal">市场信号</option>
+                <option value="person_speech">人物发言</option><option value="suspected_hype">疑似炒作</option>
+            </select>
+            <select v-model="articleFilter.days" @change="fetchArticles">
+                <option value="1">今天</option><option value="3">3天</option>
+                <option value="7">7天</option><option value="14">14天</option><option value="30">30天</option>
+            </select>
+            <button class="btn btn-secondary" @click="fetchArticles">搜索</button>
+        </div>
+        <div class="card">
+            <h3>文章 ({{ articleTotal }}篇)</h3>
+            <div v-if="articleList.length">
+                <div class="article-item" v-for="a in articleList" :key="a.id">
+                    <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                    <div class="article-meta">
+                        <span class="type-badge" v-if="a.classification">{{ typeLabel(a.classification.content_type) }}</span>
+                        <span class="tag" v-for="tag in (a.classification?.tags||[]).slice(0,4)" :key="tag">{{ tag }}</span>
+                        <span v-if="a.score">{{ a.score.total_score.toFixed(2) }}</span>
+                        <span v-if="a.language && a.language !== 'en'" style="color:var(--purple)">{{ a.language }}</span>
+                        <span v-if="a.published_at">{{ fmtDate(a.published_at) }}</span>
+                    </div>
+                    <div v-if="a.one_line_summary" style="margin-top:5px;font-size:0.8rem;color:var(--text-dim)">{{ a.one_line_summary }}</div>
+                </div>
+            </div>
+            <div v-else class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">暂无匹配的文章</div></div>
+            <div v-if="articleTotal > 20" style="text-align:center;margin-top:14px">
+                <button class="btn btn-secondary" @click="articlePage > 1 && (articlePage--, fetchArticles())">上一页</button>
+                <span style="margin:0 10px;color:var(--text-dim)">第{{ articlePage }}页</span>
+                <button class="btn btn-secondary" @click="articlePage++; fetchArticles()">下一页</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Briefings Tab -->
+    <div v-show="activeTab === 'briefings'">
+        <div class="card" v-if="briefings.length">
+            <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
+                <button class="btn" :class="selectedBriefing?.id === b.id ? 'btn-primary' : 'btn-secondary'"
+                    v-for="b in briefings" :key="b.id" @click="selectedBriefing = b">
+                    {{ b.period_type === 'daily' ? '日' : b.period_type === 'weekly' ? '周' : '月' }} {{ b.start_date }}
+                </button>
+            </div>
+            <div v-if="selectedBriefing" class="briefing-content" v-html="renderMd(selectedBriefing.content)"></div>
+        </div>
+        <div v-else class="card"><div style="color:var(--text-dim);text-align:center;padding:30px">暂无简报</div></div>
+    </div>
+
+    <!-- Scheduler Tab -->
+    <div v-show="activeTab === 'scheduler'">
+        <div class="card">
+            <h3>定时任务状态</h3>
+            <div style="margin-bottom:12px;font-size:0.85rem">
+                调度器: <span :style="{color: schedulerRunning ? 'var(--success)' : 'var(--danger)'}">{{ schedulerRunning ? '运行中' : '未启动' }}</span>
+            </div>
+            <div v-if="schedulerJobs.length">
+                <div class="sched-job" v-for="job in schedulerJobs" :key="job.id">
+                    <div>
+                        <strong>{{ job.name }}</strong>
+                        <div style="font-size:0.75rem;color:var(--text-dim)">{{ job.trigger }}</div>
+                    </div>
+                    <div style="font-size:0.78rem;color:var(--text-dim)">
+                        下次: {{ job.next_run || 'N/A' }}
+                    </div>
+                </div>
+            </div>
+            <div v-else style="color:var(--text-dim)">暂无定时任务</div>
+        </div>
+        <div class="card">
+            <h3>配置说明</h3>
+            <div style="font-size:0.83rem;color:var(--text-dim);line-height:2">
+                定时任务在 .env 中通过以下变量控制：<br>
+                <code>SCHEDULER_ENABLED=true</code> - 启用/禁用调度器<br>
+                <code>SCHEDULER_COLLECT_INTERVAL=60</code> - 采集间隔(分钟)<br>
+                默认任务：每小时采集、每天8:00生成日报、每周一9:00生成周报
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts Tab (Phase 3) -->
+    <div v-show="activeTab === 'alerts'">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <h3 style="font-size:1rem">风险预警面板</h3>
+            <button class="btn btn-warning" @click="scanAlerts" :disabled="scanningAlerts">
+                {{ scanningAlerts ? '扫描中...' : '扫描预警' }}
+            </button>
+        </div>
+        <div v-if="activeAlerts.length">
+            <div class="alert-item" :class="a.severity" v-for="a in activeAlerts" :key="a.id">
+                <div class="alert-title">
+                    <span class="severity-badge" :class="a.severity">{{ a.severity.toUpperCase() }}</span>
+                    {{ a.title }}
+                </div>
+                <div style="font-size:0.83rem;margin:6px 0;color:var(--text-soft)">{{ a.description }}</div>
+                <div class="alert-meta">
+                    <span>{{ a.alert_type }}</span>
+                    <span>{{ a.created_at ? fmtDate(a.created_at) : '' }}</span>
+                    <button class="btn btn-secondary" style="padding:3px 8px;font-size:0.72rem" @click="ackAlert(a.id)">确认</button>
+                    <button class="btn btn-secondary" style="padding:3px 8px;font-size:0.72rem" @click="resolveAlert(a.id)">解决</button>
+                </div>
+            </div>
+        </div>
+        <div v-else class="card"><div class="empty-state"><div class="empty-icon">✅</div><div class="empty-text">暂无活跃预警，系统运行正常</div><div class="empty-action"><button class="btn btn-warning" @click="scanAlerts" :disabled="scanningAlerts">扫描预警</button></div></div></div>
+    </div>
+
+    <!-- Narrative Tab (Phase 3) -->
+    <div v-show="activeTab === 'narrative'">
+        <div class="two-col">
+            <div class="card">
+                <h3>叙事强度排行榜</h3>
+                <div v-if="narrativeRankings.length">
+                    <div v-for="(n, idx) in narrativeRankings" :key="n.topic" style="padding:8px 0;border-bottom:1px solid var(--border)">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:0.88rem;font-weight:500">{{ idx+1 }}. {{ n.topic }}</span>
+                            <span style="font-size:0.78rem;color:var(--text-dim)">{{ (n.strength * 100).toFixed(0) }}%</span>
+                        </div>
+                        <div class="narrative-bar">
+                            <div class="narrative-fill" :class="n.strength > 0.6 ? 'strong' : n.strength > 0.3 ? 'moderate' : 'weak'"
+                                 :style="{width: (n.strength*100)+'%'}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else style="color:var(--text-dim);padding:20px;text-align:center">暂无数据，采集内容后可查看</div>
+            </div>
+            <div class="card">
+                <h3>叙事分析</h3>
+                <div class="form-group">
+                    <label>输入主题关键词</label>
+                    <div style="display:flex;gap:8px">
+                        <input v-model="narrativeQuery" placeholder="例如: GPT, DeFi, Layer2..." @keyup.enter="analyzeNarrative">
+                        <button class="btn btn-primary" @click="analyzeNarrative" :disabled="!narrativeQuery">分析</button>
+                    </div>
+                </div>
+                <div v-if="narrativeResult">
+                    <div style="margin:12px 0;font-size:0.88rem">
+                        <strong>主题:</strong> {{ narrativeResult.topic }}<br>
+                        <strong>强度:</strong> {{ (narrativeResult.strength * 100).toFixed(1) }}% ({{ narrativeResult.level }})<br>
+                        <strong>相关文章:</strong> {{ narrativeResult.article_count }}篇
+                    </div>
+                    <div v-if="narrativeResult.factors" style="margin-top:10px">
+                        <div v-for="(val, key) in narrativeResult.factors" :key="key" style="display:flex;justify-content:space-between;font-size:0.8rem;padding:3px 0">
+                            <span>{{ key }}</span>
+                            <span style="color:var(--accent)">{{ (val * 100).toFixed(0) }}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent Tasks Tab (Phase 3) -->
+    <div v-show="activeTab === 'agents'">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <h3 style="font-size:1rem">Agent 监测任务</h3>
+            <button class="btn btn-primary" @click="showCreateAgent = true">新建任务</button>
+        </div>
+        <div v-if="agentTasks.length">
+            <div class="agent-card" v-for="t in agentTasks" :key="t.id">
+                <div class="title">
+                    <span class="status-dot" :class="t.status"></span>
+                    {{ t.name }}
+                </div>
+                <div class="info">
+                    类型: {{ t.task_type }} | 目标: {{ t.target }} | 状态: {{ t.status }}
+                    <span v-if="t.last_run_at"> | 上次运行: {{ fmtDate(t.last_run_at) }}</span>
+                    <span v-if="t.run_count"> | 已运行 {{ t.run_count }} 次</span>
+                </div>
+                <div style="margin-top:8px;display:flex;gap:6px">
+                    <button class="btn btn-primary" style="padding:4px 10px;font-size:0.75rem" @click="executeAgent(t.id)">执行</button>
+                    <button v-if="t.status==='active'" class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem" @click="pauseAgent(t.id)">暂停</button>
+                    <button v-if="t.status==='paused'" class="btn btn-success" style="padding:4px 10px;font-size:0.75rem" @click="resumeAgent(t.id)">恢复</button>
+                    <button class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem;color:var(--danger)" @click="deleteAgent(t.id)">删除</button>
+                </div>
+                <div v-if="t.last_result" style="margin-top:8px;padding:10px;background:var(--bg);border-radius:6px;font-size:0.8rem;max-height:200px;overflow-y:auto;white-space:pre-wrap">{{ t.last_result }}</div>
+            </div>
+        </div>
+        <div v-else class="card"><div class="empty-state"><div class="empty-icon">🤖</div><div class="empty-text">还没有 Agent 监测任务</div><div class="empty-action"><button class="btn btn-primary" @click="showCreateAgent = true">创建第一个任务</button></div></div></div>
+
+        <!-- Create Agent Modal -->
+        <div v-if="showCreateAgent" class="modal-overlay" @click.self="showCreateAgent = false">
+            <div class="modal">
+                <h3>创建 Agent 任务</h3>
+                <div class="form-group">
+                    <label>任务名称</label>
+                    <input v-model="newAgent.name" placeholder="例如: 监测 AI Agent 赛道">
+                </div>
+                <div class="form-group">
+                    <label>模板</label>
+                    <select v-model="newAgent.template" @change="applyTemplate">
+                        <option value="">自定义</option>
+                        <option value="monitor_topic">主题监测</option>
+                        <option value="investigate_entity">实体调查</option>
+                        <option value="verify_narrative">叙事验证</option>
+                        <option value="risk_assessment">风险评估</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>任务类型</label>
+                    <select v-model="newAgent.task_type">
+                        <option value="monitor">监测</option>
+                        <option value="investigate">调查</option>
+                        <option value="verify">验证</option>
+                        <option value="analyze">分析</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>监测目标</label>
+                    <input v-model="newAgent.target" placeholder="例如: AI Agent, OpenAI, 监管动态...">
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+                    <button class="btn btn-secondary" @click="showCreateAgent = false">取消</button>
+                    <button class="btn btn-primary" @click="createAgent" :disabled="!newAgent.name || !newAgent.target">创建</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Watchlist Tab (Phase 3) -->
+    <div v-show="activeTab === 'watchlist'">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <h3 style="font-size:1rem">个性化关注列表</h3>
+            <button class="btn btn-primary" @click="showCreateWatch = true">添加关注</button>
+        </div>
+        <div class="card" v-if="watchlistItems.length">
+            <div class="watchlist-item" v-for="w in watchlistItems" :key="w.id">
+                <div>
+                    <strong style="font-size:0.9rem">{{ w.name }}</strong>
+                    <div style="font-size:0.75rem;color:var(--text-dim);margin-top:2px">
+                        <span class="tag">{{ w.watch_type }}</span>
+                        {{ w.watch_value }}
+                        <span v-if="w.match_count" style="margin-left:8px">已匹配 {{ w.match_count }} 次</span>
+                    </div>
+                </div>
+                <div style="display:flex;gap:6px;align-items:center">
+                    <button class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem" @click="viewWatchFeed(w.id)">查看</button>
+                    <button class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem;color:var(--danger)" @click="removeWatch(w.id)">移除</button>
+                </div>
+            </div>
+        </div>
+        <div v-else class="card"><div class="empty-state"><div class="empty-icon">👁️</div><div class="empty-text">还没有关注项</div><div class="empty-action"><button class="btn btn-primary" @click="showCreateWatch = true">添加关注</button></div></div></div>
+
+        <div class="card" v-if="watchFeed && watchFeed.articles">
+            <h3>{{ watchFeed.name }} - 最近动态 ({{ watchFeed.articles.length }}篇)</h3>
+            <div class="article-item" v-for="a in watchFeed.articles.slice(0,15)" :key="a.id">
+                <a class="article-title" :href="a.url" target="_blank">{{ a.title }}</a>
+                <div class="article-meta">
+                    <span v-if="a.published_at">{{ fmtDate(a.published_at) }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Watch Modal -->
+        <div v-if="showCreateWatch" class="modal-overlay" @click.self="showCreateWatch = false">
+            <div class="modal">
+                <h3>添加关注项</h3>
+                <div class="form-group">
+                    <label>名称</label>
+                    <input v-model="newWatch.name" placeholder="例如: 关注 OpenAI 动态">
+                </div>
+                <div class="form-group">
+                    <label>关注类型</label>
+                    <select v-model="newWatch.watch_type">
+                        <option value="keyword">关键词</option>
+                        <option value="topic">主题</option>
+                        <option value="entity">实体</option>
+                        <option value="source">信息源</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>关注值</label>
+                    <input v-model="newWatch.watch_value" placeholder="关键词、主题名、实体名或信息源名">
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+                    <button class="btn btn-secondary" @click="showCreateWatch = false">取消</button>
+                    <button class="btn btn-primary" @click="createWatch" :disabled="!newWatch.name || !newWatch.watch_value">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sources Tab (updated with Discovery) -->
+    <div v-show="activeTab === 'sources'">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <h3 style="font-size:1rem">信息源管理</h3>
+            <button class="btn btn-secondary" @click="discoverSources" :disabled="discovering">
+                {{ discovering ? '发现中...' : '自动发现新源' }}
+            </button>
+        </div>
+        <div class="card">
+            <h3>信息源 ({{ sources.length }}个)</h3>
+            <div class="source-item" v-for="s in sources" :key="s.id">
+                <div>
+                    <span class="health-dot" :class="s.health_status"></span>
+                    <strong>{{ s.name }}</strong>
+                    <span style="color:var(--text-dim);font-size:0.75rem;margin-left:6px">{{ s.source_type }} · {{ s.category }} · {{ s.region }}</span>
+                </div>
+                <span style="font-size:0.75rem;color:var(--text-dim)">
+                    可信度 {{ (s.credibility_score*100).toFixed(0) }}%
+                    <span v-if="s.last_checked_at" style="margin-left:6px">{{ fmtDate(s.last_checked_at) }}</span>
+                </span>
+            </div>
+        </div>
+        <div class="card" v-if="discoveredSources.length">
+            <h3>待审核新源 ({{ discoveredSources.length }})</h3>
+            <div class="source-item" v-for="ds in discoveredSources" :key="ds.id">
+                <div>
+                    <strong>{{ ds.name || ds.url }}</strong>
+                    <div style="font-size:0.75rem;color:var(--text-dim)">{{ ds.category_guess }} · 相关度 {{ (ds.relevance_score*100).toFixed(0) }}%</div>
+                </div>
+                <div style="display:flex;gap:6px">
+                    <button class="btn btn-success" style="padding:3px 8px;font-size:0.72rem" @click="approveSource(ds.id)">通过</button>
+                    <button class="btn btn-secondary" style="padding:3px 8px;font-size:0.72rem" @click="rejectSource(ds.id)">拒绝</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About / License Tab -->
+    <div v-show="activeTab === 'about'">
+        <div class="card" style="max-width:820px;margin:0 auto;">
+            <h3 style="display:flex;align-items:center;gap:10px">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                开放协议与关于
+            </h3>
+            <div style="font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:18px;">
+                <p><strong>huidao.cc</strong> 是一个 AI 驱动的 Web4 全球智库与实时信息聚合平台。</p>
+                <p>我们采集并结构化全球 Crypto / Web3 / Web4 / AI 相关公开信息源，通过 AI 完成分类、标签、风险识别与趋势分析，帮助研究者、开发者和决策者快速把握行业动态。</p>
+            </div>
+            <div style="background:var(--accent-tint);border:1px solid rgba(29,155,240,0.2);border-radius:12px;padding:16px;margin-bottom:18px;">
+                <div style="font-size:0.85rem;color:var(--accent);font-weight:600;margin-bottom:8px">知识共享署名 4.0 国际 (CC BY 4.0)</div>
+                <div style="font-size:0.82rem;color:var(--text-soft);line-height:1.7">
+                    在本站公开可访问范围内，您有权：自由地共享（复制、分发）和演绎（修改、转换、用于商业目的）本站内容，只要您遵守<strong>署名</strong>要求，并以适当方式提供许可协议链接。
+                </div>
+                <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+                    <a class="btn btn-primary" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="font-size:0.78rem;padding:6px 12px">查看完整协议（中文）</a>
+                    <a class="btn btn-secondary" href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank" style="font-size:0.78rem;padding:6px 12px">法律文本（英文）</a>
+                </div>
+            </div>
+            <div style="font-size:0.82rem;color:var(--text-mute);line-height:1.8">
+                <p><strong>使用建议的引用格式：</strong></p>
+                <div style="background:var(--bg-code);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:monospace;margin-bottom:12px;word-break:break-all;">
+                    huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.
+                </div>
+                <p>联系与反馈：<a href="mailto:tanghuidao01@gmail.com" style="color:var(--accent);text-decoration:none;">tanghuidao01@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- P2-3: Mobile Navigation Panel -->
+    <div class="mobile-nav-overlay" :class="{open: mobileNavOpen}" @click="mobileNavOpen = false"></div>
+    <div class="mobile-nav-panel" :class="{open: mobileNavOpen}">
+        <button class="nav-close" @click="mobileNavOpen = false">&times;</button>
+        <div class="nav-section">
+            <div class="nav-section-title">导航</div>
+            <div class="nav-item" :class="{active: activeTab==='overview'}" @click="activeTab='overview'; mobileNavOpen=false">总览</div>
+            <div class="nav-item" :class="{active: activeTab==='trends'}" @click="switchTab('trends'); mobileNavOpen=false">趋势</div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">智能分析</div>
+            <div class="nav-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts'); mobileNavOpen=false">预警</div>
+            <div class="nav-item" :class="{active: activeTab==='narrative'}" @click="switchTab('narrative'); mobileNavOpen=false">叙事强度</div>
+            <div class="nav-item" :class="{active: activeTab==='tracking'}" @click="switchTab('tracking'); mobileNavOpen=false">观点追踪</div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">内容 & 系统</div>
+            <div class="nav-item" :class="{active: activeTab==='articles'}" @click="activeTab='articles'; mobileNavOpen=false">文章</div>
+            <div class="nav-item" :class="{active: activeTab==='briefings'}" @click="activeTab='briefings'; mobileNavOpen=false">简报</div>
+            <div class="nav-item" :class="{active: activeTab==='sources'}" @click="switchTab('sources'); mobileNavOpen=false">信息源</div>
+            <div class="nav-item" :class="{active: activeTab==='scheduler'}" @click="switchTab('scheduler'); mobileNavOpen=false">定时任务</div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">协议</div>
+            <div class="nav-item" :class="{active: activeTab==='about'}" @click="switchTab('about'); mobileNavOpen=false">关于 & CC-BY 4.0</div>
+        </div>
+    </div>
+
+    <div v-if="toast.show" class="toast" :class="toast.type">{{ toast.message }}</div>
+
+    <!-- Settings / Profile Tab (hidden in free public version) -->
+    <div v-show="activeTab === 'settings'" class="settings-panel">
+        <div class="card" style="max-width:680px;margin:0 auto;text-align:center;padding:48px 24px">
+            <div style="font-size:2rem;margin-bottom:12px">🔓</div>
+            <h3 style="margin:0 0 12px;font-size:1.1rem;color:var(--text)">已免费开放</h3>
+            <p style="font-size:0.85rem;color:var(--text-mute);line-height:1.7;margin-bottom:20px;">
+                huidao.cc 已取消会员与登录体系，所有可公开访问内容均遵循 CC BY 4.0 协议免费使用。
+            </p>
+            <button class="btn btn-primary" @click="activeTab='about'">查看协议与关于</button>
+        </div>
+    </div>
+
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <div class="mnav-item" :class="{active: activeTab==='overview'}" @click="activeTab='overview'">
+            <span class="mnav-icon">🏠</span>
+            <span>总览</span>
+        </div>
+        <div class="mnav-item" :class="{active: activeTab==='trends'}" @click="switchTab('trends')">
+            <span class="mnav-icon">📈</span>
+            <span>趋势</span>
+        </div>
+        <div class="mnav-item" :class="{active: activeTab==='alerts'}" @click="switchTab('alerts')">
+            <span class="mnav-icon">🚨</span>
+            <span>预警</span>
+        </div>
+        <div class="mnav-item" :class="{active: activeTab==='briefings'}" @click="activeTab='briefings'">
+            <span class="mnav-icon">📋</span>
+            <span>简报</span>
+        </div>
+        <div class="mnav-item" :class="{active: activeTab==='about'}" @click="activeTab='about'">
+            <span class="mnav-icon">📜</span>
+            <span>协议</span>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal-overlay" v-if="showFAQ" @click.self="showFAQ=false" style="z-index:9998">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:680px;width:90%;max-height:80vh;overflow:hidden;display:flex;flex-direction:column;">
+            <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                <h3 style="margin:0;font-size:1.1rem;color:var(--text)">常见问题 (FAQ)</h3>
+                <button @click="showFAQ=false" style="background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;padding:0 4px">&times;</button>
+            </div>
+            <div style="padding:20px 24px;overflow-y:auto;flex:1;">
+                <div v-for="(item, idx) in faqItems" :key="idx" style="margin-bottom:16px;border-bottom:1px solid var(--bg-elev3);padding-bottom:16px;">
+                    <div @click="item.open=!item.open" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-size:0.9rem;color:var(--text);font-weight:500">{{ item.q }}</span>
+                        <span style="color:var(--text-dim);font-size:0.8rem;transition:transform 0.2s" :style="{transform: item.open ? 'rotate(180deg)' : ''}">▼</span>
+                    </div>
+                    <div v-show="item.open" style="margin-top:8px;font-size:0.82rem;color:var(--text-mute);line-height:1.8" v-html="item.a"></div>
+                </div>
+            </div>
+            <div style="padding:14px 24px;border-top:1px solid var(--border);text-align:center;">
+                <span style="font-size:0.78rem;color:var(--text-mid)">更多问题？<a href="mailto:tanghuidao01@gmail.com" style="color:var(--accent)">联系我们</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+        // ===== 主题管理 (双主题) =====
+        function applyTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            try { localStorage.setItem('huidao-theme', t); } catch(e) {}
+            var mc = document.querySelector('meta[name="theme-color"]');
+            if (mc) mc.setAttribute('content', t === 'light' ? '#f7f9fa' : '#0f1419');
+            var btn = document.getElementById('themeToggleBtn');
+            if (btn) btn.textContent = (t === 'light') ? '🌙' : '☀️';
+            if (window.Chart) {
+                Chart.defaults.color = (t === 'light') ? '#536471' : '#71767b';
+                Chart.defaults.borderColor = (t === 'light') ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
+            }
+            window.dispatchEvent(new Event('theme-changed'));
+        }
+        function toggleTheme() {
+            var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            applyTheme(cur === 'light' ? 'dark' : 'light');
+        }
+        (function initTheme() {
+            var t = document.documentElement.getAttribute('data-theme') || 'dark';
+            applyTheme(t);
+        })();
+
+        const { createApp, ref, reactive, onMounted, nextTick } = Vue;
+
+createApp({
+    setup() {
+        const activeTab = ref('overview');
+        const collecting = ref(false);
+        const generatingBriefing = ref(false);
+        const summarizing = ref(false);
+        const stats = ref({}); const dashboardLoading = ref(true); const statsLoading = ref(true);
+        const recentArticles = ref([]);
+        const hotTopics = ref([]);
+        const topEntities = ref([]);
+        const highRiskArticles = ref([]);
+        const suspectedHype = ref([]);
+        const emergingTopics = ref([]);
+        const articleList = ref([]);
+        const articleTotal = ref(0);
+        const articlePage = ref(1);
+        const articleFilter = reactive({ keyword: '', content_type: '', days: '7' });
+        const briefings = ref([]);
+        const selectedBriefing = ref(null);
+        const sources = ref([]);
+        const toast = reactive({ show: false, message: '', type: 'success' });
+        const schedulerRunning = ref(false);
+        const schedulerJobs = ref([]);
+        const peopleLeaderboard = ref([]);
+        const orgLeaderboard = ref([]);
+        const selectedEntity = ref(null);
+        let charts = {};
+
+        // Phase 3 state
+        const activeAlerts = ref([]);
+        const scanningAlerts = ref(false);
+        const narrativeRankings = ref([]);
+        const narrativeQuery = ref('');
+        const narrativeResult = ref(null);
+        const agentTasks = ref([]);
+        const showCreateAgent = ref(false);
+        const newAgent = reactive({ name: '', task_type: 'monitor', target: '', template: '' });
+        const watchlistItems = ref([]);
+        const showCreateWatch = ref(false);
+        const newWatch = reactive({ name: '', watch_type: 'keyword', watch_value: '' });
+        const watchFeed = ref(null);
+        const discoveredSources = ref([]);
+        const discovering = ref(false);
+
+        const currentUser = ref(null);
+        const authToken = ref(null);
+        const showAuthModal = ref(false);
+        const authMode = ref('login');
+        const authForm = reactive({ email: '', password: '', display_name: '' });
+        const authError = ref(''); const authSuccess = ref(''); const forgotSending = ref(false); const pendingResetToken = ref(''); const resetPassword = ref('');
+        const membershipPlans = ref([]);
+        const showPassword = ref(false); const showFAQ = ref(false); const settingsForm = reactive({ display_name: '', old_password: '', new_password: ''  });
+        const rememberLogin = ref(false);
+        const faqItems = ref([
+            { q: 'huidao.cc 是什么？', a: 'huidao.cc 是一个 AI 驱动的 Web4 全球智库平台，提供全球 Crypto/Web3/Web4 领域的实时动态监控、智能分类、风险预警和趋势分析服务。平台通过 AI 技术自动采集和分析 68+ 个全球信息源，帮助您快速掌握行业动态。', open: false },
+            { q: '数据源包括哪些？', a: '目前覆盖 68+ 个全球信息源，包括主流加密媒体、区块链新闻网站、研究报告平台、社交媒体 KOL 账号、GitHub 开源项目等。我们会持续扩展信息源覆盖范围。', open: false },
+            { q: '使用本站内容需要付费或登录吗？', a: '不需要。huidao.cc 已全面免费开放，无需注册或登录即可浏览。本站公开内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent)">CC BY 4.0</a> 协议，您可以在正确署名的情况下自由使用、共享和演绎。', open: false },
+            { q: '如何正确引用本站内容？', a: '建议引用格式：<br><strong>huidao.cc, "AI 驱动的 Web4 全球智库", https://huidao.cc, CC BY 4.0.</strong><br>您需要保留原文链接或来源标注，并在使用时提供许可协议链接。', open: false },
+            { q: '数据多久更新一次？', a: '平台默认每 <strong>1 小时</strong>自动采集一次最新数据。AI 简报每日早上 8:00 (UTC) 自动生成，每周一 9:00 (UTC) 生成周报。您也可以手动触发采集和简报生成。', open: false },
+            { q: '如何联系我们？', a: '您可以通过邮箱 <a href="mailto:tanghuidao01@gmail.com" style="color:var(--accent)">tanghuidao01@gmail.com</a> 联系我们，我们会尽快回复您的问题。', open: false },
+        ]);
+        const mobileNavOpen = ref(false);
+        const openNavGroup = ref('');
+
+        function showToast(msg, type = 'success') {
+            toast.show = true; toast.message = msg; toast.type = type;
+            setTimeout(() => { toast.show = false; }, 3000);
+        }
+        function fmtDate(d) {
+            if (!d) return '';
+            return new Date(d).toLocaleDateString('zh-CN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+        const typeLabels = { news:'新闻', opinion:'观点', report:'报告', funding:'融资', regulation:'监管', product_launch:'产品发布', partnership:'合作', market_signal:'市场信号', person_speech:'人物发言', suspected_hype:'疑似炒作' };
+        function typeLabel(t) { return typeLabels[t] || t; }
+        function renderMd(text) {
+            if (!text) return '';
+            return text.replace(/^# (.+)$/gm,'<h1>$1</h1>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+        }
+
+        async function fetchDashboard() {
+            try {
+                const r = await fetch('/api/dashboard/');
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                const d = await r.json();
+                stats.value = d.stats || {}; dashboardLoading.value = false; statsLoading.value = false;
+                recentArticles.value = d.recent_articles || [];
+                hotTopics.value = d.hot_topics || [];
+                topEntities.value = d.top_entities || [];
+                highRiskArticles.value = d.high_risk_articles || [];
+                suspectedHype.value = d.suspected_hype || [];
+            } catch(e) {
+                console.error('Dashboard fetch error:', e);
+                // Retry once after 3 seconds
+                setTimeout(async () => {
+                    try {
+                        const r2 = await fetch('/api/dashboard/');
+                        if (r2.ok) {
+                            const d2 = await r2.json();
+                            stats.value = d2.stats || {};
+                            recentArticles.value = d2.recent_articles || [];
+                        }
+                    } catch(e2) { console.error('Dashboard retry failed:', e2); }
+                }, 3000);
+            }
+        }
+        async function fetchArticles() {
+            try {
+                const p = new URLSearchParams({ page: articlePage.value, days: articleFilter.days });
+                if (articleFilter.keyword) p.set('keyword', articleFilter.keyword);
+                if (articleFilter.content_type) p.set('content_type', articleFilter.content_type);
+                const r = await fetch(`/api/articles?${p}`);
+                const d = await r.json();
+                articleList.value = d.articles; articleTotal.value = d.total;
+            } catch(e) { console.error(e); }
+        }
+        async function fetchBriefings() {
+            try {
+                const r = await fetch('/api/briefings/');
+                briefings.value = await r.json();
+                if (briefings.value.length) selectedBriefing.value = briefings.value[0];
+            } catch(e) { console.error(e); }
+        }
+        async function fetchSources() {
+            try { sources.value = await (await fetch('/api/sources/')).json(); } catch(e) { console.error(e); }
+        }
+        async function fetchScheduler() {
+            try {
+                const d = await (await fetch('/api/v2/scheduler/status')).json();
+                schedulerRunning.value = d.running; schedulerJobs.value = d.jobs || [];
+            } catch(e) { console.error(e); }
+        }
+        async function fetchEmerging() {
+            try { emergingTopics.value = await (await fetch('/api/trends/emerging')).json(); } catch(e) { console.error(e); }
+        }
+        async function fetchLeaderboards() {
+            try {
+                peopleLeaderboard.value = await (await fetch('/api/tracking/people/leaderboard?days=14')).json();
+                orgLeaderboard.value = await (await fetch('/api/tracking/organizations/leaderboard?days=14')).json();
+            } catch(e) { console.error(e); }
+        }
+
+        async function collectAll() {
+            collecting.value = true;
+            try {
+                const r = await fetch('/api/collect', { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{}' });
+                const results = await r.json();
+                const n = results.reduce((s,r) => s + r.new_articles, 0);
+                showToast(`采集完成！新增 ${n} 篇`);
+                fetchDashboard(); fetchSources(); fetchEmerging();
+            } catch(e) { showToast('采集失败', 'error'); }
+            collecting.value = false;
+        }
+        async function generateBriefing() {
+            generatingBriefing.value = true;
+            try {
+                await fetch('/api/briefings/generate', { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{"period_type":"daily"}' });
+                showToast('简报已生成'); fetchBriefings(); fetchDashboard();
+            } catch(e) { showToast('生成失败', 'error'); }
+            generatingBriefing.value = false;
+        }
+        async function triggerSummarize() {
+            summarizing.value = true;
+            try {
+                const d = await (await fetch('/api/summarize', { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{"limit":20}' })).json();
+                showToast(`摘要完成 ${d.summarized} 篇`); fetchDashboard();
+            } catch(e) { showToast('摘要失败', 'error'); }
+            summarizing.value = false;
+        }
+        async function viewPerson(name) {
+            try { selectedEntity.value = await (await fetch(`/api/tracking/person/${encodeURIComponent(name)}?days=30`)).json(); } catch(e) { console.error(e); }
+        }
+        async function viewOrg(name) {
+            try { selectedEntity.value = await (await fetch(`/api/tracking/organization/${encodeURIComponent(name)}?days=30`)).json(); } catch(e) { console.error(e); }
+        }
+
+        // === Phase 3 methods ===
+        async function fetchAlerts() {
+            try {
+                const d = await (await fetch('/api/v3/alerts')).json();
+                activeAlerts.value = d.alerts || [];
+            } catch(e) { console.error(e); }
+        }
+        async function scanAlerts() {
+            scanningAlerts.value = true;
+            try {
+                const d = await (await fetch('/api/v3/alerts/scan', { method: 'POST' })).json();
+                showToast(`预警扫描完成: ${d.total_new || 0} 条新预警`);
+                fetchAlerts();
+            } catch(e) { showToast('扫描失败', 'error'); }
+            scanningAlerts.value = false;
+        }
+        async function ackAlert(id) {
+            try { await fetch(`/api/v3/alerts/${id}/acknowledge`, { method: 'POST' }); fetchAlerts(); } catch(e) {}
+        }
+        async function resolveAlert(id) {
+            try { await fetch(`/api/v3/alerts/${id}/resolve`, { method: 'POST' }); fetchAlerts(); } catch(e) {}
+        }
+        async function fetchNarrativeRankings() {
+            try {
+                const d = await (await fetch('/api/v3/narrative/leaderboard?days=14&top_n=15')).json();
+                narrativeRankings.value = d.rankings || [];
+            } catch(e) { console.error(e); }
+        }
+        async function analyzeNarrative() {
+            if (!narrativeQuery.value) return;
+            try {
+                const r = await fetch('/api/v3/narrative/analyze', {
+                    method: 'POST', headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({ topic: narrativeQuery.value, days: 30 })
+                });
+                narrativeResult.value = await r.json();
+            } catch(e) { showToast('分析失败', 'error'); }
+        }
+        async function fetchAgentTasks() {
+            try {
+                const d = await (await fetch('/api/v3/agents/tasks')).json();
+                agentTasks.value = d.tasks || [];
+            } catch(e) { console.error(e); }
+        }
+        function applyTemplate() {
+            const templates = { monitor_topic: 'monitor', investigate_entity: 'investigate', verify_narrative: 'verify', risk_assessment: 'analyze' };
+            if (newAgent.template) { newAgent.task_type = templates[newAgent.template] || 'monitor'; }
+        }
+        async function createAgent() {
+            try {
+                await fetch('/api/v3/agents/tasks', {
+                    method: 'POST', headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify(newAgent)
+                });
+                showToast('Agent任务已创建'); showCreateAgent.value = false;
+                newAgent.name = ''; newAgent.target = ''; newAgent.template = '';
+                fetchAgentTasks();
+            } catch(e) { showToast('创建失败', 'error'); }
+        }
+        async function executeAgent(id) {
+            try {
+                showToast('Agent执行中...');
+                const d = await (await fetch(`/api/v3/agents/tasks/${id}/execute`, { method: 'POST' })).json();
+                showToast('Agent执行完成'); fetchAgentTasks();
+            } catch(e) { showToast('执行失败', 'error'); }
+        }
+        async function pauseAgent(id) {
+            try { await fetch(`/api/v3/agents/tasks/${id}/pause`, { method: 'POST' }); fetchAgentTasks(); } catch(e) {}
+        }
+        async function resumeAgent(id) {
+            try { await fetch(`/api/v3/agents/tasks/${id}/resume`, { method: 'POST' }); fetchAgentTasks(); } catch(e) {}
+        }
+        async function deleteAgent(id) {
+            if (!confirm('确认删除此Agent任务？')) return;
+            try { await fetch(`/api/v3/agents/tasks/${id}`, { method: 'DELETE' }); fetchAgentTasks(); } catch(e) {}
+        }
+        async function fetchWatchlist() {
+            try {
+                const d = await (await fetch('/api/v3/watchlist')).json();
+                watchlistItems.value = d.watchlist || [];
+            } catch(e) { console.error(e); }
+        }
+        async function createWatch() {
+            try {
+                await fetch('/api/v3/watchlist', {
+                    method: 'POST', headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify(newWatch)
+                });
+                showToast('已添加关注项'); showCreateWatch.value = false;
+                newWatch.name = ''; newWatch.watch_value = '';
+                fetchWatchlist();
+            } catch(e) { showToast('添加失败', 'error'); }
+        }
+        async function removeWatch(id) {
+            try { await fetch(`/api/v3/watchlist/${id}`, { method: 'DELETE' }); fetchWatchlist(); } catch(e) {}
+        }
+        async function viewWatchFeed(id) {
+            try { watchFeed.value = await (await fetch(`/api/v3/watchlist/${id}/feed?days=7`)).json(); } catch(e) {}
+        }
+        async function discoverSources() {
+            discovering.value = true;
+            try {
+                const d = await (await fetch('/api/v3/discovery/scan', { method: 'POST' })).json();
+                showToast(`发现 ${d.discovered || 0} 个潜在新源`);
+                fetchDiscoveredSources();
+            } catch(e) { showToast('发现失败', 'error'); }
+            discovering.value = false;
+        }
+        async function fetchDiscoveredSources() {
+            try {
+                const d = await (await fetch('/api/v3/discovery/pending')).json();
+                discoveredSources.value = d.pending_sources || [];
+            } catch(e) { console.error(e); }
+        }
+        async function approveSource(id) {
+            try { await fetch(`/api/v3/discovery/${id}/approve`, { method: 'POST' }); showToast('已添加为正式源'); fetchDiscoveredSources(); fetchSources(); } catch(e) {}
+        }
+        async function rejectSource(id) {
+            try { await fetch(`/api/v3/discovery/${id}/reject`, { method: 'POST' }); fetchDiscoveredSources(); } catch(e) {}
+        }
+        // === Phase 4A - Auth & Membership methods ===
+        function toggleNavGroup(group) {
+            openNavGroup.value = openNavGroup.value === group ? '' : group;
+        }
+        document.addEventListener('click', function() { openNavGroup.value = ''; });
+        function tierLabel(tier) {
+            const labels = { free: '免费版', basic: '基础版', pro: '专业版', max: '旗舰版' };
+            return labels[tier] || tier;
+        }
+
+        // Auth-aware fetch wrapper
+        async function authFetch(url, options = {}) {
+            const headers = { ...authHeaders(), ...(options.headers || {}) };
+            const r = await fetch(url, { ...options, headers });
+            if (r.status === 401 && authToken.value) {
+                // Token expired/invalid - clear silently (free version has no login UI)
+                authToken.value = null;
+                currentUser.value = null;
+            }
+            return r;
+        }
+
+        function authHeaders() {
+            return authToken.value ? { 'Authorization': `Bearer ${authToken.value}` } : {};
+        }
+        async function doAuth() {
+            showToast('本站已取消登录体系，所有内容免费开放', 'info');
+        }
+        async function fetchCurrentUser() {
+            if (!authToken.value) return;
+            try {
+                const r = await fetch('/api/auth/me', { headers: authHeaders() });
+                if (r.ok) {
+                    currentUser.value = await r.json();
+                    // 4B-1: Show unverified email banner
+                    if (currentUser.value && !currentUser.value.email_verified) {
+                        nextTick(() => showUnverifiedBanner());
+                    }
+                }
+                else { authToken.value = null; currentUser.value = null; }
+            } catch(e) { console.error(e); }
+        }
+        function logout() {
+            authToken.value = null;
+            currentUser.value = null;
+            showToast('已退出', 'info');
+        }
+        async function subscribe(tier) {
+            showToast('本站已取消会员体系，所有内容免费开放', 'info');
+        }
+
+
+        // === Password Reset Methods (disabled in free version) ===
+        async function forgotPassword() {
+            showToast('本站已取消登录体系，无需找回密码', 'info');
+        }
+        async function resetPasswordSubmit() {
+            showToast('本站已取消登录体系', 'info');
+        }
+
+
+        // === Profile / Settings Methods ===
+        async function updateProfile() {
+            if (!settingsForm.display_name || !authToken.value) return;
+            try {
+                const r = await authFetch('/api/auth/me', {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ display_name: settingsForm.display_name })
+                });
+                if (r.ok) {
+                    currentUser.value = await r.json();
+                    showToast('昵称已更新', 'success');
+                    settingsForm.display_name = '';
+                } else {
+                    const d = await r.json();
+                    showToast(d.detail || '更新失败', 'error');
+                }
+            } catch(e) { showToast('网络错误', 'error'); }
+        }
+        async function changePassword() {
+            if (!settingsForm.old_password || !settingsForm.new_password || settingsForm.new_password.length < 6) return;
+            try {
+                const r = await authFetch('/api/auth/change-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ old_password: settingsForm.old_password, new_password: settingsForm.new_password })
+                });
+                if (r.ok) {
+                    showToast('密码已修改', 'success');
+                    settingsForm.old_password = '';
+                    settingsForm.new_password = '';
+                } else {
+                    const d = await r.json();
+                    showToast(d.detail || '修改失败', 'error');
+                }
+            } catch(e) { showToast('网络错误', 'error'); }
+        }
+
+        // Charts
+        const COLORS = ['#1d9bf0','#00ba7c','#ffad1f','#f4212e','#a970ff','#1da1f2','#ff6b6b','#ffd93d','#6bcb77','#4d96ff'];
+        function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
+
+        async function renderTrendCharts() {
+            await nextTick();
+            // Article count
+            try {
+                const data = await (await fetch('/api/trends/article-count?days=30')).json();
+                destroyChart('chartArticleCount');
+                const ctx = document.getElementById('chartArticleCount');
+                if (ctx) {
+                    charts['chartArticleCount'] = new Chart(ctx, {
+                        type: 'bar', data: { labels: data.map(d=>d.date.slice(5)), datasets: [{ label: '文章数', data: data.map(d=>d.count), backgroundColor: '#1d9bf033', borderColor: '#1d9bf0', borderWidth: 1 }] },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: '#71767b' } }, x: { ticks: { color: '#71767b' } } } }
+                    });
+                }
+            } catch(e) {}
+            // Topic trend
+            try {
+                const data = await (await fetch('/api/trends/topics?days=30&top_n=5')).json();
+                destroyChart('chartTopicTrend');
+                const ctx = document.getElementById('chartTopicTrend');
+                if (ctx && data.topics) {
+                    const datasets = data.topics.map((t,i) => ({ label: t, data: (data.series[t]||[]).map(d=>d.count), borderColor: COLORS[i%COLORS.length], fill: false, tension: 0.3 }));
+                    charts['chartTopicTrend'] = new Chart(ctx, {
+                        type: 'line', data: { labels: (data.dates||[]).map(d=>d.slice(5)), datasets },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e7e9ea', font: { size: 10 } } } }, scales: { y: { beginAtZero: true, ticks: { color: '#71767b' } }, x: { ticks: { color: '#71767b', maxTicksLimit: 10 } } } }
+                    });
+                }
+            } catch(e) {}
+            // Risk trend
+            try {
+                const data = await (await fetch('/api/trends/risk?days=30')).json();
+                destroyChart('chartRiskTrend');
+                const ctx = document.getElementById('chartRiskTrend');
+                if (ctx && data.length) {
+                    charts['chartRiskTrend'] = new Chart(ctx, {
+                        type: 'line', data: { labels: data.map(d=>d.date.slice(5)), datasets: [
+                            { label: '监管风险', data: data.map(d=>d.regulation_risk), borderColor: '#ffad1f', fill: false, tension: 0.3 },
+                            { label: '炒作风险', data: data.map(d=>d.hype_risk), borderColor: '#f4212e', fill: false, tension: 0.3 },
+                        ] },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#e7e9ea', font: { size: 10 } } } }, scales: { y: { min: 0, max: 1, ticks: { color: '#71767b' } }, x: { ticks: { color: '#71767b', maxTicksLimit: 10 } } } }
+                    });
+                }
+            } catch(e) {}
+            // Content type distribution
+            try {
+                const data = await (await fetch('/api/trends/content-types?days=7')).json();
+                destroyChart('chartContentType');
+                const ctx = document.getElementById('chartContentType');
+                if (ctx && data.length) {
+                    charts['chartContentType'] = new Chart(ctx, {
+                        type: 'doughnut', data: { labels: data.map(d=>typeLabel(d.type)), datasets: [{ data: data.map(d=>d.count), backgroundColor: COLORS }] },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#e7e9ea', font: { size: 10 } } } } }
+                    });
+                }
+            } catch(e) {}
+            // Source activity
+            try {
+                const data = await (await fetch('/api/trends/source-activity?days=7')).json();
+                destroyChart('chartSourceActivity');
+                const ctx = document.getElementById('chartSourceActivity');
+                if (ctx && data.length) {
+                    charts['chartSourceActivity'] = new Chart(ctx, {
+                        type: 'bar', data: { labels: data.map(d=>d.source.slice(0,15)), datasets: [{ label: '文章数', data: data.map(d=>d.count), backgroundColor: COLORS.map(c=>c+'88') }] },
+                        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#71767b' } }, y: { ticks: { color: '#71767b', font: { size: 10 } } } } }
+                    });
+                }
+            } catch(e) {}
+        }
+
+        function switchTab(tab) {
+            activeTab.value = tab;
+            if (tab === 'trends') { setTimeout(renderTrendCharts, 100); }
+            if (tab === 'tracking') { fetchLeaderboards(); }
+            if (tab === 'scheduler') { fetchScheduler(); }
+            if (tab === 'alerts') { fetchAlerts(); }
+            if (tab === 'narrative') { fetchNarrativeRankings(); }
+            if (tab === 'agents') { fetchAgentTasks(); }
+            if (tab === 'watchlist') { fetchWatchlist(); }
+            if (tab === 'sources') { fetchSources(); fetchDiscoveredSources(); }
+        }
+
+        document.addEventListener('theme-changed', () => {
+            Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} });
+            charts = {};
+            renderTrendCharts();
+        });
+        onMounted(() => {
+            fetchDashboard(); fetchArticles(); fetchBriefings();
+            fetchSources(); fetchScheduler(); fetchEmerging();
+            fetchAlerts(); fetchAgentTasks(); fetchWatchlist();
+            // Hash navigation for footer links
+            function handleHashNav() {
+                var h = window.location.hash.replace('#','');
+                var validTabs = ['overview','trends','alerts','briefings','articles','about','narrative','tracking','agents','watchlist','sources','scheduler'];
+                if (h && validTabs.includes(h)) {
+                    activeTab.value = h;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+            window.addEventListener('hashchange', handleHashNav);
+            window.addEventListener('hashnav', handleHashNav);
+            // Check initial hash
+            if (window.location.hash) { handleHashNav(); }
+            // Custom event listeners for footer
+            window.addEventListener('open-faq', function() { showFAQ.value = true; });
+            // open-register listener removed (free version)
+        });
+
+// === 4B-1: Email verification banners ===
+        function showVerifyBanner(email) {
+            var existing = document.getElementById('verify-banner');
+            if (existing) existing.remove();
+            var banner = document.createElement('div');
+            banner.id = 'verify-banner';
+            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(135deg,#1e40af,#3b82f6);color:white;padding:12px 20px;text-align:center;font-size:14px;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
+            banner.innerHTML = '<span>\ud83d\udce7 \u9a8c\u8bc1\u90ae\u4ef6\u5df2\u53d1\u9001\u81f3 <strong>' + (email||'') + '</strong>\uff0c\u8bf7\u67e5\u6536\u5e76\u70b9\u51fb\u94fe\u63a5\u5b8c\u6210\u9a8c\u8bc1\u3002</span>'
+                + '<button onclick="resendVerify(\'' + (email||'') + '\')" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);color:white;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:13px;white-space:nowrap;">\u91cd\u65b0\u53d1\u9001</button>'
+                + '<button onclick="this.parentElement.remove()" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:18px;padding:0 4px;">\u00d7</button>';
+            document.body.prepend(banner);
+            setTimeout(function() { if (banner.parentElement) banner.remove(); }, 30000);
+        }
+        function showUnverifiedBanner() {
+            if (document.getElementById('unverified-banner')) return;
+            var banner = document.createElement('div');
+            banner.id = 'unverified-banner';
+            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#92400e;color:#fef3c7;padding:10px 20px;text-align:center;font-size:13px;display:flex;align-items:center;justify-content:center;gap:10px;';
+            var email = (currentUser.value && currentUser.value.email) ? currentUser.value.email : '';
+            banner.innerHTML = '<span>\u26a0\ufe0f \u90ae\u7bb1\u672a\u9a8c\u8bc1\uff0c\u90e8\u5206\u529f\u80fd\u53d7\u9650\u3002</span>'
+                + '<button onclick="resendVerify(\'' + email + '\')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:var(--warn-text);padding:3px 12px;border-radius:5px;cursor:pointer;font-size:12px;">\u91cd\u65b0\u53d1\u9001\u9a8c\u8bc1\u90ae\u4ef6</button>'
+                + '<button onclick="this.parentElement.remove()" style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;padding:0 4px;">\u00d7</button>';
+            document.body.prepend(banner);
+        }
+        async function resendVerify(email) {
+            try {
+                var r = await fetch('/api/auth/resend-verification', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) });
+                var data = await r.json();
+                if (r.ok) { showToast('\u9a8c\u8bc1\u90ae\u4ef6\u5df2\u91cd\u65b0\u53d1\u9001', 'success'); showVerifyBanner(email); }
+                else { showToast(data.detail || '\u53d1\u9001\u5931\u8d25', 'error'); }
+            } catch(e) { showToast('\u7f51\u7edc\u9519\u8bef', 'error'); }
+        }
+
+
+        return {
+            activeTab, collecting, generatingBriefing, summarizing, statsLoading,
+            stats, recentArticles, hotTopics, topEntities, highRiskArticles, suspectedHype, emergingTopics,
+            articleList, articleTotal, articlePage, articleFilter,
+            briefings, selectedBriefing, sources, toast,
+            schedulerRunning, schedulerJobs,
+            peopleLeaderboard, orgLeaderboard, selectedEntity,
+            // Phase 3
+            activeAlerts, scanningAlerts, narrativeRankings, narrativeQuery, narrativeResult,
+            agentTasks, showCreateAgent, newAgent, watchlistItems, showCreateWatch, newWatch, watchFeed,
+            discoveredSources, discovering,
+            currentUser, authToken, showAuthModal: ref(false), authMode: ref('login'), authForm, authError, membershipPlans,
+            tierLabel, doAuth, logout, subscribe, showPassword, showFAQ, faqItems, rememberLogin: ref(false), mobileNavOpen, openNavGroup, toggleNavGroup, showVerifyBanner, showUnverifiedBanner, resendVerify,
+            // Methods
+            collectAll, generateBriefing: generateBriefing, triggerSummarize, fetchArticles,
+            viewPerson, viewOrg, switchTab,
+            scanAlerts, ackAlert, resolveAlert, analyzeNarrative,
+            createAgent, executeAgent, pauseAgent, resumeAgent, deleteAgent, applyTemplate,
+            createWatch, removeWatch, viewWatchFeed,
+            discoverSources, approveSource, rejectSource,
+            fmtDate, typeLabel, renderMd, showToast, forgotPassword, resetPasswordSubmit, authSuccess, forgotSending, pendingResetToken, resetPassword, settingsForm, updateProfile, changePassword,
+        };
+    }
+}).mount('#app');
+</script>
+<!-- Footer -->
+    <div class="footer-multi">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">huidao.cc</div>
+                <div class="footer-desc">AI 驱动的 Web4 智库平台<br>实时监控全球 Crypto/Web3/4 动态<br>智能分类 · 风险预警 · 趋势分析</div>
+            </div>
+            <div class="footer-col">
+                <h4>产品</h4>
+                <a href="#overview" onclick="window.dispatchEvent(new Event('hashnav'))">总览面板</a>
+                <a href="#trends" onclick="window.dispatchEvent(new Event('hashnav'))">趋势分析</a>
+                <a href="#alerts" onclick="window.dispatchEvent(new Event('hashnav'))">风险预警</a>
+                <a href="#briefings" onclick="window.dispatchEvent(new Event('hashnav'))">智能简报</a>
+                <a href="/a">文章库</a>
+                <a href="/b">简报库</a>
+            </div>
+            <div class="footer-col">
+                <h4>协议</h4>
+                <a href="#about" onclick="window.dispatchEvent(new Event('hashnav'))">关于 & CC-BY 4.0</a>
+                <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">许可协议中文</a>
+                <a href="#" onclick="window.dispatchEvent(new CustomEvent('open-faq'));return false">常见问题</a>
+            </div>
+            <div class="footer-col">
+                <h4>关于</h4>
+                <a href="#about" onclick="window.dispatchEvent(new Event('hashnav'))">关于与方法论</a>
+                <a href="mailto:tanghuidao01@gmail.com">联系我们</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 huidao.cc · 所有可公开访问内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" style="color:var(--accent);text-decoration:none;">CC BY 4.0</a> 协议免费开放使用
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+*.pyo
+.env
+.env.*
+*.db
+data/
+.git
+.gitignore
+deploy/
+*.md
+verify.js
+node_modules/
+.vscode/
