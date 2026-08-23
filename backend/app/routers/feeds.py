@@ -89,7 +89,7 @@ def rss_briefings(limit: int = Query(30, ge=1, le=100), db: Session = Depends(ge
         "zh-CN",
         "".join(items),
     )
-    return Response(content=content, media_type="application/rss+xml", headers=CACHE)
+    return Response(content=content, media_type="application/rss+xml; charset=utf-8", headers=CACHE)
 
 
 @router.get("/alerts.xml")
@@ -159,4 +159,4 @@ def rss_alerts(
         "zh-CN",
         "".join(items),
     )
-    return Response(content=content, media_type="application/rss+xml", headers=CACHE)
+    return Response(content=content, media_type="application/rss+xml; charset=utf-8", headers=CACHE)
