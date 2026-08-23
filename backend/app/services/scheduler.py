@@ -129,66 +129,6 @@ async def job_weekly_briefing():
 
 
 
-async def job_trial_expiry():
-    """Scheduled job: check and downgrade expired trials."""
-    logger.info("[Scheduler] Checking expired trials...")
-    db = SessionLocal()
-    try:
-        from app.services.trial import check_expired_trials
-        count = check_expired_trials(db)
-        if count > 0:
-            logger.info(f"[Scheduler] Downgraded {count} expired trials")
-    except Exception as e:
-        logger.error(f"[Scheduler] Trial expiry check error: {e}")
-    finally:
-        db.close()
-
-
-
-async def job_order_expiry():
-    """Scheduled job: cancel expired pending orders."""
-    db = SessionLocal()
-    try:
-        from app.services.payment_service import cancel_expired_orders
-        count = cancel_expired_orders(db)
-        if count > 0:
-            logger.info(f"[Scheduler] Cancelled {count} expired orders")
-    except Exception as e:
-        logger.error(f"[Scheduler] Order expiry error: {e}")
-    finally:
-        db.close()
-
-
-
-async def job_trial_reminder():
-    """Scheduled job: send trial expiry reminders."""
-    logger.info("[Scheduler] Sending trial expiry reminders...")
-    db = SessionLocal()
-    try:
-        from app.services.email_marketing import send_trial_expiring_soon
-        count = await send_trial_expiring_soon(db)
-        if count > 0:
-            logger.info(f"[Scheduler] Sent {count} trial reminders")
-    except Exception as e:
-        logger.error(f"[Scheduler] Trial reminder error: {e}")
-    finally:
-        db.close()
-
-
-async def job_weekly_newsletter():
-    """Scheduled job: send weekly newsletter to paid users."""
-    logger.info("[Scheduler] Sending weekly newsletter...")
-    db = SessionLocal()
-    try:
-        from app.services.email_marketing import send_weekly_newsletter
-        count = await send_weekly_newsletter(db)
-        logger.info(f"[Scheduler] Newsletter sent to {count} users")
-    except Exception as e:
-        logger.error(f"[Scheduler] Newsletter error: {e}")
-    finally:
-        db.close()
-
-
 def init_scheduler():
     """Initialize and start the scheduler with default jobs."""
     if not SCHEDULER_ENABLED:
@@ -224,47 +164,10 @@ def init_scheduler():
         replace_existing=True,
     )
 
-    # Job 4: Check trial expiry every hour
-    sched.add_job(
-        job_trial_expiry,
-        trigger=IntervalTrigger(hours=1),
-        id="trial_expiry",
-        name="Check trial expiry",
-        replace_existing=True,
-    )
-
-    # Job 5: Cancel expired orders every 5 minutes
-    sched.add_job(
-        job_order_expiry,
-        trigger=IntervalTrigger(minutes=5),
-        id="order_expiry",
-        name="Cancel expired orders",
-        replace_existing=True,
-    )
-
-    # Job 6: Trial expiry reminder daily at 10:00 UTC
-    sched.add_job(
-        job_trial_reminder,
-        trigger=CronTrigger(hour=10, minute=0),
-        id="trial_reminder",
-        name="Trial expiry reminder",
-        replace_existing=True,
-    )
-
-    # Job 7: Weekly newsletter on Monday at 10:30 UTC
-    sched.add_job(
-        job_weekly_newsletter,
-        trigger=CronTrigger(day_of_week="mon", hour=10, minute=30),
-        id="weekly_newsletter",
-        name="Weekly newsletter",
-        replace_existing=True,
-    )
-
     sched.start()
     logger.info(
         f"[Scheduler] Started with collect interval={SCHEDULER_COLLECT_INTERVAL_MINUTES}min, "
-        f"daily briefing at 08:00 UTC, weekly briefing on Mon 09:00 UTC, "
-        f"trial expiry check every 1h"
+        f"daily briefing at 08:00 UTC, weekly briefing on Mon 09:00 UTC"
     )
 
 

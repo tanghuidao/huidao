@@ -47,8 +47,3 @@ NOTIFY_WEBHOOK_URL = os.getenv("NOTIFY_WEBHOOK_URL", "")  # Feishu/Slack/Telegra
 NOTIFY_TELEGRAM_ENABLED = os.getenv("NOTIFY_TELEGRAM_ENABLED", "false").lower() == "true"
 NOTIFY_TELEGRAM_BOT_TOKEN = os.getenv("NOTIFY_TELEGRAM_BOT_TOKEN", "")
 NOTIFY_TELEGRAM_CHAT_ID = os.getenv("NOTIFY_TELEGRAM_CHAT_ID", "")
-
-# Auth / JWT (Phase 4A)
-JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "huidao-cc-jwt-secret-change-me-in-production-2024")
-JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
-JWT_EXPIRE_HOURS = int(os.getenv("JWT_EXPIRE_HOURS", "24"))

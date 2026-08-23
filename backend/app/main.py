@@ -12,7 +12,6 @@ from app.database import get_db, init_db
 from app.routers import sources, articles, briefings, dashboard
 from app.routers import trends, tracking, phase2
 from app.routers import phase3
-from app.routers import auth, membership, payment, admin
 from app.schemas import CollectRequest, CollectResult, SummarizeRequest
 from app.services.collector import collect_all
 from app.services.classifier import classify_unclassified
@@ -88,12 +87,11 @@ async def add_security_headers(request, call_next):
     response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://turing.captcha.qcloud.com https://ssl.captcha.qq.com https://captcha.qq.com; "
-        "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://turing.captcha.gtimg.com https://turing.captcha.qcloud.com; "
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; "
+        "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; "
         "img-src 'self' data: https:; "
-        "font-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://turing.captcha.gtimg.com; "
-        "connect-src 'self' https://huidao.cc https://ssl.captcha.qq.com https://captcha.qq.com https://turing.captcha.qcloud.com https://turing.captcha.gtimg.com https://captcha.gtimg.com; "
-        "frame-src https://ssl.captcha.qq.com https://captcha.qq.com https://turing.captcha.qcloud.com https://turing.captcha.gtimg.com https://captcha.gtimg.com"
+        "font-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; "
+        "connect-src 'self' https://huidao.cc"
     )
     if "server" in response.headers:
         del response.headers["server"]
@@ -106,8 +104,6 @@ async def robots_txt():
     content = """User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /static/terms.html
-Disallow: /static/privacy.html
 
 Sitemap: https://huidao.cc/sitemap.xml
 """
@@ -118,17 +114,16 @@ Sitemap: https://huidao.cc/sitemap.xml
 async def llms_txt():
     content = """# huidao.cc
 
-> AI驱动的Web4.0全球智库：实时监控68+全球信息源，通过AI进行智能分类、风险预警、趋势分析，并生成每日/每周简报。
+> AI驱动的Web4.0全球智库：实时监控60+全球信息源，通过AI进行智能分类、风险预警、趋势分析，并生成每日/每周简报。全站内容免费开放，遵循 CC BY 4.0 协议。
 
 ## 关于
-huidao.cc 面向 AI、Crypto、Web3、Web4.0 领域，持续采集全球公开信息源，用AI模型对内容分类、评分、识别高风险与疑似炒作信息，追踪热门话题与新兴话题的增长趋势，并对关键人物与机构的观点进行追踪。
+huidao.cc 面向 AI、Crypto、Web3、Web4.0 领域，持续采集全球公开信息源，用AI模型对内容分类、评分、识别高风险与疑似炒作信息，追踪热门话题与新兴话题的增长趋势，并对关键人物与机构的观点进行追踪。无需注册或登录，全部功能免费使用。
 
 ## 核心功能
 - 总览仪表盘：信息源规模、今日/本周动态、活跃预警统计
 - 趋势分析：热门话题、新兴话题增长率
 - 智能分析：风险预警、叙事强度评分、观点追踪
 - 简报：AI生成的每日/每周简报
-- 会员体系：免费版 / 基础版 / 专业版 / 旗舰版
 
 ## 可抓取的内容入口
 - 文章库（AI摘要 + 原文链接，纯HTML可直接抓取）: https://huidao.cc/a
@@ -139,10 +134,10 @@ huidao.cc 面向 AI、Crypto、Web3、Web4.0 领域，持续采集全球公开�
 - 站点地图（含全部可索引页面）: https://huidao.cc/sitemap.xml
 
 ## 引用方式
-引用本站内容时请注明"huidao.cc"并保留对应的固定链接（/a/编号 或 /b/编号）。文章的AI摘要基于原文生成，每篇文章页均附原文出处链接。
+引用本站内容时请注明"huidao.cc"并保留对应的固定链接（/a/编号 或 /b/编号）。文章的AI摘要基于原文生成，每篇文章页均附原文出处链接。本站内容遵循 CC BY 4.0 协议，转载与二次创作须署名并注明链接。
 
 ## 联系方式
-- 邮箱：tanghuidao01@gmail.com
+- GitHub Issues: https://github.com/tanghuidao/huidao/issues
 """
     return PlainTextResponse(content)
 
@@ -175,12 +170,6 @@ app.include_router(phase2.router)
 
 # Phase 3
 app.include_router(phase3.router)
-
-# Phase 4A (Membership)
-app.include_router(auth.router)
-app.include_router(membership.router)
-app.include_router(payment.router)
-app.include_router(admin.router)
 
 
 # === Action Endpoints ===
