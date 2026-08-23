@@ -19,6 +19,10 @@ MIN_CONTENT_LENGTH = 50       # Minimum raw_content chars to accept
 MIN_TITLE_LENGTH = 10         # Minimum title length
 MAX_TITLE_LENGTH = 500        # Maximum title length (prevent junk)
 
+# Non-article URL paths to skip (podcast episodes, videos, live streams mix
+# into some RSS feeds, e.g. The Verge, and pollute the article stream)
+NON_ARTICLE_URL_PATTERNS = ("/podcast/", "/video/", "/live/", "/watch/")
+
 
 def compute_content_hash(title: str, url: str) -> str:
     """Generate a hash for deduplication."""
@@ -139,6 +143,12 @@ async def collect_source(source: Source, db: Session) -> dict:
             link = entry.get("link", "").strip()
 
             if not title or not link:
+                continue
+
+            # Skip non-article entries (podcast episodes, videos, live streams)
+            link_lower = link.lower()
+            if any(p in link_lower for p in NON_ARTICLE_URL_PATTERNS):
+                result["skipped_quality"] += 1
                 continue
 
             # Extract and clean content

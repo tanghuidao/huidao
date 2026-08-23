@@ -52,8 +52,11 @@ CONTENT_TYPE_RULES = [
     ("regulation", ["regulation", "regulatory", "compliance", "legislation", "enforcement",
                     "监管", "合规", "立法", "执法行动", "罚款", "处罚", "禁令", "证监会", "金融监管"],
                    ["sec", "cftc", "esma", "fca", "mifid", "mica"]),
-    ("funding", ["raised", "funding round", "series a", "series b", "series c", "seed round",
-                 "venture capital", "investment round", "valuation", "融资", "估值", "投资轮"], []),
+    ("funding", ["funding round", "seed round", "venture capital", "investment round",
+                 "融资", "投资轮", "募资"], ["ipo"]),
+    # NOTE: bare "raised"/"valuation" removed (matched "prices raised", "valuation remains
+    # high" in politics/macro news). Amount-anchored funding patterns live in
+    # FUNDING_PATTERNS below and are checked inside classify_content_type().
     ("product_launch", ["launch", "release", "unveil", "debut", "mainnet", "testnet",
                         "上线", "发布", "推出", "主网"], []),
     ("partnership", ["partner", "collaboration", "integrate", "alliance", "join force", "team up",
@@ -66,24 +69,52 @@ CONTENT_TYPE_RULES = [
     ("person_speech", ["said", "told", "according to", "believes", "predicts", "argues", "interview",
                        "表示", "认为", "预测", "称", "接受采访"], []),
     ("opinion", ["opinion", "editorial", "commentary", "perspective", "观点", "评论", "社论"], []),
-    ("suspected_hype", ["revolutionary", "game-changing", "100x", "1000x", "to the moon",
-                        "guaranteed", "next big", "颠覆性", "百倍", "千倍", "暴涨", "稳赚"], []),
+    ("suspected_hype", ["100x", "1000x", "to the moon", "梭哈", "稳赚", "零风险",
+                        "一夜暴富", "财富自由", "百倍", "千倍", "万倍"],
+     ["ponzi", "rug pull", "shill", "mooning", "lambo"]),
     ("news", [], []),
 ]
 
 # --- Hype Indicators (EN + ZH) ---
+# Phrase indicators: strong crypto/Ponzi language only. Generic words like
+# "exclusive", "secret", "moon", "breakthrough", "inevitable", "explosive" were
+# removed because they matched normal journalism (podcast descriptions, space
+# articles, book reviews) and polluted the suspected-hype panel.
 HYPE_INDICATORS = [
     # English
-    "revolutionary", "game-changing", "disruptive", "100x", "1000x",
-    "moon", "to the moon", "guaranteed", "next big thing", "massive gains",
-    "don't miss", "hurry", "limited time", "exclusive", "secret",
-    "infinity", "unstoppable", "inevitable", "breakthrough", "explosive",
-    "once in a lifetime", "get rich", "financial freedom",
+    "100x", "1000x", "to the moon", "guaranteed returns", "get rich quick",
+    "financial freedom", "don't miss out", "limited time offer", "overnight riches",
     # Chinese
-    "颠覆性", "革命性", "百倍币", "千倍币", "万倍", "暴涨", "飙升", "疯涨",
-    "稳赚", "保本", "零风险", "错过后悔", "限时", "独家", "内幕",
-    "财富自由", "一夜暴富", "躺赚", "无脑冲", "all in", "梭哈",
-    "史诗级", "现象级", "王炸", "核弹级", "破天荒",
+    "百倍", "千倍", "万倍", "一夜暴富", "财富自由", "稳赚", "保本", "零风险",
+    "无风险", "暴涨", "疯涨", "梭哈", "无脑冲", "躺赚", "错过后悔",
+    "内幕消息", "王炸", "核弹级", "史诗级",
+]
+
+# Word-boundary indicators (short/ambiguous English words that must not match
+# inside longer words, e.g. "mooning" but never "moon landing")
+HYPE_WORD_KEYWORDS = ["ponzi", "rug pull", "shill", "mooning", "lambo", "diamond hands"]
+
+
+# --- Funding amount patterns (regex, amount-anchored) ---
+# Only treat "raise/valuation" language as funding when tied to a concrete
+# amount, so "prices raised concerns" / "valuation remains high" no longer
+# misclassify politics and macro news as funding.
+FUNDING_PATTERNS = [
+    # raised $100M / raises over $100 billion; but NOT "raises tariffs/taxes/
+    # prices/rates on $50 billion" (trade-war and pricing news)
+    r"\brais(e|es|ed|ing)\b(?!\s+(tariff|tariffs|tax|taxes|duty|duties|price|prices|"
+    r"rate|rates|interest|concern|concerns|question|questions|alarm|alarms|doubt|doubts))"
+    r"(?:\s+\w+){0,3}?\s+(\$|£|€|¥)?\s*\d",
+    r"\b(secur|securing|secures|secured)\s+(\$|£|€|¥)?\s*\d",     # secures $25M
+    r"\b(nets?|netted)\s+(\$|£|€|¥)?\s*\d",                       # nets $30M round
+    r"\bvalued at\s+(\$|£|€|¥)?\s*\d",                            # valued at $2 trillion
+    r"\bvaluation of\s+(\$|£|€|¥)?\s*\d",
+    r"\bseries\s+[abc]\b",                                         # series A/B/C
+    r"\bipo\b",                                                     # IPO event
+    r"完成[^。；，]{0,15}融资",                                      # 完成2.5亿美元融资
+    r"获得[^。；，]{0,12}(融资|投资)",
+    r"(领投|参投|跟投)",
+    r"(种子轮|天使轮|新一轮融资|pre-?[ABC]轮|[ABC]轮融资)",
 ]
 
 
@@ -98,10 +129,23 @@ def _match_rule(text_lower: str, exact_phrases: list, word_keywords: list) -> bo
     return False
 
 
+def _matches_funding_pattern(text_lower: str) -> bool:
+    """Check if text contains an amount-anchored funding pattern."""
+    return any(re.search(p, text_lower) for p in FUNDING_PATTERNS)
+
+
 def classify_content_type(text: str) -> str:
     """Classify content type based on keywords."""
     text_lower = text.lower()
     for content_type, exact_phrases, word_keywords in CONTENT_TYPE_RULES:
+        if content_type == "funding":
+            # Funding matches either a strong rule phrase (funding round, 融资,
+            # IPO, ...) or an amount-anchored pattern (raised $30M, valued at
+            # $2T, 完成X亿美元融资, ...).
+            if _match_rule(text_lower, exact_phrases, word_keywords) or \
+                    _matches_funding_pattern(text_lower):
+                return content_type
+            continue
         if _match_rule(text_lower, exact_phrases, word_keywords):
             return content_type
     return "news"
@@ -118,26 +162,46 @@ def extract_tags(text: str) -> list[str]:
 
 
 def calculate_hype_risk(text: str) -> float:
-    """Calculate hype risk score (0-1), continuous scoring."""
+    """Calculate hype risk score (0-1), continuous scoring.
+
+    Requires at least 2 distinct hype indicators to produce a non-zero score,
+    so a single generic word can no longer push an article into the
+    suspected-hype panel.
+    """
     text_lower = text.lower()
     matches = sum(1 for indicator in HYPE_INDICATORS if indicator in text_lower)
-    # Continuous: each match adds 0.12, cap at 1.0
-    # 1 match=0.12, 3=0.36, 5=0.60, 8+=1.0
-    return min(matches * 0.12, 1.0)
+    matches += sum(1 for kw in HYPE_WORD_KEYWORDS
+                   if re.search(r'\b' + re.escape(kw) + r'\b', text_lower))
+    if matches < 2:
+        return 0.0
+    # 2 matches=0.4, 3=0.6, 4=0.8, 5+=1.0
+    return round(min(matches * 0.2, 1.0), 3)
 
 
-# Regulation risk keywords (EN + ZH + traditional finance)
+# Regulation risk keywords - soft signals (substring-safe phrases only).
+# NOTE: "ban" and "fine" moved to word-boundary list: as substrings they matched
+# "bank"/"banking"/"finance"/"defined" and inflated scores on ordinary news.
 REGULATION_RISK_WORDS = [
     # English - crypto regulation
-    "ban", "enforcement", "lawsuit", "fine", "penalty", "crackdown", "illegal", "fraud",
-    "sanction", "prosecution", "indictment", "subpoena", "investigation",
+    "enforcement", "lawsuit", "penalty", "crackdown", "illegal", "fraud", "sanction",
+    "subpoena", "investigation",
     # English - traditional finance regulation
-    "securities violation", "insider trading", "market manipulation", "unregistered securities",
-    "cease and desist", "regulatory action", "compliance failure",
+    "securities violation", "insider trading", "market manipulation",
+    "unregistered securities", "cease and desist", "regulatory action",
+    "compliance failure",
     # Chinese - crypto/finance regulation
-    "禁止", "处罚", "罚款", "违规", "违法", "调查", "起诉", "制裁",
-    "监管处罚", "行政处罚", "刑事", "立案", "整改", "约谈", "叫停",
-    "非法集资", "传销", "洗钱", "内幕交易", "操纵市场",
+    "禁止", "处罚", "罚款", "违规", "违法", "调查", "制裁",
+    "监管处罚", "行政处罚", "整改", "约谈", "叫停",
+]
+
+# Short/ambiguous soft words that need word-boundary matching
+REGULATION_RISK_BOUNDARY_WORDS = ["ban", "bans", "banned", "fine", "fined"]
+
+# Hard signals - strongly indicative of enforcement/criminal proceedings.
+# Weighted higher than soft words.
+REGULATION_HARD_WORDS = [
+    "indictment", "prosecution", "ponzi",
+    "非法集资", "传销", "洗钱", "内幕交易", "操纵市场", "刑事", "立案", "起诉",
 ]
 
 # Regulatory bodies (word-boundary matched)
@@ -149,24 +213,36 @@ REGULATORY_BODIES = [
 
 
 def calculate_regulation_risk(text: str, tags: list[str]) -> float:
-    """Calculate regulation risk (0-1) across all sources."""
-    score = 0.0
+    """Calculate regulation risk (0-1) with continuous, non-saturating scoring.
+
+    Uses square-root dampening on each signal group so scores spread across a
+    wide range instead of piling up at a single saturated value (the old
+    0.3+0.45+0.2 cap made every high-risk article score exactly 0.95).
+    Theoretical max: 0.25 (tag) + 0.40 (soft) + 0.20 (hard) + 0.15 (bodies) = 1.0
+    """
     text_lower = text.lower()
+    score = 0.0
 
     # Tag-based signal
     if "Regulation" in tags:
-        score += 0.3
+        score += 0.25
 
-    # Keyword matches (continuous)
-    matches = sum(1 for w in REGULATION_RISK_WORDS if w in text_lower)
-    score += min(matches * 0.15, 0.45)
+    # Soft keyword matches (sqrt dampening: 1→0.20, 2→0.28, 4→0.40 cap)
+    soft = sum(1 for w in REGULATION_RISK_WORDS if w in text_lower)
+    soft += sum(1 for w in REGULATION_RISK_BOUNDARY_WORDS
+                if re.search(r'\b' + re.escape(w) + r'\b', text_lower))
+    score += min(0.20 * (soft ** 0.5), 0.40)
 
-    # Regulatory body mention (word boundary)
+    # Hard signals (sqrt dampening: 1→0.15, 2→0.20 cap)
+    hard = sum(1 for w in REGULATION_HARD_WORDS if w in text_lower)
+    score += min(0.15 * (hard ** 0.5), 0.20)
+
+    # Regulatory body mention (sqrt dampening: 1→0.12, 2→0.15 cap)
     body_matches = sum(1 for b in REGULATORY_BODIES
                        if re.search(r'\b' + re.escape(b) + r'\b', text_lower))
-    score += min(body_matches * 0.1, 0.25)
+    score += min(0.12 * (body_matches ** 0.5), 0.15)
 
-    return min(score, 1.0)
+    return round(min(score, 1.0), 3)
 
 
 KNOWN_ENTITIES = {
