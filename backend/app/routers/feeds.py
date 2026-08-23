@@ -69,13 +69,13 @@ def rss_briefings(limit: int = Query(30, ge=1, le=100), db: Session = Depends(ge
             b.period_type, b.period_type
         )
         link = f"{BASE_URL}/b/{b.id}"
-        desc = _escape((b.content or "")[:500], 500)
+        body = _escape((b.content or "")[:500], 500)
         items.append(
             "<item>"
             f"<title>{_escape(b.title)}</title>"
             f"<link>{link}</link>"
             f"<guid isPermaLink=\"true\">{link}</guid>"
-            f"<description>{desc}</description>"
+            f"<description>{body}</description>"
             f"<category>{label}</category>"
             f"<pubDate>{_rfc822(b.created_at)}</pubDate>"
             "</item>"
@@ -134,7 +134,7 @@ def rss_alerts(
             cats.append(f"hype_warning:{int(hype * 100)}%")
         link = f"{BASE_URL}/a/{a.id}"
         source_name = a.source.name if a.source else ""
-        desc = (
+        body = (
             f"regulation_risk={int(reg * 100)}%, hype_risk={int(hype * 100)}%"
             + (f", source={source_name}" if source_name else "")
             + (f", summary={_escape(a.one_line_summary or '', 300)}" if a.one_line_summary else "")
@@ -144,7 +144,7 @@ def rss_alerts(
             f"<title>{_escape(a.title)}</title>"
             f"<link>{link}</link>"
             f'<guid isPermaLink="true">{link}</guid>'
-            f"<description>{_escape(desc)}</description>"
+            f"<description>{_escape(body)}</description>"
             + "".join(f"<category>{_escape(cat)}</category>" for cat in cats)
             + f"<pubDate>{_rfc822(a.published_at or a.fetched_at)}</pubDate>"
             "</item>"
