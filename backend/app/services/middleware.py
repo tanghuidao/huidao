@@ -1,8 +1,10 @@
 """Authentication dependency and middleware for FastAPI."""
 import logging
+import os
+import secrets
 from typing import Optional
 
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, Header, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 
@@ -12,6 +14,27 @@ from app.services.auth import decode_access_token, get_user_by_id, check_members
 logger = logging.getLogger(__name__)
 
 security = HTTPBearer(auto_error=False)
+
+
+def require_api_key(x_api_key: Optional[str] = Header(None, alias="X-API-Key")):
+    """Protect administrative write endpoints with a shared API key.
+
+    The key is configured via the ADMIN_API_KEY environment variable.
+    If the variable is not set, all protected endpoints are denied (fail-closed).
+    """
+    expected = os.getenv("ADMIN_API_KEY", "")
+    if not expected:
+        logger.warning("ADMIN_API_KEY is not configured; rejecting admin API request")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="管理接口未配置密钥，已拒绝访问",
+        )
+    if not x_api_key or not secrets.compare_digest(str(x_api_key), expected):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="无效或缺少 X-API-Key 请求头",
+        )
+    return True
 
 
 def get_current_user(

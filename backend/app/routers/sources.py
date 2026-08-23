@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.database import get_db
+from app.services.middleware import require_api_key
 from app.models import Source
 from app.schemas import SourceCreate, SourceUpdate, SourceResponse
 
@@ -25,7 +26,7 @@ def list_sources(
 
 
 @router.post("/", response_model=SourceResponse)
-def create_source(source: SourceCreate, db: Session = Depends(get_db)):
+def create_source(source: SourceCreate, db: Session = Depends(get_db), _admin=Depends(require_api_key)):
     """Create a new information source."""
     existing = db.query(Source).filter(Source.url == source.url).first()
     if existing:
@@ -48,7 +49,7 @@ def get_source(source_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{source_id}", response_model=SourceResponse)
-def update_source(source_id: int, update: SourceUpdate, db: Session = Depends(get_db)):
+def update_source(source_id: int, update: SourceUpdate, db: Session = Depends(get_db), _admin=Depends(require_api_key)):
     """Update a source."""
     source = db.query(Source).filter(Source.id == source_id).first()
     if not source:
@@ -63,7 +64,7 @@ def update_source(source_id: int, update: SourceUpdate, db: Session = Depends(ge
 
 
 @router.delete("/{source_id}")
-def delete_source(source_id: int, db: Session = Depends(get_db)):
+def delete_source(source_id: int, db: Session = Depends(get_db), _admin=Depends(require_api_key)):
     """Delete a source."""
     source = db.query(Source).filter(Source.id == source_id).first()
     if not source:
@@ -75,7 +76,7 @@ def delete_source(source_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/batch", response_model=list[SourceResponse])
-def batch_create_sources(sources: list[SourceCreate], db: Session = Depends(get_db)):
+def batch_create_sources(sources: list[SourceCreate], db: Session = Depends(get_db), _admin=Depends(require_api_key)):
     """Batch create sources (skip duplicates)."""
     created = []
     for source_data in sources:
